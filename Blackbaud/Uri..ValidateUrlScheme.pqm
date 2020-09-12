@@ -1,0 +1,5 @@
+﻿(url as text) as text => 
+	if (Uri.Parts(url)[Scheme] <> "https") then 
+		error "Url scheme must be HTTPS" 
+	else 
+		url;

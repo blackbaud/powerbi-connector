@@ -1,6 +1,6 @@
 # powerbi-connector
 
-Blackbaud data connectors for Power Query and Power BI.  This repo contains the instructions and code for a custom connector for Power Query and Power BI.  Many thanks to [Grant Quick](https://github.com/GrantQuick) for the initial creation of this custom connector.
+This repo contains the code needed for a custom connector for Power Query and Power BI as well as the instructions to build and enable it.  Many thanks to [Grant Quick](https://github.com/GrantQuick) for the initial creation of this custom connector.
 
 ## Getting Started
 
@@ -10,7 +10,7 @@ Follow the [SKY Developer Getting Started Guide](https://developer.blackbaud.com
 - SKY Developer Subscription
 - Registered Application
 
-When you get the create application step, please be sure to add `https://oauth.powerbi.com/views/oauthredirect.html` as a "Redirect URI." 
+When you get to the create application step, please be sure to add `https://oauth.powerbi.com/views/oauthredirect.html` as a "Redirect URI." 
 
 ## Installation
 
@@ -43,29 +43,6 @@ When you get the create application step, please be sure to add `https://oauth.p
 4. In Power BI Desktop, click **Get Data > Other > Blackbaud**
 5. The first time you use the connector you will need to log in using your Blackbaud account and authorise the app to work with your data.
 
-
-## Supported Endpoints
-
-The connector supports the following endpoints:
-* Constituent list
-* Phone list
-* Email Address list
-* Address list
-* Education list
-* Constituent Code list
-* Online Presence list
-* Relationship list
-* Constituent Custom Field list
-* Gift list
-* Gift Custom Field list
-* Appeal list
-* Campaign list
-* Fund list
-* Opportunity list
-* Notes list
-* Action list
-* Memberships list
-
 ## Scheduled Refresh
 
 The connector supports scheduled refresh through the Power BI service via a Power BI On-Premises Data Gateway (Personal mode). In order to take advantage of this, the following steps need to be performed:
@@ -80,3 +57,5 @@ The connector supports scheduled refresh through the Power BI service via a Powe
 Please be sure to utilize the [Blackbaud Community - Microsoft Connectors category](https://community.blackbaud.com/forums/viewcategory/586) for any questions and feedback related to this custom connector.
 
 ## Known Issues
+
+- PowerBI will throw an error when attempting to use the Membership List functionality if the corresponding environment does not have the Membership Module enabled.

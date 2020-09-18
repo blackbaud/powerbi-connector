@@ -19,10 +19,11 @@ When you get to the create application step, please be sure to add `https://oaut
 #### Option 1 - Using Visual Studio
 
 1. Clone or download this repo locally.
-2. Open the `Blackbaud.sln` file.
-3. Update the `client_id.txt` and `client_secret.txt` files with values from the [application](https://developer.blackbaud.com/apps/) you registered in the Getting Started section.
-4. Update the `subscription_key.txt` file with the value from [SKY Developer Subscriptions](https://developer.blackbaud.com/subscriptions/).
-5. Build the solution and use the included extension to place the `Blackbaud.mez` file to the `[My Documents]\Microsoft Power BI Desktop\Custom Connectors` directory.
+2. Install the [Power Query SDK](https://marketplace.visualstudio.com/items?itemName=Dakahn.PowerQuerySDK).
+3. Open the `Blackbaud.sln` file.
+4. Update the `client_id.txt` and `client_secret.txt` files with values from the [application](https://developer.blackbaud.com/apps/) you registered in the Getting Started section.
+5. Update the `subscription_key.txt` file with the value from [SKY Developer Subscriptions](https://developer.blackbaud.com/subscriptions/).
+6. Build the solution and use the included extension to place the `Blackbaud.mez` file to the `[My Documents]\Microsoft Power BI Desktop\Custom Connectors` directory.
 
 #### Option 2 - Manual
 
@@ -32,8 +33,8 @@ When you get to the create application step, please be sure to add `https://oaut
 4. Update the `subscription_key.txt` file with the value from [SKY Developer Subscriptions](https://developer.blackbaud.com/subscriptions/).
 5. Zip the contents of the `Blackbaud` directory in order to create a `Blackbaud.zip` file.
 6. Rename `Blackbaud.zip` to `Blackbaud.mez`.
-7. Ensure the `[My Documents]\Microsoft Power BI Desktop\Custom Connectors` directory exists.
-8. Copy the `Blackbaud.mez` file to the `[My Documents]\Microsoft Power BI Desktop\Custom Connectors` directory.
+7. Ensure the `[Documents]\Power BI Desktop\Custom Connectors` directory exists.
+8. Copy the `Blackbaud.mez` file to the `[Documents]\Power BI Desktop\Custom Connectors` directory.
 
 ### Step 2 - Enable
 

@@ -1,16 +1,16 @@
 # powerbi-connector
 
-This repo contains the code needed for a custom connector for Power Query and Power BI as well as the instructions to build and enable it.  Many thanks to [Grant Quick](https://github.com/GrantQuick) for the initial creation of this custom connector.
+This repo contains the code needed for a Power Query and Power BI custom connector, as well as the instructions to build and enable it.  Many thanks to [Grant Quick](https://github.com/GrantQuick) for the initial creation of this custom connector.
 
-## Getting Started
+## Getting started
 
-Follow the [SKY Developer Getting Started Guide](https://developer.blackbaud.com/skyapi/docs/getting-started) to make sure you have the following:
+Follow the [SKY Developer Getting Started guide](https://developer.blackbaud.com/skyapi/docs/getting-started) to make sure you have the following:
 
-- SKY Developer Account
-- SKY Developer Subscription
-- Registered Application
+- a SKY Developer account
+- a SKY Developer subscription, and
+- a registered application.
 
-When you get to the create application step, please be sure to add `https://oauth.powerbi.com/views/oauthredirect.html` as a "Redirect URI." 
+For the **Create an application** step, you need to add `https://oauth.powerbi.com/views/oauthredirect.html` as a "Redirect URI." To add a redirect URI, after you create the application, open it from the My applications page. In the **Redirect URI** tile, select **Edit.**
 
 ## Installation
 
@@ -38,25 +38,25 @@ When you get to the create application step, please be sure to add `https://oaut
 
 ### Step 2 - Enable
 
-1. Enable the **Custom data connectors** preview feature in Power BI Desktop (under *File | Options and settings | Custom data connectors*).
-2. As of the July 2018 release, Power BI will additionally alert users to change their security settings in order to enable uncertified custom data connectors to be used. To do this, go to *File | Options and settings | Security*, and under **Data Extensions**, enable **(Not Recommended) Allow any extension to load without validation or warning**.
+1. In Power BI Desktop (under **File, Options and settings, Custom data connectors**), enable the **Custom data connectors** preview feature.
+2. To enable use of uncertified custom data connectors, as of the July 2018 release, Power BI additionally alerts users to change their securitys ettings. To do this, go to **File, Options and settings, Security** and under **Data Extensions**, enable **(Not Recommended) Allow any extension to load without validation or warning**.
 3. Restart Power BI Desktop
-4. In Power BI Desktop, click **Get Data > Other > Blackbaud**
-5. The first time you use the connector you will need to log in using your Blackbaud account and authorise the app to work with your data.
+4. In Power BI Desktop, select **Get Data, Other, Blackbaud**
+5. The first time you use the connector, you need to authorize the app to work with your data.  To authorize, log in with your Blackbaud account.
 
-## Scheduled Refresh
+## Scheduled refresh
 
-The connector supports scheduled refresh through the Power BI service via a Power BI On-Premises Data Gateway (Personal mode). In order to take advantage of this, the following steps need to be performed:
+The connector supports scheduled refresh through the Power BI service via a Power BI On-Premises Data Gateway (Personal mode). In order to take advantage of this, the following steps need to be performed.
 
-1. Install the Power BI On-Premises Data Gateway in Personal mode
-2. [Enable Custom Connector support in the Gateway](https://docs.microsoft.com/en-us/power-query/samples/trippin/9-testconnection/readme#enabling-custom-connectors-in-the-personal-gateway)
-3. Publish a workbook that uses your connector to PowerBI.com
-4. [Configure scheduled refresh](https://docs.microsoft.com/en-us/power-query/samples/trippin/9-testconnection/readme#testing-scheduled-refresh) and follow the instructions from *After publishing, go to PowerBI.com and find the dataset...*
+1. Install the Power BI On-Premises Data Gateway in Personal mode.
+2. [Enable Custom Connector support in the Gateway](https://docs.microsoft.com/en-us/power-query/samples/trippin/9-testconnection/readme#enabling-custom-connectors-in-the-personal-gateway).
+3. Publish a workbook that uses your connector to PowerBI.com.
+4. [Configure scheduled refresh](https://docs.microsoft.com/en-us/power-query/samples/trippin/9-testconnection/readme#testing-scheduled-refresh) and follow the instructions from **After publishing, go to PowerBI.com and find the dataset...**.
 
-## Help / More Information
+## Help / More information
 
-Please be sure to utilize the [Blackbaud Community - Microsoft Connectors category](https://community.blackbaud.com/forums/viewcategory/586) for any questions and feedback related to this custom connector.
+For any questions and feedback related to this custom connector, use the [Blackbaud Community - Microsoft Connectors category](https://community.blackbaud.com/forums/viewcategory/586).
 
-## Known Issues
+## Known issues
 
-- PowerBI will throw an error when attempting to use the Membership List functionality if the corresponding environment does not have the Membership Module enabled.
+Power BI throws an error when attempting to use the Membership List functionality if the corresponding environment does not have the Membership Module enabled.

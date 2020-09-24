@@ -10,7 +10,7 @@ Follow the [SKY Developer Getting Started guide](https://developer.blackbaud.com
 - a SKY Developer subscription, and
 - a registered application.
 
-For the **Create an application** step, you need to add `https://oauth.powerbi.com/views/oauthredirect.html` as a "Redirect URI." To add a redirect URI, after you create the application, open it from the My applications page. In the **Redirect URI** tile, select **Edit.**
+For the **Create an application** step, you need to add `https://oauth.powerbi.com/views/oauthredirect.html` as a redirect URI. To add a redirect URI, after you create the application, open it from the My applications page. In the **Redirect URI** tile, select **Edit.**
 
 ## Installation
 

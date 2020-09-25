@@ -1,6 +1,6 @@
 # powerbi-connector
 
-This repo contains the code needed for a Power Query and Power BI custom connector, as well as the instructions to build and enable it.  Many thanks to [Grant Quick](https://github.com/GrantQuick) for the initial creation of this custom connector.
+This repo contains the code needed to create a Power Query and Power BI custom connector for SKY API, as well as the instructions to build and enable it.  Many thanks to [Grant Quick](https://github.com/GrantQuick) for the initial creation of this custom connector.
 
 ## Getting started
 

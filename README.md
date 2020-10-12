@@ -12,6 +12,8 @@ Follow the [SKY Developer Getting Started guide](https://developer.blackbaud.com
 
 For the **Create an application** step, you need to add `https://oauth.powerbi.com/views/oauthredirect.html` as a redirect URI. To add a redirect URI, after you create the application, open it from the My applications page. In the **Redirect URI** tile, select **Edit.**
 
+For Power BI to access data from your instance of Raiser's Edge NXT or Financial Edge NXT, your registered application must be [connected to your Blackbaud environment](https://developer.blackbaud.com/skyapi/docs/applications/createapp#connect-your-app).
+
 ## Installation
 
 ### Step 1 - Create
@@ -28,13 +30,14 @@ For the **Create an application** step, you need to add `https://oauth.powerbi.c
 #### Option 2 - Manual
 
 1. Clone or download this repo locally.
-2. Open the `Blackbaud` directory.
-3. Update the `client_id.txt` and `client_secret.txt` files with values from the [application](https://developer.blackbaud.com/apps/) you registered in the Getting Started section.
-4. Update the `subscription_key.txt` file with the value from [SKY Developer Subscriptions](https://developer.blackbaud.com/subscriptions/).
-5. Zip the contents of the `Blackbaud` directory in order to create a `Blackbaud.zip` file.
-6. Rename `Blackbaud.zip` to `Blackbaud.mez`.
-7. Ensure the `[Documents]\Power BI Desktop\Custom Connectors` directory exists.
-8. Copy the `Blackbaud.mez` file to the `[Documents]\Power BI Desktop\Custom Connectors` directory.
+2. Navigate to the cloned repo or unzip the downloaded file.
+3. Open the `Blackbaud` directory.
+4. Update the `client_id.txt` and `client_secret.txt` files with values from the [application](https://developer.blackbaud.com/apps/) you registered in the Getting Started section.
+5. Update the `subscription_key.txt` file with the value from [SKY Developer Subscriptions](https://developer.blackbaud.com/subscriptions/).
+6. Zip the contents of the `Blackbaud` directory in order to create a `Blackbaud.zip` file.
+7. Rename `Blackbaud.zip` to `Blackbaud.mez`.
+8. Ensure the `[Documents]\Power BI Desktop\Custom Connectors` directory exists.
+9. Copy the `Blackbaud.mez` file to the `[Documents]\Power BI Desktop\Custom Connectors` directory.
 
 ### Step 2 - Enable
 

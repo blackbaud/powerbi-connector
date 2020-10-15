@@ -2,6 +2,12 @@
 
 This repo contains the code needed to create a Power Query and Power BI custom connector for SKY API, as well as the instructions to build and enable it.  Many thanks to [Grant Quick](https://github.com/GrantQuick) for the initial creation of this custom connector.
 
+## Watch a demo
+
+In this walkthrough demo with Linton Myers, a Strategic Soluitions Developer at Blackbaud, learn how to create your own custom Power BI Connector for Raiser’s Edge NXT using this repo's code.
+
+**Demo**: [Create a Power BI Connector for Raiser’s Edge NXT](https://www.youtube.com/watch?v=wIRdN3eexCo&feature=youtu.be)
+
 ## Getting started
 
 Follow the [SKY Developer Getting Started guide](https://developer.blackbaud.com/skyapi/docs/getting-started) to make sure you have the following:

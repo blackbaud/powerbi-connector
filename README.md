@@ -4,7 +4,7 @@ This repo contains the code needed to create a Power Query and Power BI custom c
 
 ## Watch a demo
 
-In this walkthrough demo with Linton Myers, a Strategic Soluitions Developer at Blackbaud, learn how to create your own custom Power BI Connector for Raiser’s Edge NXT using this repo's code.
+In this video walkthrough demo with Linton Myers, a Strategic Solutions Developer at Blackbaud, learn how to create your own custom Power BI Connector for Raiser’s Edge NXT using this repo's code.
 
 **Demo**: [Create a Power BI Connector for Raiser’s Edge NXT](https://www.youtube.com/watch?v=wIRdN3eexCo&feature=youtu.be)
 

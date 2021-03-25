@@ -66,3 +66,5 @@ For any questions and feedback related to this custom connector, use the [Blackb
 ## Known issues
 
 Power BI throws an error when attempting to use the Membership List functionality if the corresponding environment does not have the Membership Module enabled.
+
+Power BI throws an error when attempting to use the Event List functionality if the corresponding environment does not have the Event Module enabled.

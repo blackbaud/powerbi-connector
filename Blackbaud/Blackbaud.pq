@@ -374,7 +374,7 @@ GetNavigationTable = () as table =>
 
 GetRENXTNavTableRows = () as list =>
     let
-        branches = {branchConstituent, branchGifts, branchFundraising, branchOpportunities, branchLists}
+        branches = {branchConstituent, branchGifts, branchFundraising, branchOpportunities, branchLists, branchEvents}
     in
         GetNavTableRows(branches);
 
@@ -489,6 +489,7 @@ branchFundraising = "Fundraising";
 branchGifts = "Gifts";
 branchOpportunities = "Opportunities";
 branchGeneralLedger = "General Ledger";
+branchEvents = "Events";
 
 // define the schema table
 SchemaTable = #table(
@@ -544,6 +545,9 @@ SchemaTable = #table(
         {"Opportunity", OpportunityListType, "opportunity/v1/opportunities?include_inactive=true", branchOpportunities, OpportunityLayout, DefaultRecLimit, true},
         // {"Opportunity fundraisers", OpportunityListType, "opportunity/v1/opportunities?include_inactive=true", branchOpportunities, OpportunityFundraisersLayout, DefaultRecLimit, true},
         // {"Opportunity linked gifts", OpportunityListType, "opportunity/v1/opportunities?include_inactive=true", branchOpportunities, OpportunityLinkedGiftsLayout, DefaultRecLimit, true},
+
+        // Event
+        {"Event", EventListType, "event/v1/eventlist?include_inactive=true", branchEvents, EventLayout, 500, true},
 
         // General Ledger
         {"Account", AccountSearchType, "generalledger/v1/accounts", branchGeneralLedger, AccountLayout, DefaultRecLimit, false},
@@ -1866,6 +1870,39 @@ ListOfListsType = type table [
     is_public = nullable logical
 ];
 
+// 8. Event API
+
+// 8.1. Public Endpoints (no context, i.e. return all records)
+
+// Event List - https://developer.sky.blackbaud.com/docs/services/event/operations/GetEventList
+EventListType = type table [
+    id = nullable text,
+    lookup_id = nullable text,
+    name = nullable text,
+    start_date = nullable text, //Should ideally be typed as datetime directly here
+    start_time = nullable text,
+    end_date = nullable text,   //Should ideally be typed as datetime directly here
+    end_time = nullable text,
+    attending_count = nullable Int32.Type,   
+    invited_count = nullable Int32.Type,
+    revenue = nullable number,
+    goal = nullable number,
+    percent_of_goal = nullable Int32.Type,  
+    capacity = nullable Int32.Type,
+    inactive = nullable logical,
+    attended_count = nullable Int32.Type,
+    category = nullable EventCategoryType,
+    date_added = nullable datetimezone,
+    date_modified = nullable datetimezone
+];
+
+// 8.3. Sub data types
+EventCategoryType = type [
+    category_id = nullable text,
+    category_name = nullable text,
+    category_inactive = nullable logical
+];
+
 // ------ End Type Definitions -----
 
 
@@ -2668,6 +2705,22 @@ BudgetListLayout = (sourceTable as table) as table =>
         addKey = AddPrimaryKeyToTable(transformEndDate, "budget_scenario_id")
     in
         addKey;
+
+EventLayout = (sourceTable as table) as table =>
+    let
+        expandEventCategory = Table.ExpandRecordColumn(sourceTable, "category", 
+            {
+                "id", 
+                "name", 
+                "inactive"
+            }, 
+            {
+                "category_id", 
+                "category_name", 
+                "category_inactive"
+            })
+    in
+        expandEventCategory;
 
 //3. Table-Specific Functions (table-creating)
 

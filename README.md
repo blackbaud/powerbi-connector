@@ -44,11 +44,10 @@ For the **Create an application** step, you need to add `https://oauth.powerbi.c
 
 ### Step 2 - Enable
 
-1. In Power BI Desktop (under **File, Options and settings, Custom data connectors**), enable the **Custom data connectors** preview feature.
-2. To enable use of uncertified custom data connectors, as of the July 2018 release, Power BI additionally alerts users to change their securitys ettings. To do this, go to **File, Options and settings, Security** and under **Data Extensions**, enable **(Not Recommended) Allow any extension to load without validation or warning**.
-3. Restart Power BI Desktop
-4. In Power BI Desktop, select **Get Data, Other, Blackbaud**
-5. The first time you use the connector, you need to authorize the app to work with your data.  To authorize, log in with your Blackbaud account.
+1. To enable use of uncertified custom data connectors, as of the July 2018 release, Power BI additionally alerts users to change their securitys ettings. To do this, go to **File, Options and settings, Options, Security** and under **Data Extensions**, enable **(Not Recommended) Allow any extension to load without validation or warning**.
+2. Restart Power BI Desktop
+3. In Power BI Desktop, select **Get Data, Other, Blackbaud**
+4. The first time you use the connector, you need to authorize the app to work with your data.  To authorize, log in with your Blackbaud account.
 
 ## Scheduled refresh
 

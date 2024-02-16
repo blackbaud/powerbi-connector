@@ -48,17 +48,6 @@ Then, navigate to the Marketplace. If you've already connected your application 
 5. Update the `subscription_key.txt` file with the value from [SKY Developer Subscriptions](https://developer.blackbaud.com/subscriptions/).
 6. Build the solution and use the included extension to place the `Blackbaud.mez` file to the `[My Documents]\Microsoft Power BI Desktop\Custom Connectors` directory.
 
-#### Option 2 - Manual
-
-1. Clone or download this repo locally.
-2. Open the `Blackbaud` directory.
-3. Update the `client_id.txt` and `client_secret.txt` files with values from the [application](https://developer.blackbaud.com/apps/) you registered in the Getting Started section.
-4. Update the `subscription_key.txt` file with the value from [SKY Developer Subscriptions](https://developer.blackbaud.com/subscriptions/).
-5. Zip the contents of the `Blackbaud` directory in order to create a `Blackbaud.zip` file.
-6. Rename `Blackbaud.zip` to `Blackbaud.mez`.
-7. Ensure the `[Documents]\Power BI Desktop\Custom Connectors` directory exists.
-8. Copy the `Blackbaud.mez` file to the `[Documents]\Power BI Desktop\Custom Connectors` directory.
-
 ### Step 2 - Enable in Power BI Desktop
 
 1. To enable use of uncertified custom data connectors, as of the July 2018 release, Power BI additionally alerts users to change their security settings. To do this, go to **File**, **Options and settings**, **Security** and under **Data Extensions**, enable **(Not Recommended) Allow any extension to load without validation or warning**. 

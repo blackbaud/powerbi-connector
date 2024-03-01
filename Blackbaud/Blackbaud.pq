@@ -501,7 +501,7 @@ SchemaTable = #table(
         {"Constituent (filtered)", ConstituentListType, ConstituentFiltered.Contents, branchConstituent, ConstituentLayout, DefaultRecLimit, true},
         {"Constituent (by list)", ConstituentListType, ConstituentByList.Contents, branchConstituent, ConstituentLayout, DefaultRecLimit, true},
         {"Constituent action", ActionListType, "constituent/v1/actions", branchConstituent, ConstituentActionLayout, DefaultRecLimit, true},
-        // {"Constituent action fundraisers", ActionListType, "constituent/v1/actions", branchConstituent, ConstituentActionFundraisersLayout, DefaultRecLimit, true},
+        {"Constituent action fundraisers", ActionListType, "constituent/v1/actions", branchConstituent, ConstituentActionFundraisersLayout, DefaultRecLimit, true},
         {"Constituent addresses", AddressListType, "constituent/v1/addresses?include_inactive=true", branchConstituent, ConstituentAddressesLayout, DefaultRecLimit, true},
         {"Constituent codes", ConstituentCodeListType, "constituent/v1/constituents/constituentcodes?include_inactive=true", branchConstituent, ConstituentCodesLayout, DefaultRecLimit, true},
         {"Constituent custom fields", CustomFieldListType, "constituent/v1/constituents/customfields", branchConstituent, ConstituentCustomFieldsLayout, DefaultRecLimit, true},
@@ -533,18 +533,18 @@ SchemaTable = #table(
         {"Gift", GiftListType, "gift/v1/gifts", branchGifts, GiftLayout, DefaultRecLimit, true},
         // {"Gift acknowledgements", GiftListType, "gift/v1/gifts", branchGifts, GiftAcknowledgementsLayout, DefaultRecLimit, true},
         {"Gift custom fields", CustomFieldListType, "gift/v1/gifts/customfields", branchGifts, GiftCustomFieldsLayout, DefaultRecLimit, true},
-        // {"Gift fundraisers", GiftListType, "gift/v1/gifts", branchGifts, GiftFundraisersLayout, DefaultRecLimit, true},
-        // {"Gift payments", GiftListType, "gift/v1/gifts", branchGifts, GiftPaymentsLayout, DefaultRecLimit, true},
-        // {"Gift receipts", GiftListType, "gift/v1/gifts", branchGifts, GiftReceiptsLayout, DefaultRecLimit, true},
-        // {"Gift soft credits", GiftListType, "gift/v1/gifts", branchGifts, GiftSoftCreditsLayout, DefaultRecLimit, true},
-        // {"Gift splits", GiftListType, "gift/v1/gifts", branchGifts, GiftSplitsLayout, DefaultRecLimit, true},
+        {"Gift fundraisers", GiftListType, "gift/v1/gifts", branchGifts, GiftFundraisersLayout, DefaultRecLimit, true},
+        {"Gift payments", GiftListType, "gift/v1/gifts", branchGifts, GiftPaymentsLayout, DefaultRecLimit, true},
+        {"Gift receipts", GiftListType, "gift/v1/gifts", branchGifts, GiftReceiptsLayout, DefaultRecLimit, true},
+        {"Gift soft credits", GiftListType, "gift/v1/gifts", branchGifts, GiftSoftCreditsLayout, DefaultRecLimit, true},
+        {"Gift splits", GiftListType, "gift/v1/gifts", branchGifts, GiftSplitsLayout, DefaultRecLimit, true},
         {"Public Lists", null, CreateListsNavTable("Gift", true, GiftByList), branchGifts, null, null, null},
         {"My Private Lists", null, CreateListsNavTable("Gift", false, GiftByList), branchGifts, null, null, null},
 
         // Opportunity
         {"Opportunity", OpportunityListType, "opportunity/v1/opportunities?include_inactive=true", branchOpportunities, OpportunityLayout, DefaultRecLimit, true},
-        // {"Opportunity fundraisers", OpportunityListType, "opportunity/v1/opportunities?include_inactive=true", branchOpportunities, OpportunityFundraisersLayout, DefaultRecLimit, true},
-        // {"Opportunity linked gifts", OpportunityListType, "opportunity/v1/opportunities?include_inactive=true", branchOpportunities, OpportunityLinkedGiftsLayout, DefaultRecLimit, true},
+        {"Opportunity fundraisers", OpportunityListType, "opportunity/v1/opportunities?include_inactive=true", branchOpportunities, OpportunityFundraisersLayout, DefaultRecLimit, true},
+        {"Opportunity linked gifts", OpportunityListType, "opportunity/v1/opportunities?include_inactive=true", branchOpportunities, OpportunityLinkedGiftsLayout, DefaultRecLimit, true},
 
         // Event
         {"Event", EventListType, "event/v1/eventlist?include_inactive=true", branchEvents, EventLayout, 500, true},
@@ -1366,6 +1366,7 @@ FundListType = type table [
     start_date = nullable text, //Should ideally be typed as datetime directly here
     end_date = nullable text,   // "
     category = nullable text,
+    type = nullable text,
     goal = nullable ValueType,
     inactive = nullable logical,
     date_added = nullable datetimezone,

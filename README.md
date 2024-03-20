@@ -20,9 +20,9 @@ Follow the [SKY Developer Getting Started guide](https://developer.blackbaud.com
 For the **Create an application** step, you need to add `https://oauth.powerbi.com/views/oauthredirect.html` as a redirect URI. To add a redirect URI, after you create the application, open it from the My applications page. In the **Redirect URI** tile, select **Edit.**
 
 ### Scopes
-After creating the Power BI application in the SKY Developer Portal, open the application record page. From the Settings tab, in the **Scopes** tile, edit the application's scope and select **Limited data access**. Then, select the **Read** scope for Raiser’s Edge NXT. 
+After creating the Power BI application in the SKY Developer Portal, open the application record page. From the Settings tab, in the **Scopes** tile, edit the application's scope and select **Limited data access**. Then, select the **Read** scope for Financial Edge NXT and Raiser’s Edge NXT. 
 
-Then, navigate to the Marketplace. If you've already connected your application to your Blackbaud envioronment, as the environment admin, accept the changes. You can approve scope changes in the Marketplace, from the Manage tab. In the Scope updates tile,. for the Power BI Connector app, select **Review scopes** Then, select **Approve**.
+Then, navigate to the Marketplace. If you've already connected your application to your Blackbaud environment, accept the changes. You can approve scope changes in the Marketplace from the Manage tab. In the Scope updates tile, for the Power BI Connector app, select **Review scopes**. Then, select **Approve**.
 
 ## Installation
 

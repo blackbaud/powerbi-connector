@@ -1225,6 +1225,7 @@ GiftListType = type table [
     payments = nullable PaymentType,                    // "
     receipts = nullable ReceiptType,                    // "
     soft_credits = nullable SoftCreditType,             // "
+    linked_gifts = {nullable text},                     // "
     date_added = nullable datetimezone,
     date_modified = nullable datetimezone
 ];

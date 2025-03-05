@@ -1225,6 +1225,7 @@ GiftListType = type table [
     payments = nullable PaymentType,                    // "
     receipts = nullable ReceiptType,                    // "
     soft_credits = nullable SoftCreditType,             // "
+    linked_gifts = {nullable text},                     // "
     date_added = nullable datetimezone,
     date_modified = nullable datetimezone
 ];
@@ -1323,7 +1324,9 @@ OpportunityListType = type table [
     fundraisers = nullable OpportunityFundRaiserType,   //This data gets rolled out into its own table
     linked_gifts = {nullable text},                     // "
     date_added = nullable datetimezone,
-    date_modified = nullable datetimezone
+    date_modified = nullable datetimezone,
+    opportunity_likelihood_name = nullable text,
+    opportunity_likelihood_id = nullable text
 ];
 
 // 4.2. Public Endpoints (called in the context of the parent id)

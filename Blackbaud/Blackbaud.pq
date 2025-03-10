@@ -538,6 +538,7 @@ SchemaTable = #table(
         {"Gift receipts", GiftListType, "gift/v1/gifts", branchGifts, GiftReceiptsLayout, DefaultRecLimit, true},
         {"Gift soft credits", GiftListType, "gift/v1/gifts", branchGifts, GiftSoftCreditsLayout, DefaultRecLimit, true},
         {"Gift splits", GiftListType, "gift/v1/gifts", branchGifts, GiftSplitsLayout, DefaultRecLimit, true},
+        {"Gift batch", GiftBatchListType, "gift-batch/v1/giftbatches", branchGifts, GiftBatchLayout, DefaultRecLimit, true},
         {"Public Lists", null, CreateListsNavTable("Gift", true, GiftByList), branchGifts, null, null, null},
         {"My Private Lists", null, CreateListsNavTable("Gift", false, GiftByList), branchGifts, null, null, null},
 
@@ -1300,9 +1301,22 @@ GiftByList = (listId as text) as table =>
     in
         result;
 
-// 4. Opportunity API
+// 4. Gift Batch API 
+GiftBatchListType = type table [
+    id = nullable text,
+    actual_amount = nullable number,
+    batch_description = nullable text,
+    batch_number = nullable text,
+    added_by = nullable text,
+    date_added = nullable text,   //Should ideally be typed as datetime directly here
+    has_exceptions = nullable logical,
+    approved = nullable logical,
+    number_of_gifts = nullable Int64.Type
+];
 
-// 4.1. Public Endpoints (no context, i.e. return all records)
+// 5. Opportunity API
+
+// 5.1. Public Endpoints (no context, i.e. return all records)
 
 // Opportunity List - https://developer.sky.blackbaud.com/docs/services/58e3b2597c1af25c58b9c4e3/operations/ListOpportunities
 OpportunityListType = type table [
@@ -1329,21 +1343,21 @@ OpportunityListType = type table [
     opportunity_likelihood_id = nullable text
 ];
 
-// 4.2. Public Endpoints (called in the context of the parent id)
+// 5.2. Public Endpoints (called in the context of the parent id)
 
 //Opportunity Custom Field List - https://developer.sky.blackbaud.com/docs/services/58e3b2597c1af25c58b9c4e3/operations/ListOpportunityCustomFieldsSingleOpportunity
 //CustomFieldListType
 
-// 4.3. Sub data types
+// 5.3. Sub data types
 
 OpportunityFundRaiserType = type table [
     constituent_id = nullable text,
     credit_amount = nullable ValueType
 ];
 
-// 5. Fundraising API
+// 6. Fundraising API
 
-// 5.1. Public Endpoints (no context, i.e. return all records)
+// 6.1. Public Endpoints (no context, i.e. return all records)
 
 // Campaign List - https://developer.sky.blackbaud.com/docs/services/58bdd6c8d7dcde06046081d7/operations/ListCampaigns
 CampaignListType = type table [
@@ -1406,7 +1420,7 @@ PackageListType = type table [
     date_modified = nullable datetimezone
 ];
 
-// 5.2. Public Endpoints (called in the context of the parent id)
+// 6.2. Public Endpoints (called in the context of the parent id)
 
 //Campaign Custom Field List - https://developer.sky.blackbaud.com/docs/services/58bdd6c8d7dcde06046081d7/operations/ListCampaignCustomFieldsSingleCampaign
 //CustomFieldListType
@@ -1417,11 +1431,11 @@ PackageListType = type table [
 //Appeal Custom Field List - https://developer.sky.blackbaud.com/docs/services/58bdd6c8d7dcde06046081d7/operations/ListAppealCustomFieldsSingleAppeal
 //CustomFieldListType
 
-// 6. General Ledger API
+// 7. General Ledger API
 
-// 6.1. Public Endpoints (no context, i.e. return all records)
+// 7.1. Public Endpoints (no context, i.e. return all records)
 
-    // 6.1.1. Transaction distribution (List) - https://developer.sky.blackbaud.com/docs/services/56eb17a0a9db9516c46bff6f/operations/ListTransactionDistributions
+    // 7.1.1. Transaction distribution (List) - https://developer.sky.blackbaud.com/docs/services/56eb17a0a9db9516c46bff6f/operations/ListTransactionDistributions
     urlTranDistrib = "generalledger/v1/transactiondistributions";
 
     TransactionDistributionListType = type table [
@@ -1531,7 +1545,7 @@ PackageListType = type table [
         in
             result;
 
-    // 6.1.2. Budget - https://developer.sky.blackbaud.com/docs/services/56eb17a0a9db9516c46bff6f/operations/GetBudget
+    // 7.1.2. Budget - https://developer.sky.blackbaud.com/docs/services/56eb17a0a9db9516c46bff6f/operations/GetBudget
     urlBudget = "generalledger/v1/budgets/#{0}";
 
     BudgetType = type table [
@@ -1570,7 +1584,7 @@ PackageListType = type table [
         in
             addId;
 
-    // 6.1.3. Budget detail - https://developer.sky.blackbaud.com/docs/services/56eb17a0a9db9516c46bff6f/operations/GetBudgetDetail
+    // 7.1.3. Budget detail - https://developer.sky.blackbaud.com/docs/services/56eb17a0a9db9516c46bff6f/operations/GetBudgetDetail
     urlBudgetDetail = urlBudget & "/details";
 
     BudgetDetailType = type table [
@@ -1674,7 +1688,7 @@ BudgetDetailFilteredWithIdCol = (scenarioId as number, optional catch404 as logi
         in
             result;
 
-    // 6.1.4. Budget detail lines (List) - https://developer.sky.blackbaud.com/docs/services/56eb17a0a9db9516c46bff6f/operations/ListBudgetLines
+    // 7.1.4. Budget detail lines (List) - https://developer.sky.blackbaud.com/docs/services/56eb17a0a9db9516c46bff6f/operations/ListBudgetLines
     urlBudgetDetailLinesList = urlBudgetDetail & "/lines";
 
     BudgetDetailLinesListType = type table [
@@ -1790,7 +1804,7 @@ BudgetListType = type table [
     scenario_id = nullable text
 ];
 
-// 6.2. Public Endpoints (called in the context of the parent id)
+// 7.2. Public Endpoints (called in the context of the parent id)
 
 // Project notes - https://developer.sky.blackbaud.com/docs/services/56eb17a0a9db9516c46bff6f/operations/GetProjectNotes
 ProjectNotesType = type table [
@@ -1805,7 +1819,7 @@ ProjectNotesType = type table [
     completed_date = nullable text  //Should ideally be typed as datetime directly here
 ];
 
-// 6.3. Sub data types
+// 7.3. Sub data types
 
 AccountRestrictionsType = type [
     allow_or_restrict = nullable text,
@@ -1858,9 +1872,9 @@ PeriodType = type table [
     year_id = nullable text
 ];
 
-// 7. List API
+// 8. List API
 
-// 7.1. Public Endpoints (no context, i.e. return all records)
+// 8.1. Public Endpoints (no context, i.e. return all records)
 
 // Get a list of lists - https://developer.sky.blackbaud.com/docs/services/list/operations/GetLists
 ListOfListsType = type table [
@@ -1874,9 +1888,9 @@ ListOfListsType = type table [
     is_public = nullable logical
 ];
 
-// 8. Event API
+// 9. Event API
 
-// 8.1. Public Endpoints (no context, i.e. return all records)
+// 9.1. Public Endpoints (no context, i.e. return all records)
 
 // Event List - https://developer.sky.blackbaud.com/docs/services/event/operations/GetEventList
 EventListType = type table [
@@ -1900,7 +1914,7 @@ EventListType = type table [
     date_modified = nullable datetimezone
 ];
 
-// 8.3. Sub data types
+// 9.3. Sub data types
 EventCategoryType = type [
     category_id = nullable text,
     category_name = nullable text,
@@ -2535,6 +2549,12 @@ GiftLayout = (sourceTable as table) as table =>
         //transformAmountPlusGiftAid = Table.TransformColumnTypes(addGrossAmount,{{"amount_plus_gift_aid", type number}})
     in
         transformRGScheduleEndDate;
+
+GiftBatchLayout = (sourceTable as table) as table =>
+    let
+        renameId = Table.RenameColumns(sourceTable,{{"id", "gift_batch_id"}})
+    in
+        renameId;
 
 GiftCustomFieldsLayout = (sourceTable as table) as table =>
     let

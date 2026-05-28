@@ -35,15 +35,15 @@ Then, navigate to the Marketplace. If you've already connected your application 
 
 ### Step 1 – Create
 
-The repo contains two connector folders: `Blackbaud` and `RENXTQuery`. Follow these steps for each connector you want to install.
+The repo contains two connector folders: `Blackbaud` and `BlackbaudRENXTQuery`. Follow these steps for each connector you want to install.
 
 1. Clone or download this repo locally.
-2. Open the connector folder (`Blackbaud` or `RENXTQuery`).
+2. Open the connector folder (`Blackbaud` or `BlackbaudRENXTQuery`).
 3. Update the credentials files with values from [the application](https://developer.blackbaud.com/apps/) you registered in the Getting Started section, and the subscription key from [SKY Developer Subscriptions](https://developer.blackbaud.com/subscriptions/).
    - **Blackbaud**: `client_id.txt`, `client_secret.txt`, `subscription_key.txt`
    - **Blackbaud RENXT Query**: `keys_client_id.txt`, `keys_client_secret.txt`, `keys_subscription_key.txt`
-4. Zip the contents of the connector folder to create a `.zip` file (`Blackbaud.zip` or `RENXTQuery.zip`).
-5. Rename the `.zip` file to `.mez` (`Blackbaud.mez` or `RENXTQuery.mez`).
+4. Zip the contents of the connector folder to create a `.zip` file (`Blackbaud.zip` or `BlackbaudRENXTQuery.zip`).
+5. Rename the `.zip` file to `.mez` (`Blackbaud.mez` or `BlackbaudRENXTQuery.mez`).
 6. Verify that the `[Documents]\Power BI Desktop\Custom Connectors` directory exists.
 7. Copy the `.mez` file to the `[Documents]\Power BI Desktop\Custom Connectors` directory.
 

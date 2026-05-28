@@ -122,7 +122,7 @@
     <value>Connection</value>
   </data>
   <data name="ConnectorName" xml:space="preserve">
-    <value>Raiser's Edge NXT Query no PKCE</value>
+    <value>Blackbaud RENXT Query</value>
   </data>
   <data name="ConnectorTooltip" xml:space="preserve">
     <value>Connect to Raiser's Edge NXT</value>
@@ -171,22 +171,22 @@
   <data name="GetQueryResults.Documentation.LongDescriptionName" xml:space="preserve">
     <value>Returns the results of the "#{0}" query from the Raiser's Edge NXT.</value>
   </data>
-  <data name="RENXTQueryUIMetadata.Documentation.LongDescription" xml:space="preserve">
+  <data name="BlackbaudRENXTQueryUIMetadata.Documentation.LongDescription" xml:space="preserve">
     <value>Returns the results of the specified Raiser's Edge NXT query.</value>
   </data>
-  <data name="RENXTQueryUIMetadata.Example.Description" xml:space="preserve">
+  <data name="BlackbaudRENXTQueryUIMetadata.Example.Description" xml:space="preserve">
     <value>Provide the system record identifier of the desired query.</value>
   </data>
-  <data name="RENXTQueryUIMetadata.Example.Result" xml:space="preserve">
+  <data name="BlackbaudRENXTQueryUIMetadata.Example.Result" xml:space="preserve">
     <value>Returns the results of the Raiser's Edge NXT query with ID = 918.</value>
   </data>
-  <data name="RENXTAdHocQueryUIMetadata.Documentation.LongDescription" xml:space="preserve">
+  <data name="BlackbaudRENXTAdHocQueryUIMetadata.Documentation.LongDescription" xml:space="preserve">
     <value>Returns the results of the specified Raiser's Edge NXT ad hoc query.</value>
   </data>
-  <data name="RENXTAdHocQueryUIMetadata.Example.Description" xml:space="preserve">
+  <data name="BlackbaudRENXTAdHocQueryUIMetadata.Example.Description" xml:space="preserve">
     <value>Provide the JSON representation of the ad hoc query.</value>
   </data>
-  <data name="RENXTAdHocQueryUIMetadata.Example.Result" xml:space="preserve">
+  <data name="BlackbaudRENXTAdHocQueryUIMetadata.Example.Result" xml:space="preserve">
     <value>Returns the results of the Raiser's Edge NXT ad hoc query.</value>
   </data>
   <data name="QueryIdParameterType.FieldCaption" xml:space="preserve">

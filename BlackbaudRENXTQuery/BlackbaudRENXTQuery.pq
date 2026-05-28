@@ -2,15 +2,15 @@
 // This file contains the Blackbaud RENXT Query Power Query connector definition
 // -----------------------------------------------------------------------------
 [Version = "1.0.0"]
-section RENXTQuery;
+section BlackbaudRENXTQuery;
 
-[DataSource.Kind="RENXTQuery", Publish="RENXTQuery.Publish"]
-shared RENXTQuery.Contents = () => GetNavigationTable();
+[DataSource.Kind="BlackbaudRENXTQuery", Publish="BlackbaudRENXTQuery.Publish"]
+shared BlackbaudRENXTQuery.Contents = () => GetNavigationTable();
 
 // Data Source Kind description
-RENXTQuery = [
+BlackbaudRENXTQuery = [
     // TestConnection is required to enable the connector through the Gateway
-    TestConnection = (dataSourcePath) => { "RENXTQuery.Contents" },
+    TestConnection = (dataSourcePath) => { "BlackbaudRENXTQuery.Contents" },
 
     // SKY API uses OAuth implementation
     Authentication = [
@@ -25,16 +25,16 @@ RENXTQuery = [
 ];
 
 // Data Source UI publishing description
-RENXTQuery.Publish = [
+BlackbaudRENXTQuery.Publish = [
     Beta = true,
     Category = "Other",
     ButtonText = { Extension.LoadString("ConnectorName"), Extension.LoadString("ConnectorTooltip") },
     LearnMoreUrl = "https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform",
-    SourceImage = RENXTQuery.Icons,
-    SourceTypeImage = RENXTQuery.Icons
+    SourceImage = BlackbaudRENXTQuery.Icons,
+    SourceTypeImage = BlackbaudRENXTQuery.Icons
 ];
 
-RENXTQuery.Icons = [
+BlackbaudRENXTQuery.Icons = [
     Icon16 = { Extension.Contents("b_AppIcon_Round_16.png"), Extension.Contents("b_AppIcon_Round_20.png"), Extension.Contents("b_AppIcon_Round_24.png"), Extension.Contents("b_AppIcon_Round_32.png") },
     Icon32 = { Extension.Contents("b_AppIcon_Round_32.png"), Extension.Contents("b_AppIcon_Round_40.png"), Extension.Contents("b_AppIcon_Round_48.png"), Extension.Contents("b_AppIcon_Round_64.png") }
 ];
@@ -239,13 +239,13 @@ DefaultRequestHeaders = [
 ];
 
 // Assign UI-facing functions
-RENXTQueryUI.Contents = Value.ReplaceType(RENXTQueryUI, RENXTQueryUIMetadata);
-RENXTAdHocQueryUI.Contents = Value.ReplaceType(RENXTAdHocQueryUI, RENXTAdHocQueryUIMetadata);
+BlackbaudRENXTQueryUI.Contents = Value.ReplaceType(BlackbaudRENXTQueryUI, BlackbaudRENXTQueryUIMetadata);
+BlackbaudRENXTAdHocQueryUI.Contents = Value.ReplaceType(BlackbaudRENXTAdHocQueryUI, BlackbaudRENXTAdHocQueryUIMetadata);
 
 // ---------------------------------------------------------------------------------------
 // UI-facing functions
 // ---------------------------------------------------------------------------------------
-RENXTQueryUI = (
+BlackbaudRENXTQueryUI = (
     queryId as number,
     formattingMode as nullable text,
     sqlGenerationMode as nullable text,
@@ -256,7 +256,7 @@ RENXTQueryUI = (
 ) as table =>
     GetQueryResultsTable(queryId, formattingMode, sqlGenerationMode, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, askFields);
 
-RENXTAdHocQueryUI = (
+BlackbaudRENXTAdHocQueryUI = (
     queryDefinition as text,
     formattingMode as nullable text,
     sqlGenerationMode as nullable text,
@@ -274,7 +274,7 @@ RENXTAdHocQueryUI = (
 // https://learn.microsoft.com/en-us/power-query/handling-documentation
 // https://github.com/microsoft/DataConnectors/blob/master/samples/HelloWorldWithDocs/HelloWorldWithDocs.pq
 //
-RENXTQueryUIMetadata = type function (
+BlackbaudRENXTQueryUIMetadata = type function (
     queryId as QueryIdParameterType,
     formattingMode as FormattingModeParameterType,
     sqlGenerationMode as SqlGenerationModeParameterType,
@@ -284,16 +284,16 @@ RENXTQueryUIMetadata = type function (
     askFields as AskFieldsParameterType
 ) as table meta [
     Documentation.Name = "GetQueryResults",
-    Documentation.LongDescription = Extension.LoadString("RENXTQueryUIMetadata.Documentation.LongDescription"),
+    Documentation.LongDescription = Extension.LoadString("BlackbaudRENXTQueryUIMetadata.Documentation.LongDescription"),
     Documentation.Examples = {
     [
-        Description = Extension.LoadString("RENXTQueryUIMetadata.Example.Description"),
+        Description = Extension.LoadString("BlackbaudRENXTQueryUIMetadata.Example.Description"),
         Code = "= #""Query by ID"".Contents(918, ""None"", ""Query"", -240, false, false, null)",
-        Result = Extension.LoadString("RENXTQueryUIMetadata.Example.Result")
+        Result = Extension.LoadString("BlackbaudRENXTQueryUIMetadata.Example.Result")
     ]}
 ];
 
-RENXTAdHocQueryUIMetadata = type function (
+BlackbaudRENXTAdHocQueryUIMetadata = type function (
     queryDefinition as QueryDefinitionParameterType,
     formattingMode as FormattingModeParameterType,
     sqlGenerationMode as SqlGenerationModeParameterType,
@@ -302,12 +302,12 @@ RENXTAdHocQueryUIMetadata = type function (
     displayCodeTableLongDescription as DisplayCodeTableLongDescriptionParameterType
 ) as table meta [
     Documentation.Name = "GetQueryResults",
-    Documentation.LongDescription = Extension.LoadString("RENXTAdHocQueryUIMetadata.Documentation.LongDescription"),
+    Documentation.LongDescription = Extension.LoadString("BlackbaudRENXTAdHocQueryUIMetadata.Documentation.LongDescription"),
     Documentation.Examples = {
     [
-        Description = Extension.LoadString("RENXTAdHocQueryUIMetadata.Example.Description"),
+        Description = Extension.LoadString("BlackbaudRENXTAdHocQueryUIMetadata.Example.Description"),
         Code = "= #""Ad hoc query"".Contents(queryJson, ""None"", ""Query"", -240, false, false)",
-        Result = Extension.LoadString("RENXTAdHocQueryUIMetadata.Example.Result")
+        Result = Extension.LoadString("BlackbaudRENXTAdHocQueryUIMetadata.Example.Result")
     ]}    
 ];
 
@@ -393,8 +393,8 @@ GetNavigationTable = () as table =>
             {"types", GetQueryTypeNavTable(), "Folder", "Folder", false},
             {"format", GetQueryFormatNavTable(), "Folder", "Folder", false},
 
-            {"queryById", RENXTQueryUI.Contents, "Function", "Function", true},
-            {"adHocQuery", RENXTAdHocQueryUI.Contents, "Function", "Function", true}
+            {"queryById", BlackbaudRENXTQueryUI.Contents, "Function", "Function", true},
+            {"adHocQuery", BlackbaudRENXTAdHocQueryUI.Contents, "Function", "Function", true}
         },
 
         // insert the localized name for each node

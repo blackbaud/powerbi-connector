@@ -2,6 +2,16 @@
 
 This repo contains Power Query and Power BI custom connectors for Blackbaud SKY API. Two connectors are available — **Blackbaud** and **Blackbaud RENXT Query** — and you can install one or both. Many thanks to [Grant Quick](https://github.com/GrantQuick) for the initial creation of this custom connector.
 
+## Which connector should I use?
+
+Choose one or both custom connectors to fit your needs.
+
+| | Blackbaud | Blackbaud RENXT Query |
+|---|---|---|
+| **Best for** | Broad access to SKY API data across Raiser's Edge NXT and Financial Edge NXT | Efficiently pulling large Raiser's Edge NXT datasets via saved or ad-hoc queries |
+| **Products** | Raiser's Edge NXT, Financial Edge NXT | Raiser's Edge NXT |
+| **Performance** | Standard | More efficient, supports larger datasets |
+
 ## Watch a demo
 
 Learn how to create your own custom connectors to your Blackbaud data.

@@ -1,6 +1,6 @@
 # powerbi-connector
 
-This repo contains Power Query and Power BI custom connectors for Blackbaud SKY API. Two connectors are available — **Blackbaud** and **Blackbaud RENXT Query** — and you can install one or both. Many thanks to [Grant Quick](https://github.com/GrantQuick) for the initial creation of this custom connector.
+This repo contains Power BI custom connectors for Blackbaud SKY API. Two connectors are available — **Blackbaud** and **Blackbaud RENXT Query** — and you can install one or both. Many thanks to [Grant Quick](https://github.com/GrantQuick) for the initial creation of the **Blackbaud** custom connector.
 
 ## Which connector should I use?
 
@@ -98,24 +98,25 @@ After you map the custom connectors folder path in the data gateway setup, you s
 
 **Optional**: Also from the ellipses, select **Manage users** to add report developers who will need to publish reports and connect their datasets to this gateway.
 
-### Step 5 – Upload a dataset and connect to the gateway
+### Step 5 – Upload a report and connect to the gateway
 
-1. Publish a workbook that uses your connector (from Step #3) to https://app.powerbi.com/.
+1. Publish a Power BI report that uses your connector (from Step #3) to https://app.powerbi.com/.
 2. Open https://app.powerbi.com and navigate to the Workspace where you published the report. You will find a Report and a Semantic model were published. From the ellipses (…) next to the Semantic model, select **Settings**.
 3. From the Semantic models tab, expand the **Gateway and cloud connections** field.
-4. Select the ▼ icon directly under **Actions**.
+4. Locate your data gateway and select the ▼ icon next to the Settings gear under **Actions**.
 5. Select **Manually add to gateway**. This will open an interface to add a new data source.
-6. Provide a data source name to represent the connector, such as "Blackbaud" or "Blackbaud RENXT Query."
-7. Set the authentication type to "OAuth2".
+6. Provide a connection name. This will represent the connector and the environment you authenticate, such as "Blackbaud-SkyDevCort" or "Blackbaud RENXT Query-Prod." When you upload new reports that use the same connector to authenticate to the same environment, you will make sure that the Semantic model Settings refer to the same connection on the gateway.
+7. Set the authentication type to "Connection" and provide your credentials.
 8. Set the privacy level to "Organizational".
-9. Navigate back to the dataset settings and you can now map the connector to the data connector you set up in the previous step. Select **Apply**.
+9. Navigate back to the Semantic model Settings and you can now map to the gateway connection you just set up.
+10. Select **Apply**.
 
 ### Step 6 – Schedule refresh
 
 Configure a scheduled refresh using the gateway. To learn how, see the [Configure scheduled refresh - Power BI documentation](https://learn.microsoft.com/en-us/power-bi/connect-data/refresh-scheduled-refresh) from Microsoft Learn.
 
-**Note:** You only see an enterprise gateway available if your account is listed in the Users tab of the data source configured for a given gateway. Your administrator may need to add you.
+**Note:** You only see a gateway available if your account has been added as a user of the gateway. Your administrator may need to add you.
 
 ## Help / More information
 
-For any questions and feedback related to these connectors, use the [Blackbaud Community - Microsoft Power Platform category](https://community.blackbaud.com/forums/viewcategory/586).
+For any questions and feedback related to these connectors, check out the [Blackbaud Community - SKY Developer category](https://community.blackbaud.com/categories/sky-developer-425).

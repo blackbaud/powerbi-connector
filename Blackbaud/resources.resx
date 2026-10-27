@@ -281,7 +281,28 @@
   <data name="PreviewDataParameterType.FieldDescription" xml:space="preserve">
     <value>When true, polling requests include_read_url as OnceRunning and return data as soon as a read URI is available. Turn this off for full refreshes.</value>
   </data>
-  <!-- RENXT Query feature errors -->
+  <data name="LanguageParameterType.FieldCaption" xml:space="preserve">
+    <value>Locale</value>
+  </data>
+  <data name="LanguageParameterType.FieldDescription" xml:space="preserve">
+    <value>Blank = en-US. The date and number format of the results; the data itself is unchanged. en-US: 8/15/2014. en-GB: 15/08/2014. en-CA: 2014-08-15. en-AU: 15/8/2014. en-NZ: 15/08/2014. fr-CA: 2014-08-15, amounts as 10 000,00 $. de-DE: 15.08.2014, amounts as 10.000,00 $.</value>
+  </data>
+  <data name="AdHocLanguageParameterType.FieldDescription" xml:space="preserve">
+    <value>Blank = en-US. The date and number format of the results (en-US: 8/15/2014; en-GB: 15/08/2014; en-CA: 2014-08-15). Warning: it also controls how filter dates in the definition are read. If you copied the JSON from Query in the web view, set Locale to match your browser language (e.g. en-GB), or a filter date such as 01/07/2017 may be read with day and month swapped.</value>
+  </data>
+  <data name="FormattingModeParameterType.FieldCaption" xml:space="preserve">
+    <value>Formatting mode</value>
+  </data>
+  <data name="FormattingModeParameterType.FieldDescription" xml:space="preserve">
+    <value>Blank = UI. UI and Export return formatted values: amounts with currency symbols and separators ($10,000.00), dates without a time. None returns raw values (10000) and dates with a time part, but birth dates come back encrypted.</value>
+  </data>
+  <data name="SqlGenerationModeParameterType.FieldCaption" xml:space="preserve">
+    <value>SQL generation mode</value>
+  </data>
+  <data name="SqlGenerationModeParameterType.FieldDescription" xml:space="preserve">
+    <value>Blank = Query. Query returns the output fields plus a QRECID column. Export returns the output fields only. Report returns only QRECID, one row per record.</value>
+  </data>
+  <!-- Query feature errors -->
   <data name="queryStartFailedNoJobId" xml:space="preserve">
     <value>Failed to submit query job. No Job ID was returned by the API.</value>
   </data>

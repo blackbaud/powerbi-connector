@@ -99,6 +99,9 @@ For Financial Edge NXT, both of these also require a **Module** parameter, since
 - **Use static query?** — whether to lock the query to the constituent list it matched when last run in Raiser's/Financial Edge NXT, rather than re-evaluating its filters live.
 - **Display code table long descriptions?** — whether to return the long description for code table values instead of the short code.
 - **Ask fields** — only applicable to queries with "Ask at runtime" filter fields; supply their values as JSON.
+- **Locale** — the date and number format of the results; the data itself is unchanged. Leaving it blank (null) uses `en-US` (`8/15/2014`). Other options: `en-GB` (`15/08/2014`), `en-CA` (`2014-08-15`), `en-AU` (`15/8/2014`), `en-NZ` (`15/08/2014`), `fr-CA` (`2014-08-15`, amounts as `10 000,00 $`) and `de-DE` (`15.08.2014`, amounts as `10.000,00 $`). The currency symbol follows your environment's currency setting, not the locale. On **Ad hoc query**, the locale also controls how filter dates inside the definition are read — see *Set Locale to match where the JSON came from* above.
+- **Formatting mode** — blank (null) uses `UI`. `UI` and `Export` return formatted values: amounts with currency symbols and separators, dates without a time. `None` returns raw amounts (`10000`) and dates with a time part, but **birth dates come back encrypted**.
+- **SQL generation mode** (saved queries only) — blank (null) uses `Query`. `Query` returns the output fields plus a `QRECID` column; `Export` returns the output fields only; `Report` returns only `QRECID`, one row per record.
 
 #### ⚠️ Preview data: for building reports, not for production
 

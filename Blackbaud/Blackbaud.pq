@@ -3312,9 +3312,19 @@ CleanUserInputList = (inputList as any) as list =>
 // while FE requires one of the modules in FEModules below (see GetFENXTNavTableRows /
 // GetFEQueryModuleNavTable) - there is one full copy of the browse/query tree per FE module.
 //
-// formattingMode, sqlGenerationMode, and outputFormat are intentionally NOT exposed as
-// parameters anywhere in this feature - they are fixed to "UI" / "Query" / "Csv" inside
-// GetQueryResultsTable. If that ever needs to change, it only needs to change in one place.
+// language, formattingMode and sqlGenerationMode are optional dropdown parameters, appended
+// last on every query function so existing positional calls keep working; their defaults
+// ("en-US" / "UI" / "Query") live in GetQueryResultsTable. sqlGenerationMode is only offered on
+// run-by-ID paths - an ad hoc definition carries its own sql_generation_mode inside the JSON.
+// outputFormat is intentionally NOT exposed and stays fixed to "Csv".
+//
+// language is sent as the Accept-Language header on the job-start call, and controls how the
+// API formats dates and numbers in the results (en-GB gives 15/08/2014, en-CA 2014-08-15,
+// de-DE 15.08.2014 and 10.000,00). It also controls how filter dates inside an ad hoc
+// definition are read: definitions read through the API with en-US use M/d/yyyy (hence the
+// default), but JSON copied from Query in the web view uses the browser's date format, so a UK
+// user running such a definition needs en-GB or day and month are swapped.
+// formattingMode "None" returns birth dates encrypted, so it is not the default.
 // =======================================================================================
 
 // FE modules, per the SKY API's Module enum (RE requests must use "None" instead - see
@@ -3358,9 +3368,12 @@ GetQueryByIdFunction = (product as text, module as text) =>
             optional useStaticQuery as nullable logical,
             optional displayCodeTableLongDescription as nullable logical,
             optional askFields as nullable text,
-            optional previewData as nullable logical
+            optional previewData as nullable logical,
+            optional language as nullable text,
+            optional formattingMode as nullable text,
+            optional sqlGenerationMode as nullable text
         ) as table =>
-            GetQueryResultsTable(product, module, queryId, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, askFields, previewData),
+            GetQueryResultsTable(product, module, queryId, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, askFields, previewData, language, formattingMode, sqlGenerationMode),
 
         docs = type function (
             queryId as QueryIdParameterType,
@@ -3368,7 +3381,10 @@ GetQueryByIdFunction = (product as text, module as text) =>
             optional useStaticQuery as UseStaticQueryParameterType,
             optional displayCodeTableLongDescription as DisplayCodeTableLongDescriptionParameterType,
             optional askFields as AskFieldsParameterType,
-            optional previewData as PreviewDataParameterType
+            optional previewData as PreviewDataParameterType,
+            optional language as LanguageParameterType,
+            optional formattingMode as FormattingModeParameterType,
+            optional sqlGenerationMode as SqlGenerationModeParameterType
         ) as table meta [
             Documentation.Name = "GetQueryResults",
             Documentation.LongDescription = Extension.LoadString("QueryByIdFunction.Documentation.LongDescription"),
@@ -3392,16 +3408,20 @@ GetAdHocQueryFunction = (product as text, module as text) =>
             optional timeZoneOffsetInMinutes as nullable number,
             optional useStaticQuery as nullable logical,
             optional displayCodeTableLongDescription as nullable logical,
-            optional previewData as nullable logical
+            optional previewData as nullable logical,
+            optional language as nullable text,
+            optional formattingMode as nullable text
         ) as table =>
-            GetQueryResultsTable(product, module, queryDefinition, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, null, previewData),
+            GetQueryResultsTable(product, module, queryDefinition, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, null, previewData, language, formattingMode, null),
 
         docs = type function (
             queryDefinition as QueryDefinitionParameterType,
             optional timeZoneOffsetInMinutes as TimeZoneOffsetInMinutesParameterType,
             optional useStaticQuery as UseStaticQueryParameterType,
             optional displayCodeTableLongDescription as DisplayCodeTableLongDescriptionParameterType,
-            optional previewData as PreviewDataParameterType
+            optional previewData as PreviewDataParameterType,
+            optional language as AdHocLanguageParameterType,
+            optional formattingMode as FormattingModeParameterType
         ) as table meta [
             Documentation.Name = "GetQueryResults",
             Documentation.LongDescription = Extension.LoadString("AdHocQueryFunction.Documentation.LongDescription"),
@@ -3429,9 +3449,12 @@ GetFEQueryByIdFunction = (product as text) =>
             optional useStaticQuery as nullable logical,
             optional displayCodeTableLongDescription as nullable logical,
             optional askFields as nullable text,
-            optional previewData as nullable logical
+            optional previewData as nullable logical,
+            optional language as nullable text,
+            optional formattingMode as nullable text,
+            optional sqlGenerationMode as nullable text
         ) as table =>
-            GetQueryResultsTable(product, GetFEModuleCodeFromDisplayName(module), queryId, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, askFields, previewData),
+            GetQueryResultsTable(product, GetFEModuleCodeFromDisplayName(module), queryId, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, askFields, previewData, language, formattingMode, sqlGenerationMode),
 
         docs = type function (
             queryId as QueryIdParameterType,
@@ -3440,7 +3463,10 @@ GetFEQueryByIdFunction = (product as text) =>
             optional useStaticQuery as UseStaticQueryParameterType,
             optional displayCodeTableLongDescription as DisplayCodeTableLongDescriptionParameterType,
             optional askFields as AskFieldsParameterType,
-            optional previewData as PreviewDataParameterType
+            optional previewData as PreviewDataParameterType,
+            optional language as LanguageParameterType,
+            optional formattingMode as FormattingModeParameterType,
+            optional sqlGenerationMode as SqlGenerationModeParameterType
         ) as table meta [
             Documentation.Name = "GetQueryResults",
             Documentation.LongDescription = Extension.LoadString("QueryByIdFunction.Documentation.LongDescription"),
@@ -3463,9 +3489,11 @@ GetFEAdHocQueryFunction = (product as text) =>
             optional timeZoneOffsetInMinutes as nullable number,
             optional useStaticQuery as nullable logical,
             optional displayCodeTableLongDescription as nullable logical,
-            optional previewData as nullable logical
+            optional previewData as nullable logical,
+            optional language as nullable text,
+            optional formattingMode as nullable text
         ) as table =>
-            GetQueryResultsTable(product, GetFEModuleCodeFromDisplayName(module), queryDefinition, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, null, previewData),
+            GetQueryResultsTable(product, GetFEModuleCodeFromDisplayName(module), queryDefinition, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, null, previewData, language, formattingMode, null),
 
         docs = type function (
             queryDefinition as QueryDefinitionParameterType,
@@ -3473,7 +3501,9 @@ GetFEAdHocQueryFunction = (product as text) =>
             optional timeZoneOffsetInMinutes as TimeZoneOffsetInMinutesParameterType,
             optional useStaticQuery as UseStaticQueryParameterType,
             optional displayCodeTableLongDescription as DisplayCodeTableLongDescriptionParameterType,
-            optional previewData as PreviewDataParameterType
+            optional previewData as PreviewDataParameterType,
+            optional language as AdHocLanguageParameterType,
+            optional formattingMode as FormattingModeParameterType
         ) as table meta [
             Documentation.Name = "GetQueryResults",
             Documentation.LongDescription = Extension.LoadString("AdHocQueryFunction.Documentation.LongDescription"),
@@ -3557,6 +3587,36 @@ PreviewDataParameterType = type nullable logical meta [
     Documentation.AllowedValues = {false, true}
 ];
 
+// Sent as the Accept-Language header (see the comment at the top of this feature section).
+// Limited to the locales tested against the Query API; the first value is the default.
+QueryLanguages = {"en-US", "en-GB", "en-CA", "en-AU", "en-NZ", "fr-CA", "de-DE"};
+
+LanguageParameterType = type nullable text meta [
+    Documentation.FieldCaption = Extension.LoadString("LanguageParameterType.FieldCaption"),
+    Documentation.FieldDescription = Extension.LoadString("LanguageParameterType.FieldDescription"),
+    Documentation.AllowedValues = QueryLanguages
+];
+
+// Same values as LanguageParameterType, with a description that also warns how the language
+// changes the reading of filter dates inside the ad hoc definition.
+AdHocLanguageParameterType = type nullable text meta [
+    Documentation.FieldCaption = Extension.LoadString("LanguageParameterType.FieldCaption"),
+    Documentation.FieldDescription = Extension.LoadString("AdHocLanguageParameterType.FieldDescription"),
+    Documentation.AllowedValues = QueryLanguages
+];
+
+FormattingModeParameterType = type nullable text meta [
+    Documentation.FieldCaption = Extension.LoadString("FormattingModeParameterType.FieldCaption"),
+    Documentation.FieldDescription = Extension.LoadString("FormattingModeParameterType.FieldDescription"),
+    Documentation.AllowedValues = {"UI", "Export", "None"}
+];
+
+SqlGenerationModeParameterType = type nullable text meta [
+    Documentation.FieldCaption = Extension.LoadString("SqlGenerationModeParameterType.FieldCaption"),
+    Documentation.FieldDescription = Extension.LoadString("SqlGenerationModeParameterType.FieldDescription"),
+    Documentation.AllowedValues = {"Query", "Export", "Report"}
+];
+
 // --------------------------------------------------------------------------------
 // Query navigation tables (Query folder: browse saved queries, or run directly by ID/ad hoc)
 // --------------------------------------------------------------------------------
@@ -3627,15 +3687,21 @@ GetQueryListNavTable = (
                     optional timeZoneOffsetInMinutes as nullable number,
                     optional useStaticQuery as nullable logical,
                     optional displayCodeTableLongDescription as nullable logical,
-                    optional previewData as nullable logical
+                    optional previewData as nullable logical,
+                    optional language as nullable text,
+                    optional formattingMode as nullable text,
+                    optional sqlGenerationMode as nullable text
                 ) =>
-                    GetQueryResultsTable(product, module, queryId, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, null, previewData),
+                    GetQueryResultsTable(product, module, queryId, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, null, previewData, language, formattingMode, sqlGenerationMode),
 
                 curriedDocs = type function (
                     optional timeZoneOffsetInMinutes as TimeZoneOffsetInMinutesParameterType,
                     optional useStaticQuery as UseStaticQueryParameterType,
                     optional displayCodeTableLongDescription as DisplayCodeTableLongDescriptionParameterType,
-                    optional previewData as PreviewDataParameterType
+                    optional previewData as PreviewDataParameterType,
+                    optional language as LanguageParameterType,
+                    optional formattingMode as FormattingModeParameterType,
+                    optional sqlGenerationMode as SqlGenerationModeParameterType
                 ) as table meta [
                     Documentation.Name = "GetQueryResults",
                     Documentation.LongDescription = Text.Format(
@@ -3673,16 +3739,22 @@ GetQueryListNavTable = (
                     optional timeZoneOffsetInMinutes as nullable number,
                     optional useStaticQuery as nullable logical,
                     optional displayCodeTableLongDescription as nullable logical,
-                    optional previewData as nullable logical
+                    optional previewData as nullable logical,
+                    optional language as nullable text,
+                    optional formattingMode as nullable text,
+                    optional sqlGenerationMode as nullable text
                 ) =>
-                    GetQueryResultsTable(product, module, queryId, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, askFields, previewData),
+                    GetQueryResultsTable(product, module, queryId, timeZoneOffsetInMinutes, useStaticQuery, displayCodeTableLongDescription, askFields, previewData, language, formattingMode, sqlGenerationMode),
 
                 curriedDocs = type function (
                     askFields as RequiredAskFieldsParameterType,
                     optional timeZoneOffsetInMinutes as TimeZoneOffsetInMinutesParameterType,
                     optional useStaticQuery as UseStaticQueryParameterType,
                     optional displayCodeTableLongDescription as DisplayCodeTableLongDescriptionParameterType,
-                    optional previewData as PreviewDataParameterType
+                    optional previewData as PreviewDataParameterType,
+                    optional language as LanguageParameterType,
+                    optional formattingMode as FormattingModeParameterType,
+                    optional sqlGenerationMode as SqlGenerationModeParameterType
                 ) as table meta [
                     Documentation.Name = "GetQueryResults",
                     Documentation.LongDescription = Text.Format(
@@ -4005,6 +4077,7 @@ StartQueryJob = (
     product as text,
     module as text,
     queryId as number,
+    language as text,
     formattingMode as text,
     sqlGenerationMode as text,
     outputFormat as text,
@@ -4023,7 +4096,7 @@ StartQueryJob = (
                     module = module,
                     _ts = GetTimestamp()
                 ],
-                Headers = QueryRequestHeaders,
+                Headers = QueryRequestHeaders & [ #"Accept-Language" = language ],
                 Content = Text.ToBinary(
                     Text.FromBinary(
                         Json.FromValue([
@@ -4050,6 +4123,7 @@ StartAdHocQueryJob = (
     product as text,
     module as text,
     query as text,
+    language as text,
     formattingMode as text,
     sqlGenerationMode as text,
     outputFormat as text,
@@ -4067,7 +4141,7 @@ StartAdHocQueryJob = (
                     module = module,
                     _ts = GetTimestamp()
                 ],
-                Headers = QueryRequestHeaders,
+                Headers = QueryRequestHeaders & [ #"Accept-Language" = language ],
                 Content = Text.ToBinary(
                     Text.FromBinary(
                         Json.FromValue([
@@ -4128,13 +4202,17 @@ GetQueryResultsTable = (
     useStaticQuery as nullable logical,
     displayCodeTableLongDescription as nullable logical,
     askFields as nullable text,
-    optional previewData as nullable logical
+    optional previewData as nullable logical,
+    optional language as nullable text,
+    optional formattingMode as nullable text,
+    optional sqlGenerationMode as nullable text
 ) as table =>
     let
-        // formattingMode, sqlGenerationMode, and outputFormat are intentionally fixed
-        // (not user-configurable) - see the comment at the top of this feature section.
-        _formattingMode = "UI",
-        _sqlGenerationMode = "Query",
+        // language/formattingMode/sqlGenerationMode default here; outputFormat is intentionally
+        // fixed - see the comment at the top of this feature section.
+        _language = if language = null or Text.Trim(language) = "" then "en-US" else Text.Trim(language),
+        _formattingMode = if formattingMode = null or Text.Trim(formattingMode) = "" then "UI" else Text.Trim(formattingMode),
+        _sqlGenerationMode = if sqlGenerationMode = null or Text.Trim(sqlGenerationMode) = "" then "Query" else Text.Trim(sqlGenerationMode),
         _outputFormat = "Csv",
         _timeZoneOffsetInMinutes = if timeZoneOffsetInMinutes = null then GetTimeZoneOffetMinutes() else timeZoneOffsetInMinutes,
         _useStaticQuery = if useStaticQuery = null then false else useStaticQuery,
@@ -4170,9 +4248,9 @@ GetQueryResultsTable = (
                 "Starting RENXT query request. Mode = " & Text.From(_queryIdOrDefinition is number),
                 try
                     if Type.Is(Value.Type(_queryIdOrDefinition), Number.Type) then
-                        StartQueryJob(product, module, _queryIdOrDefinition, _formattingMode, _sqlGenerationMode, _outputFormat, _timeZoneOffsetInMinutes, _useStaticQuery, _displayCodeTableLongDescription, _askFields)
+                        StartQueryJob(product, module, _queryIdOrDefinition, _language, _formattingMode, _sqlGenerationMode, _outputFormat, _timeZoneOffsetInMinutes, _useStaticQuery, _displayCodeTableLongDescription, _askFields)
                     else
-                        StartAdHocQueryJob(product, module, _queryIdOrDefinition, _formattingMode, _sqlGenerationMode, _outputFormat, _timeZoneOffsetInMinutes, _useStaticQuery, _displayCodeTableLongDescription)
+                        StartAdHocQueryJob(product, module, _queryIdOrDefinition, _language, _formattingMode, _sqlGenerationMode, _outputFormat, _timeZoneOffsetInMinutes, _useStaticQuery, _displayCodeTableLongDescription)
             ),
 
         startJson =

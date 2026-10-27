@@ -31,7 +31,6 @@ Blackbaud = [
 
 // Data Source UI publishing description
 Blackbaud.Publish = [
-    Beta = true,
     Category = "Other",
     ButtonText = { Extension.LoadString("ConnectorName"), Extension.LoadString("ConnectorTooltip") },
     LearnMoreUrl = "https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform",

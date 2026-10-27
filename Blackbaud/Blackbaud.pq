@@ -574,7 +574,7 @@ SchemaTable = #table(
         // Separate Consent API (api.sky.blackbaud.com/consent), not the Constituent API. Paginated
         // by offset/count like most endpoints (HasNextLink = false), but its records are wrapped in
         // a "constituent_consents" field instead of the usual "value" - see GetResponseRecords.
-        {"Constituent consents", null, "consent/constituents/consents", branchConstituent, null, DefaultRecLimit, false},
+        {"Constituent consents", ConsentListType, "consent/constituents/consents", branchConstituent, null, DefaultRecLimit, false},
         {"Public Lists", null, CreateListsNavTable("Constituent", true, ConstituentByList), branchConstituent, null, null, null},
         {"My Private Lists", null, CreateListsNavTable("Constituent", false, ConstituentByList), branchConstituent, null, null, null},
 
@@ -719,11 +719,30 @@ CustomFieldListType = type table [
     id = nullable text,
     category = nullable text,
     #"type" = nullable text,
-    value = nullable text,
+    // value's shape depends on type (a {y,m,d} record for FuzzyDate, a number for Number/Currency),
+    // so it stays untyped here and is converted to text by CustomFieldValueToText in the layouts
+    value = nullable any,
     date = nullable text,   //Should ideally be typed as datetime directly here
     comment = nullable text,
     date_added = nullable datetimezone,
     date_modified = nullable datetimezone
+];
+
+// Consent API constituent consent (ConstituentConsentRead). No field is required and the API omits
+// fields without a value, so this schema is what keeps the columns stable across records.
+ConsentListType = type table [
+    constituent_id = nullable text,
+    id = nullable text,
+    channel = nullable text,
+    inactive = nullable logical,
+    date = nullable datetimezone,
+    response = nullable text,
+    category = nullable text,
+    category_id = nullable text,
+    source = nullable text,
+    privacy_notice = nullable text,
+    consent_statement = nullable text,
+    date_added = nullable datetimezone
 ];
 
 // standard fuzzy date type
@@ -2132,6 +2151,38 @@ ExpandValueType = (sourceTable as table, sourceCol as text) as table =>
     in
         expandValue;
 
+// ISO 8601-style text for a fuzzy date, using whichever parts are present: 2022-05-13, 2022-05,
+// 2022, or --02-09 / --02 / ---09 when there is no year (ISO's notation for an omitted year/month).
+// Missing parts may be absent or 0. A day without a month can't be expressed with a year, so
+// {y, d} falls back to the year alone.
+FuzzyDateToText = (fuzzyDate as record) as nullable text =>
+    let
+        part = (name as text) => let v = Record.FieldOrDefault(fuzzyDate, name, null) in if v = null or v = 0 then null else v,
+        y = part("y"),
+        m = part("m"),
+        d = part("d"),
+        pad = (n as number) => Text.PadStart(Number.ToText(n, "D"), 2, "0"),
+        year = if y = null then null else Text.PadStart(Number.ToText(y, "D"), 4, "0")
+    in
+        if y <> null then
+            year & (if m = null then "" else "-" & pad(m) & (if d = null then "" else "-" & pad(d)))
+        else if m <> null then
+            "--" & pad(m) & (if d = null then "" else "-" & pad(d))
+        else if d <> null then
+            "---" & pad(d)
+        else
+            null;
+
+// Custom field values arrive as text, numbers, logicals, or (for FuzzyDate) a {y,m,d} record.
+// Numbers are formatted with en-US so the result doesn't depend on the machine's culture.
+CustomFieldValueToText = (value as any) as nullable text =>
+    if value = null then null
+    else if value is record then FuzzyDateToText(value)
+    else Text.From(value, "en-US");
+
+TransformCustomFieldValue = (sourceTable as table) as table =>
+    Table.TransformColumns(sourceTable, {{"value", CustomFieldValueToText, type nullable text}});
+
 ConvertToDateCol = (sourceTable as table, sourceCol as text) as table =>
     let
         transformDateToDateTime = Table.TransformColumnTypes(sourceTable,{{sourceCol, type datetime}}),
@@ -2181,7 +2232,8 @@ GenericCustomFieldsLayout = (sourceTable as table, route as text, idColPrefix as
 //                 "date_added",
 //                 "date_modified"
             }),
-        transformDate = ConvertToDateCol(expandCustomFields, "date"),
+        transformValue = TransformCustomFieldValue(expandCustomFields),
+        transformDate = ConvertToDateCol(transformValue, "date"),
         finalFilter = Table.SelectRows(transformDate, each [id] <> null),
         renameId = Table.RenameColumns(finalFilter, {{"id", idColPrefix & "_custom_field_id"}})
     in
@@ -2582,7 +2634,8 @@ ConstituentCustomFieldsLayout = (sourceTable as table) as table =>
     let
         renameId = Table.RenameColumns(sourceTable,{{"id", "constituent_custom_field_id"}}),
         renameParentId = Table.RenameColumns(renameId, {{"parent_id", "constituent_id"}}),
-        transformDate = ConvertToDateCol(renameParentId, "date")
+        transformValue = TransformCustomFieldValue(renameParentId),
+        transformDate = ConvertToDateCol(transformValue, "date")
     in
         transformDate;
 
@@ -2723,7 +2776,8 @@ GiftCustomFieldsLayout = (sourceTable as table) as table =>
     let
         renameId = Table.RenameColumns(sourceTable,{{"id", "gift_custom_field_id"}}),
         renameParentId = Table.RenameColumns(renameId,{{"parent_id", "gift_id"}}),
-        transformDate = ConvertToDateCol(renameParentId, "date")
+        transformValue = TransformCustomFieldValue(renameParentId),
+        transformDate = ConvertToDateCol(transformValue, "date")
     in
         transformDate;
 

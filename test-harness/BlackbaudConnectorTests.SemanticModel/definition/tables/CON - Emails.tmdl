@@ -1,0 +1,93 @@
+table 'CON - Emails'
+	lineageTag: 0e495593-5949-42fd-a64c-436470351f7b
+
+	column constituent_id
+		dataType: string
+		lineageTag: cc04b286-9f71-4020-8093-5b27d606a79e
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column email_id
+		dataType: string
+		lineageTag: fa9b7be1-c7f8-498d-965a-41df15ba5ead
+		summarizeBy: none
+		sourceColumn: email_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 1f830c09-4b51-41a0-a8f3-a8d7ec7393f3
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		lineageTag: 5dd26738-6e8c-44f7-9aa4-718703db3f83
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5ec847e0-671a-4cf3-aef9-21686e0107df
+		summarizeBy: none
+		sourceColumn: primary
+
+		annotation SummarizationSetBy = Automatic
+
+	column do_not_email
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1ea00886-5f04-4f96-b235-11e4402ebd26
+		summarizeBy: none
+		sourceColumn: do_not_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 893449c0-5532-471b-94df-29d18a3cf203
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3b3c3a9a-1934-4b2a-96a4-00891691a709
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 18cfddd1-e158-4802-9ea5-b8ce2c12f04a
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Emails' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent emails"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

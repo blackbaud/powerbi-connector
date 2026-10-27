@@ -1,0 +1,195 @@
+table 'CON - Relationships'
+	lineageTag: 0500dc04-fba0-48b9-a393-36fd86ac3aa7
+
+	column constituent_id
+		dataType: string
+		lineageTag: ce8c28ee-29ea-4803-b242-84c01f26358a
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column relationship_id
+		dataType: string
+		lineageTag: bc5e67cd-ff28-4a1b-8ab0-2cf79508a8a2
+		summarizeBy: none
+		sourceColumn: relationship_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column relation_constituent_id
+		dataType: string
+		lineageTag: 3a0531d8-2d1f-4d9b-97ad-7957a68e4133
+		summarizeBy: none
+		sourceColumn: relation_constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 94d68628-9e42-4353-b54f-a6e5db8542cd
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 8185bb88-e7cc-4b18-a97b-d2bd5b554d68
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column reciprocal_type
+		dataType: string
+		lineageTag: cb3336e2-d194-4fc5-be32-936ecb7e98cd
+		summarizeBy: none
+		sourceColumn: reciprocal_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'start.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 546f2c48-9962-482a-a35b-19c835b6b32e
+		summarizeBy: sum
+		sourceColumn: start.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'start.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 83c7b54b-ce6b-42f4-9f98-f6a386ffdae9
+		summarizeBy: sum
+		sourceColumn: start.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'start.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: dcf4fc11-a692-4056-8162-1b9f79803071
+		summarizeBy: sum
+		sourceColumn: start.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'end.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9314ffab-8dad-4ca9-a4f1-6c830d6145ef
+		summarizeBy: sum
+		sourceColumn: end.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'end.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f224580-1a8f-43e6-a6ea-0df07cbd7d1b
+		summarizeBy: sum
+		sourceColumn: end.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'end.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c1ceed8-b311-436b-9345-06a4056dae94
+		summarizeBy: sum
+		sourceColumn: end.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_spouse
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bdd391d8-1a0d-4210-96dc-1616e28e436d
+		summarizeBy: none
+		sourceColumn: is_spouse
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_organization_contact
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 657ac833-d759-4e54-bc5a-302303324c26
+		summarizeBy: none
+		sourceColumn: is_organization_contact
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_primary_business
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8cd8747a-f38c-4d5b-ba2b-9681879c9e1a
+		summarizeBy: none
+		sourceColumn: is_primary_business
+
+		annotation SummarizationSetBy = Automatic
+
+	column organization_contact_type
+		dataType: string
+		lineageTag: 59e844d9-2b14-47e3-bd67-b2e918e476b6
+		summarizeBy: none
+		sourceColumn: organization_contact_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: 52348ba6-1ab6-4d4c-a79d-5031fbdb90f6
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column comment
+		dataType: string
+		lineageTag: c1c37161-3149-44e4-8777-5d33fe00fc57
+		summarizeBy: none
+		sourceColumn: comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column reciprocal_relationship_id
+		dataType: string
+		lineageTag: 052b645a-7d98-49b5-9ef6-11b055c61319
+		summarizeBy: none
+		sourceColumn: reciprocal_relationship_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 958cf0f3-1121-4782-9bae-4ffc8a1dd429
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 00142fba-4241-4b76-8522-2252be4af2f7
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Relationships' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent relationships"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

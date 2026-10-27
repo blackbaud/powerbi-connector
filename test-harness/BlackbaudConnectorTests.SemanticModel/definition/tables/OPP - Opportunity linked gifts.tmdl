@@ -1,0 +1,32 @@
+table 'OPP - Opportunity linked gifts'
+	lineageTag: 4166d60b-6308-4eb3-b4b1-9e5b637e0b97
+
+	column opportunity_id
+		dataType: string
+		lineageTag: fbf28917-8252-46b2-9294-30d7fb614eeb
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column gift_id
+		dataType: string
+		lineageTag: 5a5ebb58-1edd-472e-b378-3217cef8e5a0
+		summarizeBy: none
+		sourceColumn: gift_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'OPP - Opportunity linked gifts' = m
+		mode: import
+		queryGroup: Opportunities
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Opportunities"]}[Data],
+				    Data = Folder{[Key="Opportunity linked gifts"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

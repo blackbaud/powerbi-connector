@@ -1,0 +1,48 @@
+table 'QRY - Browse - All queries 202'
+	lineageTag: d241f2dc-c911-46a4-a30e-fa3b01e2982d
+
+	column Name
+		dataType: string
+		lineageTag: 869bdd0f-156b-4094-bcf4-1daca3bb062d
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Birth Date'
+		dataType: string
+		lineageTag: 3c0729c7-f6ed-4b48-abea-bfe2790e0230
+		summarizeBy: none
+		sourceColumn: Birth Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Volunteer Job Assignment'
+		dataType: string
+		lineageTag: 44d4e3f9-6343-487e-bc5d-960b665464ef
+		summarizeBy: none
+		sourceColumn: Volunteer Job Assignment
+
+		annotation SummarizationSetBy = Automatic
+
+	column QRECID
+		dataType: string
+		lineageTag: 56307f8c-b2ef-4547-a98a-a3fce54928bf
+		summarizeBy: none
+		sourceColumn: QRECID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'QRY - Browse - All queries 202' = m
+		mode: import
+		queryGroup: 'RE Query'
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="RaisersEdgeNXTQuery"]}[Data],
+				    Data = Folder{[Key="allQueries"]}[Data]{[Key=202]}[Data]()
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

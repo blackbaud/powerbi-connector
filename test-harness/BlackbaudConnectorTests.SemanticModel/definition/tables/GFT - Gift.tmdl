@@ -1,0 +1,248 @@
+table 'GFT - Gift'
+	lineageTag: 846f579f-4bef-4add-8757-28254a1cb1fc
+
+	column gift_id
+		dataType: string
+		lineageTag: d8fd5375-3ccc-4595-9e35-e0a4e5cbb93d
+		summarizeBy: none
+		sourceColumn: gift_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column constituent_id
+		dataType: string
+		lineageTag: 7a6291fd-b387-45f3-b62e-aff7ee950e71
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: d97066c7-adc9-4c0e-8515-5b9add61ffdb
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column subtype
+		dataType: string
+		lineageTag: c4faae20-1417-47da-8d5f-58bb28e5472a
+		summarizeBy: none
+		sourceColumn: subtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fc7b215b-9589-4702-9949-d1b9496f309b
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column amount
+		dataType: double
+		lineageTag: ab30a7b3-db0e-4d5e-814e-2ad7e4bdcd67
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column reference
+		dataType: string
+		lineageTag: 2c21b692-a78a-4734-8e6f-81eb6216ad9b
+		summarizeBy: none
+		sourceColumn: reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column gift_lookup_id
+		dataType: string
+		lineageTag: bb4aade8-b865-4700-989e-a6b8ee3dc967
+		summarizeBy: none
+		sourceColumn: gift_lookup_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column constituency
+		dataType: string
+		lineageTag: a0fc62b9-2f06-44e0-b52e-1571b83fd9bf
+		summarizeBy: none
+		sourceColumn: constituency
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_anonymous
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9ad7551f-2f67-4506-9910-8085909d89cc
+		summarizeBy: none
+		sourceColumn: is_anonymous
+
+		annotation SummarizationSetBy = Automatic
+
+	column post_status
+		dataType: string
+		lineageTag: 5dc59ad4-44e5-44ca-9b7d-690da7a1e9c6
+		summarizeBy: none
+		sourceColumn: post_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column post_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b31bd619-404c-42b1-8499-fe3028d50d20
+		summarizeBy: none
+		sourceColumn: post_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column gift_status
+		dataType: string
+		lineageTag: 4d6db336-8766-4c24-9843-5afd3388bb4a
+		summarizeBy: none
+		sourceColumn: gift_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin
+		dataType: string
+		lineageTag: ef641374-2691-44d5-a717-6e221cd0f0de
+		summarizeBy: none
+		sourceColumn: origin
+
+		annotation SummarizationSetBy = Automatic
+
+	column balance
+		dataType: double
+		lineageTag: 981c5d8e-cfa1-46de-a030-da95dc754c78
+		summarizeBy: sum
+		sourceColumn: balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column batch_number
+		dataType: string
+		lineageTag: a3ed4655-f2c4-448e-bd7e-9c85506ab671
+		summarizeBy: none
+		sourceColumn: batch_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'recurring_gift_schedule.frequency'
+		dataType: string
+		lineageTag: 9ab4af6c-c57a-4ff7-b5bc-47a3624f3a26
+		summarizeBy: none
+		sourceColumn: recurring_gift_schedule.frequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'recurring_gift_schedule.start_date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4d8c5c8d-fa4f-46fb-ab98-e74d41266f0c
+		summarizeBy: none
+		sourceColumn: recurring_gift_schedule.start_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'recurring_gift_schedule.end_date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4e57e6ad-2e08-4994-9ca2-9793fa048b0f
+		summarizeBy: none
+		sourceColumn: recurring_gift_schedule.end_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'recurring_gift_status_date.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7581fece-a7f7-489b-bbc1-0aa020aa0594
+		summarizeBy: sum
+		sourceColumn: recurring_gift_status_date.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'recurring_gift_status_date.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 43c4f899-7214-4ed5-99f9-c0617e0a5b52
+		summarizeBy: sum
+		sourceColumn: recurring_gift_status_date.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'recurring_gift_status_date.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 97912d13-8490-4d00-ab47-75737d7959f4
+		summarizeBy: sum
+		sourceColumn: recurring_gift_status_date.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column gift_aid_amount
+		dataType: double
+		lineageTag: 3dd6fb1a-63b1-48b1-9066-fb39d5a3636f
+		summarizeBy: sum
+		sourceColumn: gift_aid_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gift_aid_qualification_status
+		dataType: string
+		lineageTag: 6103f43f-5d65-4c57-bbf9-2560bac9bd5b
+		summarizeBy: none
+		sourceColumn: gift_aid_qualification_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: da8f26e7-0580-47d3-9995-3e2eea042e80
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c967f1f0-30ab-42fe-8903-91cd6dcfabea
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GFT - Gift' = m
+		mode: import
+		queryGroup: Gifts
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Gifts"]}[Data],
+				    Data = Folder{[Key="Gift"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

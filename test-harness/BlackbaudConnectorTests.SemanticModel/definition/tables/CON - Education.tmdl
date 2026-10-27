@@ -1,0 +1,254 @@
+table 'CON - Education'
+	lineageTag: 78bbca5a-1919-42d3-8d43-85ca96505caf
+
+	column constituent_id
+		dataType: string
+		lineageTag: 9ce14b3f-2fe9-4e39-b513-7b2614d5591d
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column education_id
+		dataType: string
+		lineageTag: e7974484-8711-44ca-a4b5-c7bf10633745
+		summarizeBy: none
+		sourceColumn: education_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column school
+		dataType: string
+		lineageTag: 5bc7b9a0-1f5e-4b8c-b6ab-99e80820ce5e
+		summarizeBy: none
+		sourceColumn: school
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: d1d0a81a-c0ec-46b2-a7dd-4dc52372db1e
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column campus
+		dataType: string
+		lineageTag: 74103a1b-6a51-4b51-8d5f-7c5f3a660636
+		summarizeBy: none
+		sourceColumn: campus
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b5303c5f-e17e-4429-aa4f-f04f07c8a484
+		summarizeBy: none
+		sourceColumn: primary
+
+		annotation SummarizationSetBy = Automatic
+
+	column known_name
+		dataType: string
+		lineageTag: 27f740ce-807c-45fc-a07e-3525c941f9c6
+		summarizeBy: none
+		sourceColumn: known_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column social_organization
+		dataType: string
+		lineageTag: 10118de0-5f2a-41ad-8850-2f8ec3a93384
+		summarizeBy: none
+		sourceColumn: social_organization
+
+		annotation SummarizationSetBy = Automatic
+
+	column subject_of_study
+		dataType: string
+		lineageTag: e016fe3c-9ee6-439a-a16f-a20344c55d52
+		summarizeBy: none
+		sourceColumn: subject_of_study
+
+		annotation SummarizationSetBy = Automatic
+
+	column class_of_degree
+		dataType: string
+		lineageTag: f5736686-f60b-4da7-8c85-a8f08d96c985
+		summarizeBy: none
+		sourceColumn: class_of_degree
+
+		annotation SummarizationSetBy = Automatic
+
+	column degree
+		dataType: string
+		lineageTag: 6838c6ed-3bd8-4693-b9e3-1073b30a3f4f
+		summarizeBy: none
+		sourceColumn: degree
+
+		annotation SummarizationSetBy = Automatic
+
+	column gpa
+		dataType: double
+		lineageTag: d5d78822-9be2-4e51-a1b6-3af0f2b49216
+		summarizeBy: sum
+		sourceColumn: gpa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column class_of
+		dataType: string
+		lineageTag: 91edd2d9-7439-4498-a9c9-f4b8a54e0fb6
+		summarizeBy: none
+		sourceColumn: class_of
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date_entered.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9693ab7a-e9af-4ec4-8087-1d64b65f8344
+		summarizeBy: sum
+		sourceColumn: date_entered.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date_entered.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 16efc536-7bda-494d-a00e-71d385020af2
+		summarizeBy: sum
+		sourceColumn: date_entered.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date_entered.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5528ba72-f4e4-4989-b38b-24569cad4c15
+		summarizeBy: sum
+		sourceColumn: date_entered.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date_graduated.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: e7135230-068a-4e95-90b5-6de5f155f0d3
+		summarizeBy: sum
+		sourceColumn: date_graduated.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date_graduated.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: a903b3bf-99df-49a5-9906-706a7c1f273e
+		summarizeBy: sum
+		sourceColumn: date_graduated.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date_graduated.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: f8c1a7be-9265-469e-91f6-8eed11336508
+		summarizeBy: sum
+		sourceColumn: date_graduated.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date_left.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f6f4a1a-5ab5-4abd-bed4-886742a6c9f3
+		summarizeBy: sum
+		sourceColumn: date_left.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date_left.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: cdde7a5c-8d52-4151-97c7-e30e0b0eb1d1
+		summarizeBy: sum
+		sourceColumn: date_left.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date_left.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e2ad0ec-58e3-4045-b888-631847db0a75
+		summarizeBy: sum
+		sourceColumn: date_left.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 2c7d4e7e-a4b3-4123-b242-1574c26ab22c
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column department
+		dataType: string
+		lineageTag: f1648e4d-5d85-433a-bc8d-8f593627fd39
+		summarizeBy: none
+		sourceColumn: department
+
+		annotation SummarizationSetBy = Automatic
+
+	column faculty
+		dataType: string
+		lineageTag: 0fbdc12c-d832-47f3-92c3-5d3b9870a3e9
+		summarizeBy: none
+		sourceColumn: faculty
+
+		annotation SummarizationSetBy = Automatic
+
+	column registration_number
+		dataType: string
+		lineageTag: 9ce25ccf-e172-4351-bd64-2978bbb4ef4a
+		summarizeBy: none
+		sourceColumn: registration_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 042d5a5e-f35d-42c2-9882-1a2d463b4d3c
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 43586576-1fb5-486f-8ed9-26205411085d
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Education' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent education"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

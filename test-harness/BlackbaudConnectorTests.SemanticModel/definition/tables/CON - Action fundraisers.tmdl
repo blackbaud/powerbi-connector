@@ -1,0 +1,32 @@
+table 'CON - Action fundraisers'
+	lineageTag: fe15a070-98d6-441f-9bdf-8bece9bddbfc
+
+	column action_id
+		dataType: string
+		lineageTag: d1f5897c-0ea8-400a-afd7-c76225234c9c
+		summarizeBy: none
+		sourceColumn: action_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column fundraiser_constituent_id
+		dataType: string
+		lineageTag: f85fe82e-909c-40e4-af33-55be6cd87b68
+		summarizeBy: none
+		sourceColumn: fundraiser_constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Action fundraisers' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent action fundraisers"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

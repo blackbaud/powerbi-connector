@@ -1,0 +1,112 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "smoketable",
+  "position": {
+    "x": 149.94614003590664,
+    "y": 39.640933572710949,
+    "z": 0,
+    "height": 1000,
+    "width": 1200,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Smoke Test"
+                    }
+                  },
+                  "Property": "Query"
+                }
+              },
+              "queryRef": "Smoke Test.Query",
+              "nativeQueryRef": "Query"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Smoke Test"
+                    }
+                  },
+                  "Property": "Rows"
+                }
+              },
+              "queryRef": "Smoke Test.Rows",
+              "nativeQueryRef": "Rows"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Smoke Test"
+                    }
+                  },
+                  "Property": "Status"
+                }
+              },
+              "queryRef": "Smoke Test.Status",
+              "nativeQueryRef": "Status"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1bd65726029bf7eaaa91",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Smoke Test"
+              }
+            },
+            "Property": "Query"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8bb6af59ee8585642e6d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Smoke Test"
+              }
+            },
+            "Property": "Rows"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b94384be66a3e4b9fda8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Smoke Test"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

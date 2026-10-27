@@ -1,0 +1,207 @@
+table 'CON - Addresses'
+	lineageTag: f77604e1-a48a-44cb-b8bb-ef603b8a1e52
+
+	column constituent_id
+		dataType: string
+		lineageTag: a45b20db-aeb8-44af-ad8e-953d941e3d03
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column address_id
+		dataType: string
+		lineageTag: 16eb75b4-f42e-45cb-9a9c-baa6c1d3a22d
+		summarizeBy: none
+		sourceColumn: address_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 897b4f06-c5e4-4075-8b2f-d2b010b972c4
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column formatted_address
+		dataType: string
+		lineageTag: b343f742-3788-4c80-9fb9-1beb6a9c4b25
+		summarizeBy: none
+		sourceColumn: formatted_address
+
+		annotation SummarizationSetBy = Automatic
+
+	column preferred
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ec7a3f61-77cc-4090-be8f-c758d67397b8
+		summarizeBy: none
+		sourceColumn: preferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column do_not_mail
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 157917df-87ca-4147-9c50-68fb076cf6c1
+		summarizeBy: none
+		sourceColumn: do_not_mail
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 87da65c4-2a65-4ff7-bc49-d1ced90fa304
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: eb63024f-6883-4387-938f-799e9f6b9e7f
+		summarizeBy: none
+		sourceColumn: start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column end
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 26e909d6-897c-42f8-b9e2-2157d2722d67
+		summarizeBy: none
+		sourceColumn: end
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'seasonal_start.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: c6fa994c-a209-4bcf-a8d2-6118878f2bf8
+		summarizeBy: sum
+		sourceColumn: seasonal_start.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'seasonal_start.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5796c21e-65b2-4493-b8b8-586fe0965d11
+		summarizeBy: sum
+		sourceColumn: seasonal_start.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'seasonal_end.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: b576246a-261a-45a5-8d29-33bfa50054b3
+		summarizeBy: sum
+		sourceColumn: seasonal_end.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'seasonal_end.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1127d7ed-6f49-469f-ada6-a6778c51735e
+		summarizeBy: sum
+		sourceColumn: seasonal_end.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 5708397a-f448-4f31-9d77-e25f5dc1dc5f
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column address_lines
+		dataType: string
+		lineageTag: d1600c5d-2832-4774-adb7-7e2e79e622e6
+		summarizeBy: none
+		sourceColumn: address_lines
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: fee7797d-9cb2-4269-9cb8-df0912e739ce
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 54c529da-2077-45d5-966f-929fabb3fcab
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column suburb
+		dataType: string
+		lineageTag: a04ac54d-8437-4b8f-ac98-2ef5cd18a121
+		summarizeBy: none
+		sourceColumn: suburb
+
+		annotation SummarizationSetBy = Automatic
+
+	column county
+		dataType: string
+		lineageTag: 95f04890-e351-4d55-b0fb-6211bb865157
+		summarizeBy: none
+		sourceColumn: county
+
+		annotation SummarizationSetBy = Automatic
+
+	column postal_code
+		dataType: string
+		lineageTag: b1b15ca4-c08f-4f74-b9e4-9d7f1c24e614
+		summarizeBy: none
+		sourceColumn: postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3cd0f264-931e-487b-8341-d169ca12b6be
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ce926d5a-da2e-4e88-836d-b73efbc8865b
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Addresses' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent addresses"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

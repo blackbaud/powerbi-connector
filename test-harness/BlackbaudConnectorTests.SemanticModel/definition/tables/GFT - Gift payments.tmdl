@@ -1,0 +1,134 @@
+table 'GFT - Gift payments'
+	lineageTag: 4bb9a5fe-c666-4aa1-b2f6-a17209fdb6b5
+
+	column gift_id
+		dataType: string
+		lineageTag: 8cfef299-149f-4238-bdb3-2b1d446f9d9f
+		summarizeBy: none
+		sourceColumn: gift_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_method
+		dataType: string
+		lineageTag: aef2601d-aa66-4c99-aeb1-7fe12c941248
+		summarizeBy: none
+		sourceColumn: payment_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column reference
+		dataType: string
+		lineageTag: 68e4817a-d811-46d5-a34b-85b6162e048d
+		summarizeBy: none
+		sourceColumn: reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'reference_date.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: d80fe997-a727-4643-915d-719be15032b0
+		summarizeBy: sum
+		sourceColumn: reference_date.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'reference_date.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a76a967-bdaa-416a-a8fa-5d8c851f4b21
+		summarizeBy: sum
+		sourceColumn: reference_date.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'reference_date.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 02ed55e0-24ee-48f3-a1a1-e37545897d66
+		summarizeBy: sum
+		sourceColumn: reference_date.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column check_number
+		dataType: string
+		lineageTag: 3597f4bb-66df-4cd0-a568-22464b51eac3
+		summarizeBy: none
+		sourceColumn: check_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'check_date.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: b9ae3671-d586-4121-afcf-b749c3373f26
+		summarizeBy: sum
+		sourceColumn: check_date.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'check_date.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 90faeb51-af70-485f-ac36-d35cab075d71
+		summarizeBy: sum
+		sourceColumn: check_date.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'check_date.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: c292591b-e959-45c6-9d7a-ead1bc868632
+		summarizeBy: sum
+		sourceColumn: check_date.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_token
+		dataType: string
+		lineageTag: 8d740178-bf6e-467f-9a38-f0a6629c39f0
+		summarizeBy: none
+		sourceColumn: account_token
+
+		annotation SummarizationSetBy = Automatic
+
+	column checkout_transaction_id
+		dataType: string
+		lineageTag: 5a15616f-5cd3-479b-b4c7-640c034ccef8
+		summarizeBy: none
+		sourceColumn: checkout_transaction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bbps_configuration_id
+		dataType: string
+		lineageTag: 2845b1d3-be77-462c-a7a7-9d48905d4ad4
+		summarizeBy: none
+		sourceColumn: bbps_configuration_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bbps_transaction_id
+		dataType: string
+		lineageTag: 67dfcc62-dab0-451f-a111-929ec52ad69e
+		summarizeBy: none
+		sourceColumn: bbps_transaction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GFT - Gift payments' = m
+		mode: import
+		queryGroup: Gifts
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Gifts"]}[Data],
+				    Data = Folder{[Key="Gift payments"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

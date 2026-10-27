@@ -1,0 +1,334 @@
+table 'EVT - Participants by event ID'
+	lineageTag: 79a17afe-a813-4e53-8e92-99baa76b1d34
+
+	column id
+		dataType: string
+		lineageTag: f1f6afb8-870f-4b33-96d2-9ad731d16507
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_id
+		dataType: string
+		lineageTag: aa8e767e-f070-45c2-85b9-a4370826405f
+		summarizeBy: none
+		sourceColumn: contact_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6d2ff857-c0ec-41da-b800-0bd6ea961502
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 50c88bd4-d6a2-4b21-95cd-4234253cbaf9
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_constituent
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 114aa391-78c0-4973-b7cd-1ecdb8f7fdf8
+		summarizeBy: none
+		sourceColumn: is_constituent
+
+		annotation SummarizationSetBy = Automatic
+
+	column lookup_id
+		dataType: string
+		lineageTag: d0d5f1d0-d8da-4d6c-87b4-124b5b2d30b6
+		summarizeBy: none
+		sourceColumn: lookup_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: aa18b5c4-5e8d-4ea5-ad5b-f7f03629299c
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: cd7b96e1-4e97-4bbf-83eb-0b18158a1cc8
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column middle_name
+		dataType: string
+		lineageTag: 12269df1-163b-4448-8c4e-607149fb3cbd
+		summarizeBy: none
+		sourceColumn: middle_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		lineageTag: bccdafbd-5794-49af-90db-27851fbc58eb
+		summarizeBy: none
+		sourceColumn: last_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column preferred_name
+		dataType: string
+		lineageTag: a0b9a034-e2cb-43e9-9068-058fc327a034
+		summarizeBy: none
+		sourceColumn: preferred_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column former_name
+		dataType: string
+		lineageTag: e4e71a53-df2c-404d-80b3-d8c4858d7ab0
+		summarizeBy: none
+		sourceColumn: former_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: 5f8ad5f0-b377-4eda-93cd-79e61ac22145
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column suffix
+		dataType: string
+		lineageTag: 187aba0f-d7a0-4607-8cb5-289aa53de12b
+		summarizeBy: none
+		sourceColumn: suffix
+
+		annotation SummarizationSetBy = Automatic
+
+	column class_of
+		dataType: string
+		lineageTag: 845d95ef-2d01-4f33-afc8-424ec58bdd12
+		summarizeBy: none
+		sourceColumn: class_of
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: afa897c0-de71-4419-ac87-10a7fd8c9b04
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column do_not_call
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 967af733-b854-4f14-bf07-930bdd22e1be
+		summarizeBy: none
+		sourceColumn: do_not_call
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: fe5d9fa2-372f-4e5e-a9b6-fc9bb91f22e5
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column do_not_email
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f68c8862-36f3-41ac-82dd-b51af30dea1a
+		summarizeBy: none
+		sourceColumn: do_not_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column attended
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c4c1e016-a865-4f5c-a47f-822c0a2277ca
+		summarizeBy: none
+		sourceColumn: attended
+
+		annotation SummarizationSetBy = Automatic
+
+	column rsvp_status
+		dataType: string
+		lineageTag: 322911ba-edfd-4aca-86b2-6257d3787350
+		summarizeBy: none
+		sourceColumn: rsvp_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column invitation_status
+		dataType: string
+		lineageTag: f0f0db08-a924-4662-a365-4d8bd81511cc
+		summarizeBy: none
+		sourceColumn: invitation_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_paid
+		dataType: double
+		lineageTag: a98164c5-7568-4da8-baf7-13f5d01905fd
+		summarizeBy: sum
+		sourceColumn: total_paid
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column host
+		dataType: string
+		lineageTag: 5a309ddf-3f7e-4570-be21-ffed1f75b8a6
+		summarizeBy: none
+		sourceColumn: host
+
+		annotation SummarizationSetBy = Automatic
+
+	column guests
+		dataType: string
+		lineageTag: 4713dcac-2f43-409d-a560-9c20e65896fd
+		summarizeBy: none
+		sourceColumn: guests
+
+		annotation SummarizationSetBy = Automatic
+
+	column seat
+		dataType: string
+		lineageTag: a9d57cde-0e2a-42b5-8605-a08f46fac586
+		summarizeBy: none
+		sourceColumn: seat
+
+		annotation SummarizationSetBy = Automatic
+
+	column seating_notes
+		dataType: string
+		lineageTag: 89bfdc17-126f-419e-8d25-7d8d592851f5
+		summarizeBy: none
+		sourceColumn: seating_notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column seating_group
+		dataType: string
+		lineageTag: e447c00c-5df0-47e1-bdd1-f907bc04cff1
+		summarizeBy: none
+		sourceColumn: seating_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column name_tag
+		dataType: string
+		lineageTag: 16f30472-a6d4-49e9-8e92-00b44a612aab
+		summarizeBy: none
+		sourceColumn: name_tag
+
+		annotation SummarizationSetBy = Automatic
+
+	column summary_note
+		dataType: string
+		lineageTag: 142d53f0-ce4d-4f82-9855-eea1269693e2
+		summarizeBy: none
+		sourceColumn: summary_note
+
+		annotation SummarizationSetBy = Automatic
+
+	column memberships
+		dataType: string
+		lineageTag: bfcf6433-27d6-4388-abf3-425508d0676f
+		summarizeBy: none
+		sourceColumn: memberships
+
+		annotation SummarizationSetBy = Automatic
+
+	column participant_options
+		dataType: string
+		lineageTag: 755a7dc4-e0a3-46d8-8332-83421882938b
+		summarizeBy: none
+		sourceColumn: participant_options
+
+		annotation SummarizationSetBy = Automatic
+
+	column registration_form
+		dataType: string
+		lineageTag: 347c5eb0-5fb5-48df-a182-9dfffc4f868a
+		summarizeBy: none
+		sourceColumn: registration_form
+
+		annotation SummarizationSetBy = Automatic
+
+	column donations
+		dataType: double
+		lineageTag: b4ba7b1d-3317-4c77-bbbc-9296bd743f85
+		summarizeBy: sum
+		sourceColumn: donations
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column revenue
+		dataType: double
+		lineageTag: 6fbf0b72-bdcf-44a1-9efd-fd228abdb4ab
+		summarizeBy: sum
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column online_data_health
+		dataType: string
+		lineageTag: 8f722766-528f-410e-91f7-f311ac255e6b
+		summarizeBy: none
+		sourceColumn: online_data_health
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_fees
+		dataType: double
+		lineageTag: 0432b599-7e21-40aa-896e-8359c73c5111
+		summarizeBy: sum
+		sourceColumn: total_fees
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fees
+		dataType: string
+		lineageTag: d8434407-06ea-4e04-99f7-c5384c3fd043
+		summarizeBy: none
+		sourceColumn: fees
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'EVT - Participants by event ID' = m
+		mode: import
+		queryGroup: Events
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Events"]}[Data],
+				    Data = Folder{[Key="Event participants (by event ID)"]}[Data]("44582")
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,94 @@
+table 'GL - Account'
+	lineageTag: 7681416e-f42a-470a-a025-17a1ae572631
+
+	column account_number
+		dataType: string
+		lineageTag: 17c55720-8d24-4f78-9090-c22f557d6431
+		summarizeBy: none
+		sourceColumn: account_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: b1e6f511-47b6-4e76-ae0d-d0217cbab637
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column prevent_data_entry
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7465bb43-8bc1-4ca5-8f3e-8b940852fc07
+		summarizeBy: none
+		sourceColumn: prevent_data_entry
+
+		annotation SummarizationSetBy = Automatic
+
+	column prevent_posting_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1c371689-dab4-4384-97b3-61ba07ab0ff5
+		summarizeBy: none
+		sourceColumn: prevent_posting_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column class
+		dataType: string
+		lineageTag: 6c726633-b527-452c-902f-6e7cd48f42b4
+		summarizeBy: none
+		sourceColumn: class
+
+		annotation SummarizationSetBy = Automatic
+
+	column cashflow
+		dataType: string
+		lineageTag: c5089816-e0f4-4f09-b4dd-a2f7675786cc
+		summarizeBy: none
+		sourceColumn: cashflow
+
+		annotation SummarizationSetBy = Automatic
+
+	column working_capital
+		dataType: string
+		lineageTag: 8f6af42e-7fa7-4126-bbfc-3534fcff547b
+		summarizeBy: none
+		sourceColumn: working_capital
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4b6fb743-ab0f-47de-a8a6-af70f35763c2
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e69ece39-094e-49f4-a42e-fafe95aad0ab
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GL - Account' = m
+		mode: import
+		queryGroup: 'General Ledger'
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="General Ledger"]}[Data],
+				    Data = Folder{[Key="Account"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

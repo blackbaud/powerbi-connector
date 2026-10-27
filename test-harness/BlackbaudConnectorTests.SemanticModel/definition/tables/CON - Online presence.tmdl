@@ -1,0 +1,84 @@
+table 'CON - Online presence'
+	lineageTag: a92dab5b-6d9c-4f7f-a30b-22b84b55b314
+
+	column constituent_id
+		dataType: string
+		lineageTag: af77d611-6b16-44cd-9032-124c2c052b29
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column online_presence_id
+		dataType: string
+		lineageTag: 13617865-b5cc-492c-8b0a-57933b6ed54b
+		summarizeBy: none
+		sourceColumn: online_presence_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 48fadd62-d5ac-4c50-861d-a6c506c32304
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		lineageTag: 6acf155f-361b-4de3-938b-32bd7ff417ad
+		summarizeBy: none
+		sourceColumn: address
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f9ca408d-7621-4548-a483-0969f4ae7af4
+		summarizeBy: none
+		sourceColumn: primary
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0ca552b8-d005-46de-99ee-7a4f1e844472
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e58efaa5-f489-47ea-86ae-13848863849a
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f2a73e4c-d10b-446b-bb36-915cec24259b
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Online presence' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent online presence"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

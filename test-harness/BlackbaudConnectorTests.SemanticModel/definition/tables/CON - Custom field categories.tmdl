@@ -1,0 +1,32 @@
+table 'CON - Custom field categories'
+	lineageTag: f4a8e275-c17f-46f2-b9d0-81127080e470
+
+	column name
+		dataType: string
+		lineageTag: 8777e177-e7dc-4774-aa72-ec43f0cef00a
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 3cb9164a-2b48-43eb-a0fd-6efa6136b7c5
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Custom field categories' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent custom field categories"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

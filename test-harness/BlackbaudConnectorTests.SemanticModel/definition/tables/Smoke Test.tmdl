@@ -1,0 +1,97 @@
+table 'Smoke Test'
+	lineageTag: 24b8e71e-f3ff-4aec-b1ba-734e7e2df636
+
+	column Query
+		dataType: string
+		lineageTag: 83f143e3-1945-45e9-aa24-e819064e50e0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Query]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rows
+		dataType: int64
+		formatString: #,0
+		lineageTag: 2889afe1-d181-439f-9720-1ff028c6e329
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Rows]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: bb0073cd-c527-47b2-bcab-2babd0799097
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Smoke Test' = calculated
+		mode: import
+		source =
+				VAR t =
+				  UNION(
+				    ROW("Query", "CON - Constituent (all)", "Rows", COUNTROWS('CON - Constituent (all)')),
+				    ROW("Query", "CON - Constituent (all, no expansions)", "Rows", COUNTROWS('CON - Constituent (all, no expansions)')),
+				    ROW("Query", "CON - Filtered - Fundraiser Active", "Rows", COUNTROWS('CON - Filtered - Fundraiser Active')),
+				    ROW("Query", "CON - Filtered - Inactive and deceased", "Rows", COUNTROWS('CON - Filtered - Inactive and deceased')),
+				    ROW("Query", "CON - Filtered - Major Donor", "Rows", COUNTROWS('CON - Filtered - Major Donor')),
+				    ROW("Query", "CON - By list", "Rows", COUNTROWS('CON - By list')),
+				    ROW("Query", "CON - Actions", "Rows", COUNTROWS('CON - Actions')),
+				    ROW("Query", "CON - Action fundraisers", "Rows", COUNTROWS('CON - Action fundraisers')),
+				    ROW("Query", "CON - Addresses", "Rows", COUNTROWS('CON - Addresses')),
+				    ROW("Query", "CON - Codes", "Rows", COUNTROWS('CON - Codes')),
+				    ROW("Query", "CON - Custom fields", "Rows", COUNTROWS('CON - Custom fields')),
+				    ROW("Query", "CON - Emails", "Rows", COUNTROWS('CON - Emails')),
+				    ROW("Query", "CON - Phones", "Rows", COUNTROWS('CON - Phones')),
+				    ROW("Query", "CON - Notes", "Rows", COUNTROWS('CON - Notes')),
+				    ROW("Query", "CON - Relationships", "Rows", COUNTROWS('CON - Relationships')),
+				    ROW("Query", "CON - Consents", "Rows", COUNTROWS('CON - Consents')),
+				    ROW("Query", "CON - Education", "Rows", COUNTROWS('CON - Education')),
+				    ROW("Query", "CON - Membership", "Rows", COUNTROWS('CON - Membership')),
+				    ROW("Query", "CON - Online presence", "Rows", COUNTROWS('CON - Online presence')),
+				    ROW("Query", "CON - Code types", "Rows", COUNTROWS('CON - Code types')),
+				    ROW("Query", "CON - Custom field categories", "Rows", COUNTROWS('CON - Custom field categories')),
+				    ROW("Query", "CON - Public list (2 People)", "Rows", COUNTROWS('CON - Public list (2 People)')),
+				    ROW("Query", "CON - My Private Lists (folder)", "Rows", COUNTROWS('CON - My Private Lists (folder)')),
+				    ROW("Query", "GFT - Gift", "Rows", COUNTROWS('GFT - Gift')),
+				    ROW("Query", "GFT - Gift splits", "Rows", COUNTROWS('GFT - Gift splits')),
+				    ROW("Query", "GFT - Gift soft credits", "Rows", COUNTROWS('GFT - Gift soft credits')),
+				    ROW("Query", "GFT - Gift payments", "Rows", COUNTROWS('GFT - Gift payments')),
+				    ROW("Query", "GFT - Gift custom fields", "Rows", COUNTROWS('GFT - Gift custom fields')),
+				    ROW("Query", "GFT - Gift batch", "Rows", COUNTROWS('GFT - Gift batch')),
+				    ROW("Query", "GFT - Gift fundraisers", "Rows", COUNTROWS('GFT - Gift fundraisers')),
+				    ROW("Query", "GFT - Gift receipts", "Rows", COUNTROWS('GFT - Gift receipts')),
+				    ROW("Query", "GFT - Public list (Small Set of Gifts)", "Rows", COUNTROWS('GFT - Public list (Small Set of Gifts)')),
+				    ROW("Query", "GFT - My Private Lists (folder)", "Rows", COUNTROWS('GFT - My Private Lists (folder)')),
+				    ROW("Query", "FND - Appeal", "Rows", COUNTROWS('FND - Appeal')),
+				    ROW("Query", "FND - Campaign", "Rows", COUNTROWS('FND - Campaign')),
+				    ROW("Query", "FND - Fund", "Rows", COUNTROWS('FND - Fund')),
+				    ROW("Query", "FND - Appeal packages", "Rows", COUNTROWS('FND - Appeal packages')),
+				    ROW("Query", "OPP - Opportunity", "Rows", COUNTROWS('OPP - Opportunity')),
+				    ROW("Query", "OPP - Opportunity fundraisers", "Rows", COUNTROWS('OPP - Opportunity fundraisers')),
+				    ROW("Query", "OPP - Opportunity linked gifts", "Rows", COUNTROWS('OPP - Opportunity linked gifts')),
+				    ROW("Query", "EVT - Event", "Rows", COUNTROWS('EVT - Event')),
+				    ROW("Query", "EVT - Participants by event ID", "Rows", COUNTROWS('EVT - Participants by event ID')),
+				    ROW("Query", "LST - Constituent lists", "Rows", COUNTROWS('LST - Constituent lists')),
+				    ROW("Query", "QRY - By ID - defaults", "Rows", COUNTROWS('QRY - By ID - defaults')),
+				    ROW("Query", "QRY - By ID - en-GB", "Rows", COUNTROWS('QRY - By ID - en-GB')),
+				    ROW("Query", "QRY - By ID - en-CA None", "Rows", COUNTROWS('QRY - By ID - en-CA None')),
+				    ROW("Query", "QRY - By ID - SQL Export", "Rows", COUNTROWS('QRY - By ID - SQL Export')),
+				    ROW("Query", "QRY - Ad hoc - defaults", "Rows", COUNTROWS('QRY - Ad hoc - defaults')),
+				    ROW("Query", "QRY - Ad hoc - en-GB", "Rows", COUNTROWS('QRY - Ad hoc - en-GB')),
+				    ROW("Query", "QRY - Browse - All queries 202", "Rows", COUNTROWS('QRY - Browse - All queries 202')),
+				    ROW("Query", "GL - Account", "Rows", COUNTROWS('GL - Account')),
+				    ROW("Query", "GL - Project", "Rows", COUNTROWS('GL - Project')),
+				    ROW("Query", "GL - Transaction code list", "Rows", COUNTROWS('GL - Transaction code list')),
+				    ROW("Query", "GL - Budget scenario list", "Rows", COUNTROWS('GL - Budget scenario list')),
+				    ROW("Query", "FEQ - By ID - General Ledger", "Rows", COUNTROWS('FEQ - By ID - General Ledger'))
+				  )
+				RETURN
+				  ADDCOLUMNS(t, "Status", IF(ISBLANK([Rows]) || [Rows] = 0, "CHECK", "OK"))
+
+	annotation PBI_Id = a5ef772181f9404eb45be04ccba41b84
+

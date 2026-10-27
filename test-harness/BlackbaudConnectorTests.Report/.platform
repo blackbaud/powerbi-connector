@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "BlackbaudConnectorTests"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1e794b43-058a-41d0-8fd0-35e403ff6ee5"
+  }
+}

@@ -1,0 +1,121 @@
+table 'CON - Codes'
+	lineageTag: 5f98f362-c9d8-410b-9fe6-5a08cc490231
+
+	column constituent_id
+		dataType: string
+		lineageTag: 394648e5-a7a0-4efb-bc5d-3a03859c6eba
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column constituent_code_id
+		dataType: string
+		lineageTag: 2ceb55dd-ac01-4495-8243-313eab92381c
+		summarizeBy: none
+		sourceColumn: constituent_code_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: fcb8bea0-dabb-4c13-a299-0d9c0c262f78
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'start.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b08e3e1-bff8-4cf9-b0ae-b2b4411b28e0
+		summarizeBy: sum
+		sourceColumn: start.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'start.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 778b64bf-1df7-4443-8f46-0c5f6b0e83cf
+		summarizeBy: sum
+		sourceColumn: start.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'start.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: cd9b7ae3-346e-43ef-9fb3-c8b90dbafe53
+		summarizeBy: sum
+		sourceColumn: start.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'end.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: c92e28fa-ae70-437e-b268-2e493ea6c76c
+		summarizeBy: sum
+		sourceColumn: end.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'end.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d020d7b-7c22-433a-ac38-0e59e98ae3dc
+		summarizeBy: sum
+		sourceColumn: end.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'end.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: e6f7b450-ddff-47e1-b27b-3b92f43f7f43
+		summarizeBy: sum
+		sourceColumn: end.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bf32b5a2-aab1-458e-a957-b2af51e1ec60
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a1213d4d-e61e-430b-b20c-76b755c6881e
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b48c42f2-0fdd-4ee4-a265-88f5ea0b21f8
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Codes' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent codes"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

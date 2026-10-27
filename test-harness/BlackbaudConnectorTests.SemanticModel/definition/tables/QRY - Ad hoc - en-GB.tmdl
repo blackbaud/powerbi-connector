@@ -1,0 +1,48 @@
+table 'QRY - Ad hoc - en-GB'
+	lineageTag: 6dfc56ff-1c98-4631-8d61-dacd021a17b7
+
+	column Name
+		dataType: string
+		lineageTag: 72e78d01-cda8-42b8-a811-fef67f426f54
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Birth Date'
+		dataType: string
+		lineageTag: 5ec0f734-7c2b-4c6d-bd83-ebf88eabdb63
+		summarizeBy: none
+		sourceColumn: Birth Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gift Date'
+		dataType: string
+		lineageTag: c0c8f18e-58d1-4133-b595-373105d48ac2
+		summarizeBy: none
+		sourceColumn: Gift Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gift Amount'
+		dataType: string
+		lineageTag: 265cf21e-57ad-4fd3-87f8-7c2c7d19566d
+		summarizeBy: none
+		sourceColumn: Gift Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'QRY - Ad hoc - en-GB' = m
+		mode: import
+		queryGroup: 'RE Query'
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="RaisersEdgeNXTQuery"]}[Data],
+				    Data = Folder{[Key="adHocQuery"]}[Data]("{""select_fields"": [{""query_field_id"": 597}, {""query_field_id"": 752, ""user_alias"": ""Birth Date""}, {""query_field_id"": 8471}, {""query_field_id"": 8469}], ""filter_fields"": [{""query_field_id"": 8471, ""compare_type"": ""None"", ""filter_values"": [""01/01/2024"", ""31/01/2024""], ""operator"": ""Between"", ""left_parenthesis"": false, ""right_parenthesis"": false}], ""sort_fields"": [{""query_field_id"": 597, ""sort_order"": ""Ascending""}], ""type_id"": 18, ""sql_generation_mode"": ""Export"", ""gift_processing_options"": {""soft_credit_option"": ""Recipients"", ""soft_credit_sub_option"": ""SplitEvenly"", ""matching_gift_credit_option"": ""MatchingGiftCompany"", ""use_gross_amount_for_covenants"": false}, ""advanced_processing_options"": {""use_alternate_sql_code_table_fields"": false, ""use_alternate_sql_multiple_attributes"": false}, ""suppress_duplicates"": true, ""constituent_filters"": {""include_inactive"": true, ""include_deceased"": true, ""include_no_valid_addresses"": true}, ""result_layout"": ""MultiRow""}", null, null, null, null, "en-GB")
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,188 @@
+table 'EVT - Event'
+	lineageTag: e1acd023-e0f1-4ff2-964b-15da820e2a67
+
+	column id
+		dataType: string
+		lineageTag: 4a1c08de-6fa9-4f38-8331-72b6e29abf50
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column lookup_id
+		dataType: string
+		lineageTag: 1ea164c2-15d8-4a9c-95ff-ef4c45eb8f96
+		summarizeBy: none
+		sourceColumn: lookup_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: cda5ff83-c1ec-469b-b516-8414d4d71baa
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: string
+		lineageTag: 53172b1c-b3f3-4373-a9bb-5fa5f45951cb
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_time
+		dataType: string
+		lineageTag: e2431502-d5b1-411d-a8d6-435e2021241b
+		summarizeBy: none
+		sourceColumn: start_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column end_date
+		dataType: string
+		lineageTag: dc80b41d-9e55-421a-97eb-52bb186b9ac7
+		summarizeBy: none
+		sourceColumn: end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column end_time
+		dataType: string
+		lineageTag: ce7b6ca9-d7fe-4b42-bc69-82cc95854062
+		summarizeBy: none
+		sourceColumn: end_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column attending_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 94ed544f-0c54-438e-97b0-05aa1620f7b5
+		summarizeBy: sum
+		sourceColumn: attending_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column invited_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 09b0d725-3e65-4ba3-94c9-782f6e5483db
+		summarizeBy: sum
+		sourceColumn: invited_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue
+		dataType: double
+		lineageTag: b78fde4a-89c6-4a95-a20c-6ea8818f1d99
+		summarizeBy: sum
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column goal
+		dataType: double
+		lineageTag: 75bb2413-3950-4fd2-89ee-6308d0c76fdd
+		summarizeBy: sum
+		sourceColumn: goal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column percent_of_goal
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ba04676-b0ac-418d-a367-7d1699b9c920
+		summarizeBy: sum
+		sourceColumn: percent_of_goal
+
+		annotation SummarizationSetBy = Automatic
+
+	column capacity
+		dataType: int64
+		formatString: 0
+		lineageTag: 23dcb115-5cb6-42ea-849e-63e8ee991df6
+		summarizeBy: sum
+		sourceColumn: capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1239eecc-6061-460f-9246-654393ddbdb4
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column attended_count
+		dataType: int64
+		formatString: 0
+		lineageTag: b0a95148-e45a-46b8-a712-4f49f2be062f
+		summarizeBy: sum
+		sourceColumn: attended_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_id
+		dataType: string
+		lineageTag: 1b3ec0f0-b98c-42a3-87fb-d8c32f6fa0ff
+		summarizeBy: none
+		sourceColumn: category_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_name
+		dataType: string
+		lineageTag: 81efa15c-5212-4978-ba5d-352f9d2c9990
+		summarizeBy: none
+		sourceColumn: category_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_inactive
+		dataType: string
+		lineageTag: 19922483-75f4-44cb-babf-dd07d7f49cc3
+		summarizeBy: none
+		sourceColumn: category_inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 97d61ea9-790f-4cfb-89c8-2921cd64f69a
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e552f62e-60ad-4f2f-b113-9db5d827d1a1
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'EVT - Event' = m
+		mode: import
+		queryGroup: Events
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Events"]}[Data],
+				    Data = Folder{[Key="Event"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

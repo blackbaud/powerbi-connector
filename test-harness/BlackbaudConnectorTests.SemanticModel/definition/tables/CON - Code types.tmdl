@@ -1,0 +1,24 @@
+table 'CON - Code types'
+	lineageTag: d3947718-586e-4fd2-97da-44e19dafbee5
+
+	column value
+		dataType: string
+		lineageTag: 242a6d22-3cb4-4ecf-905a-de68a3cf5005
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Code types' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent code types"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,62 @@
+table 'GFT - Gift receipts'
+	lineageTag: fcf78ffa-2fd0-4fde-aecf-a71e851d6467
+
+	column gift_id
+		dataType: string
+		lineageTag: 8c0bc4fd-24ac-4e88-809f-55229ad5d72d
+		summarizeBy: none
+		sourceColumn: gift_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: c44d535b-13f5-4c5c-9a6b-cb25cee2a7f6
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e1420083-0b42-400f-85aa-f8b382471b96
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column amount
+		dataType: double
+		lineageTag: da3c989d-4c8d-4aff-937c-38ff7d0b1ddd
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column number
+		dataType: int64
+		formatString: 0
+		lineageTag: 013ba8d4-f440-43a8-826c-b614eba3d82b
+		summarizeBy: sum
+		sourceColumn: number
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GFT - Gift receipts' = m
+		mode: import
+		queryGroup: Gifts
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Gifts"]}[Data],
+				    Data = Folder{[Key="Gift receipts"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

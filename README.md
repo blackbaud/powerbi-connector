@@ -171,6 +171,16 @@ Configure a scheduled refresh using the gateway. To learn how. see the [Configur
 
 **Note:** You only see a gateway available if your account has been added as a user of the gateway. Your administrator may need to add you.
 
+### Updating the connector on the gateway
+
+The gateway only loads custom connectors when its service starts. Whenever you replace the `.mez` file in the gateway's Custom Connectors folder, restart the gateway: in the On-premises data gateway app, go to **Service Settings** and select **Restart now**.
+
+Until the gateway has been restarted, scheduled refresh can fail in a way that doesn't point to the gateway at all. The Semantic model Settings show:
+
+> You can't schedule refresh for this semantic model because the following data sources currently don't support refresh: Data source for Query1
+
+— naming a query that isn't in your report — and the **Gateway and cloud connections** section is missing, so there's nothing to map. Once the gateway is back online, select **Discover Data Sources** on that message (or republish the report); the section reappears and you can map the connection as in Step 5.
+
 ## Help / More information
 
 For any questions and feedback related to this custom connector, check out the [Blackbaud Community - SKY Developer category](https://community.blackbaud.com/categories/sky-developer-425).

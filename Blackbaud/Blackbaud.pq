@@ -4277,20 +4277,31 @@ GetQueryResultsTable = (
 
         // An ad hoc definition is raw JSON text supplied by the user, so parse-check it here -
         // before the try below, which would otherwise rewrite a malformed payload as a generic
-        // job-start failure. The usual cause is JSON copied out of Power Query M code, where a
-        // literal " is escaped as "": valid in M source, but not valid JSON once it reaches here.
+        // job-start failure. Two common causes, reported separately:
+        // - Truncation: the Navigator's parameter box is single-line whatever Formatting.IsMultiLine
+        //   says, so pasting formatted JSON keeps only its first line - typically just "{".
+        // - JSON copied out of Power Query M code, where a literal " is escaped as "": valid in M
+        //   source, but not valid JSON once it reaches here.
         _queryIdOrDefinition =
             if Type.Is(Value.Type(queryIdOrDefinition), Number.Type) then
                 queryIdOrDefinition
             else
                 let
-                    parseAttempt = try Json.Document(queryIdOrDefinition)
+                    parseAttempt = try Json.Document(queryIdOrDefinition),
+                    trimmed = Text.Trim(queryIdOrDefinition),
+                    // a definition is a JSON object, so anything not ending in "}" was cut short.
+                    // Only evaluated when the parse failed, so parseAttempt[Error] is present.
+                    looksTruncated = not Text.EndsWith(trimmed, "}")
+                        or Text.Contains(Record.FieldOrDefault(parseAttempt[Error], "Message", "") ?? "", "end of the buffer")
                 in
                     if parseAttempt[HasError] then
                         error Error.Record(
                             "QueryDefinitionError",
-                            Extension.LoadString("adHocQueryJsonInvalid"),
-                            [OriginalError = parseAttempt[Error]]
+                            if looksTruncated then
+                                Text.Format(Extension.LoadString("adHocQueryJsonTruncated"), {Text.Length(trimmed)})
+                            else
+                                Extension.LoadString("adHocQueryJsonInvalid"),
+                            [ReceivedLength = Text.Length(trimmed), OriginalError = parseAttempt[Error]]
                         )
                     else
                         queryIdOrDefinition,
@@ -4299,7 +4310,7 @@ GetQueryResultsTable = (
         startAttempt =
             Diagnostics.Trace(
                 TraceLevel.Information,
-                "Starting RENXT query request. Mode = " & Text.From(_queryIdOrDefinition is number),
+                "Starting " & product & " query request. Mode = " & Text.From(_queryIdOrDefinition is number),
                 try
                     if Type.Is(Value.Type(_queryIdOrDefinition), Number.Type) then
                         StartQueryJob(product, module, _queryIdOrDefinition, _language, _formattingMode, _sqlGenerationMode, _outputFormat, _timeZoneOffsetInMinutes, _useStaticQuery, _displayCodeTableLongDescription, _askFields)
@@ -4329,7 +4340,18 @@ GetQueryResultsTable = (
             else
                 startAttempt[Value],
 
-        jobId = Diagnostics.Trace(TraceLevel.Information, "Started query execution job. Job ID = " & Text.From(startJson[id]), startJson[id]),
+        // A successful start response without an id would otherwise surface as a bare
+        // "field 'id' not found" error.
+        startedJobId = Record.FieldOrDefault(startJson, "id", null),
+        jobId =
+            if startedJobId = null then
+                error Error.Record(
+                    "QueryStartError",
+                    Extension.LoadString("queryStartFailedNoJobId"),
+                    [JobId = null, Response = startJson]
+                )
+            else
+                Diagnostics.Trace(TraceLevel.Information, "Started query execution job. Job ID = " & Text.From(startedJobId), startedJobId),
 
         // define a recursive function to poll for the job status
         pollJob = (retry as number, maxRetries as number, pollSeconds as number) =>

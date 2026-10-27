@@ -129,7 +129,7 @@
   <data name="DataSourceLabel" xml:space="preserve">
     <value>Connect to your Blackbaud environment</value>
   </data>
-  <!-- RENXT Query feature -->
+  <!-- Query feature -->
   <data name="raisersEdgeNXTQueryFolder" xml:space="preserve">
     <value>Query - Raiser's Edge NXT</value>
   </data>
@@ -194,16 +194,16 @@
     <value>Ad hoc query</value>
   </data>
   <data name="QueryByIdFunction.Documentation.LongDescription" xml:space="preserve">
-    <value>Returns the results of a saved Raiser's Edge NXT query identified by its system record ID.</value>
+    <value>Returns the results of a saved query identified by its system record ID.</value>
   </data>
   <data name="QueryByIdFunction.Example.Description" xml:space="preserve">
     <value>Provide the system record identifier of the desired query.</value>
   </data>
   <data name="QueryByIdFunction.Example.Result" xml:space="preserve">
-    <value>Returns the results of the Raiser's Edge NXT query with ID = 918.</value>
+    <value>Returns the results of the query with ID = 918.</value>
   </data>
   <data name="AdHocQueryFunction.Documentation.LongDescription" xml:space="preserve">
-    <value>Returns the results of an ad hoc Raiser's Edge NXT query supplied as a JSON definition.</value>
+    <value>Returns the results of an ad hoc query supplied as a JSON definition.</value>
   </data>
   <data name="AdHocQueryFunction.Example.Description" xml:space="preserve">
     <value>Provide the JSON representation of the ad hoc query definition.</value>
@@ -212,7 +212,7 @@
     <value>Returns the results of the supplied ad hoc query.</value>
   </data>
   <data name="GetQueryResults.Documentation.LongDescriptionName" xml:space="preserve">
-    <value>Returns the results of the "#{0}" Raiser's Edge NXT query.</value>
+    <value>Returns the results of the "#{0}" query.</value>
   </data>
   <data name="GetQueryListNavTable.Documentation.Description" xml:space="preserve">
     <value>Runs the "#{0}" query.</value>
@@ -309,16 +309,19 @@
   <data name="queryStartFailedWithReason" xml:space="preserve">
     <value>Failed to submit query job: #{0}</value>
   </data>
+  <data name="adHocQueryJsonTruncated" xml:space="preserve">
+    <value>The Adhoc Query JSON looks incomplete (#{0} characters received). The input box keeps only the first line of what you paste, so formatted JSON copied from Query is cut off after its opening "{". Paste the definition as a single line: minify the JSON first.</value>
+  </data>
   <data name="adHocQueryJsonInvalid" xml:space="preserve">
     <value>The Adhoc Query JSON could not be parsed as JSON. If you copied it from Power Query M code, note that a doubled quote ("") is M escaping - it needs to be a single quote (") here.</value>
   </data>
   <data name="queryJobCanceledWithJobId" xml:space="preserve">
-    <value>The RENXT query job was cancelled. Job ID: #{0}</value>
+    <value>The query job was cancelled. Job ID: #{0}</value>
   </data>
   <data name="queryJobFailedWithJobId" xml:space="preserve">
-    <value>The RENXT query job failed. Job ID: #{0}. Please check the query definition and try again.</value>
+    <value>The query job failed. Job ID: #{0}. Please check the query definition and try again.</value>
   </data>
   <data name="maxRetriesExceededWithJobId" xml:space="preserve">
-    <value>Exceeded maximum retries waiting for RENXT query job to complete. Job ID: #{0}</value>
+    <value>Exceeded maximum retries waiting for the query job to complete. Job ID: #{0}</value>
   </data>
 </root>

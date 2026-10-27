@@ -66,7 +66,7 @@ The first time you use the connector, you need to authorize the app to work with
 Broadly, the connector's Navigator entries fall into two categories:
 
 - **Fixed tables** — entries like **Constituent (all)**, **Gift**, and **Event** that load directly with no extra input required. These also preview quickly in Power Query's Navigator and query editor, so they're generally the most performant option whenever the data you need is already covered by one.
-- **Function-based entries** — entries like **Constituent (filtered)** and **Event participants (by event ID)** that require you to supply one or more parameters (for example, a constituent code, or an event ID) before they'll return data. The Query folders described below are also function-based: **Query ID** and **Adhoc Query JSON** each need at least a query ID or query definition to run.
+- **Function-based entries** — entries like **Constituent (filtered)** and **Event participants (by event ID)** that require you to supply one or more parameters (for example, a constituent code, or an event ID) before they'll return data. The Query folders described below are also function-based: **Query by ID** and **Ad hoc query** each need at least a query ID or query definition to run.
 
 ### A note on working with function-based entries
 
@@ -74,7 +74,7 @@ Power Query re-evaluates every step of a query from scratch whenever you add or 
 
 ### Using the Query feature
 
-In addition to the object-based tables under Constituents, Gifts, etc., the Navigator includes two Query folders — **Query - Raiser's Edge NXT** and **Query - Financial Edge NXT** — which run queries defined in the RENXT Query feature (Web View) directly from Power BI.
+In addition to the object-based tables under Constituents, Gifts, etc., the Navigator includes two Query folders — **Query - Raiser's Edge NXT** and **Query - Financial Edge NXT** — which run queries from Query in Raiser's Edge NXT and Financial Edge NXT (web view) respectively, directly from Power BI.
 
 #### Browsing saved queries
 
@@ -86,8 +86,12 @@ For Financial Edge NXT, queries are also organized by **Module** (General Ledger
 
 Each Query folder also has two functions for running a query without browsing to it first:
 
-- **Query ID** — runs a saved query by its numeric ID.
-- **Adhoc Query JSON** — runs a query definition you supply as JSON yourself, without it needing to be saved first.
+- **Query by ID** — runs a saved query by its numeric ID (entered in the **Query ID** box).
+- **Ad hoc query** — runs a query definition you supply as JSON yourself (in the **Adhoc Query JSON** box), without it needing to be saved first.
+
+**Paste the definition as a single line.** The **Adhoc Query JSON** box keeps only the first line of whatever you paste, so formatted JSON — such as the JSON you can copy from a query in the web view — gets cut off after its opening `{`, and the connector reports that the JSON looks incomplete. Minify the JSON first (any "JSON minify" tool will do) so the whole definition is on one line.
+
+**Set Locale to match where the JSON came from.** JSON copied from Query in the web view writes filter dates in your browser's date format — a UK browser gives `01/07/2017` for 1 July 2017. Ad hoc query reads those dates using its **Locale** parameter, which defaults to `en-US`, so a UK definition run with the default would treat that date as 7 January. Set **Locale** to match your browser language (for example `en-GB`) when running JSON copied from the web view.
 
 **A note on quoting:** if you copy an ad hoc definition out of Power Query M code, it will have doubled quotes (`""name""`) — that's M's own string escaping, not part of the JSON. When pasting into the parameter box, those need to be single quotes (`"name"`). The connector will tell you if the JSON can't be parsed.
 

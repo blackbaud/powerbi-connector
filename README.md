@@ -6,7 +6,7 @@ This repo contains the code needed to create a Power Query and Power BI custom c
 
 Learn how to create your own custom Power BI Connector for your Blackbaud data.
 
-**Demo**: [Implementing the Blackbaud Custom Connector in Power BI](https://www.youtube.com/watch?v=BUaP0mlDy9s) by Sentinel Consulting
+**Demo**: [Connect Power BI to Raiser's Edge NXT and Financial Edge NXT](https://youtu.be/w2THeye2N5E) by Blackbaud SKY Developer
 
 ## Getting started
 

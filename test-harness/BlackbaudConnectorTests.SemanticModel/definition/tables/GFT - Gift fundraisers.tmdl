@@ -1,0 +1,42 @@
+table 'GFT - Gift fundraisers'
+	lineageTag: cac90016-6287-497f-a043-4efcd0d3878b
+
+	column gift_id
+		dataType: string
+		lineageTag: aeb4fd59-ac4c-4d83-bc87-76a146a24d09
+		summarizeBy: none
+		sourceColumn: gift_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column fundraiser_constituent_id
+		dataType: string
+		lineageTag: dff8fc0e-0f53-4408-bb86-a78b0c7301e4
+		summarizeBy: none
+		sourceColumn: fundraiser_constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: double
+		lineageTag: a79c065b-77a9-4529-a1cc-0d32efbc1524
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'GFT - Gift fundraisers' = m
+		mode: import
+		queryGroup: Gifts
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Gifts"]}[Data],
+				    Data = Folder{[Key="Gift fundraisers"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

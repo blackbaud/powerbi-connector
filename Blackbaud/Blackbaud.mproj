@@ -84,6 +84,9 @@
     <Compile Include="Table.GenerateByPage.pqm">
       <SubType>Content</SubType>
     </Compile>
+    <Compile Include="Record.RemoveNullFields.pqm">
+      <SubType>Content</SubType>
+    </Compile>
     <Compile Include="Table.ToNavigationTable.pqm">
       <SubType>Content</SubType>
     </Compile>

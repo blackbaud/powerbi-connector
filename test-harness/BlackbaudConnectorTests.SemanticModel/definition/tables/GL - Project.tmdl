@@ -1,0 +1,157 @@
+table 'GL - Project'
+	lineageTag: 6802d7b2-be2b-486f-b0e4-43294d966f11
+
+	column description
+		dataType: string
+		lineageTag: 94aedfbe-ef22-4a0e-9551-6fa6a96b8a97
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column ui_project_id
+		dataType: string
+		lineageTag: eb882935-c873-4d2c-80e7-94655610baa3
+		summarizeBy: none
+		sourceColumn: ui_project_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5962f009-3b94-4d35-a21a-c55659f042ca
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column end_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5e110d40-abf2-4eba-8592-4260520c9f0a
+		summarizeBy: none
+		sourceColumn: end_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column location
+		dataType: string
+		lineageTag: 67c9476e-38c0-434a-bc84-75d8a8b44ef2
+		summarizeBy: none
+		sourceColumn: location
+
+		annotation SummarizationSetBy = Automatic
+
+	column division
+		dataType: string
+		lineageTag: 38c98230-f710-4803-8044-b3d58c51aa2d
+		summarizeBy: none
+		sourceColumn: division
+
+		annotation SummarizationSetBy = Automatic
+
+	column department
+		dataType: string
+		lineageTag: 51c67f66-bf17-4fd9-b465-79b424c95ee5
+		summarizeBy: none
+		sourceColumn: department
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: de3082ea-bd96-41ba-af05-c7d084d57cde
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 204800f4-a287-4a6f-9596-ce1592d7fc55
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column prevent_data_entry
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 98e02e8b-ca17-4e14-81ed-7ef4bf77364f
+		summarizeBy: none
+		sourceColumn: prevent_data_entry
+
+		annotation SummarizationSetBy = Automatic
+
+	column prevent_posting_after
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ac789adb-2cb3-48c3-8c43-ae69f53ec074
+		summarizeBy: none
+		sourceColumn: prevent_posting_after
+
+		annotation SummarizationSetBy = Automatic
+
+	column posting_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 88531115-b392-4a65-a36c-f1f50fb36be7
+		summarizeBy: none
+		sourceColumn: posting_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'account_restrictions.allow_or_restrict'
+		dataType: string
+		lineageTag: 801db2c6-fae3-4d65-b041-1cf1f42eb7c7
+		summarizeBy: none
+		sourceColumn: account_restrictions.allow_or_restrict
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'account_restrictions.criteria'
+		dataType: string
+		lineageTag: edfe2447-0745-4dcc-b0b5-d0b5e5bf3ef3
+		summarizeBy: none
+		sourceColumn: account_restrictions.criteria
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 86076aed-823d-4524-a456-016eaf9b8577
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 476c1f09-824a-460d-9e59-a288ee97e1c0
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GL - Project' = m
+		mode: import
+		queryGroup: 'General Ledger'
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="General Ledger"]}[Data],
+				    Data = Folder{[Key="Project"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

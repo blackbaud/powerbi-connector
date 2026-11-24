@@ -1,0 +1,199 @@
+table 'CON - Actions'
+	lineageTag: 1e1ed734-7118-452d-ad2a-9cf77be6ff6c
+
+	column constituent_id
+		dataType: string
+		lineageTag: f51d3763-04b1-460d-88cc-95d34346fb6c
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column action_id
+		dataType: string
+		lineageTag: 91f94a42-d7ee-4a6a-8825-835998d5d69a
+		summarizeBy: none
+		sourceColumn: action_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_id
+		dataType: string
+		lineageTag: 443bdffe-fea4-4f0c-b938-0b75f7500c58
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: dfc19f78-0cf7-4975-ae9e-ed371a6efc5a
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 088e694b-5f97-4398-83ef-2e5abbb58277
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		dataType: string
+		lineageTag: e777c298-ab68-42f3-b8bf-815db0af7617
+		summarizeBy: none
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f0528329-a1c0-4628-a9c8-064dbeb410a2
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column start_time
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 0411f84b-2785-4008-a9c5-b2f68ac42382
+		summarizeBy: none
+		sourceColumn: start_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column end_time
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: dac520f0-20e2-49a3-9145-6aa3bf5d9c46
+		summarizeBy: none
+		sourceColumn: end_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column summary
+		dataType: string
+		lineageTag: f0c54d77-aacd-49f9-92a5-fc5db88882f4
+		summarizeBy: none
+		sourceColumn: summary
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 53517f77-72be-4b61-a088-37a5f5e01113
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column direction
+		dataType: string
+		lineageTag: cd1930db-906e-44d1-b1cd-3c5d4029d6f8
+		summarizeBy: none
+		sourceColumn: direction
+
+		annotation SummarizationSetBy = Automatic
+
+	column location
+		dataType: string
+		lineageTag: 92ae886b-77c6-4e16-bb42-9b25ff4130bd
+		summarizeBy: none
+		sourceColumn: location
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: e9c7a01c-413b-4025-a97b-45755730a1b4
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_code
+		dataType: string
+		lineageTag: 7b30433f-cbb3-4269-982b-f320b7c0d328
+		summarizeBy: none
+		sourceColumn: status_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column computed_status
+		dataType: string
+		lineageTag: 4872b220-e143-480f-8597-0d285ad114db
+		summarizeBy: none
+		sourceColumn: computed_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column completed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8fcc7990-9833-43c9-ae77-af65505cde93
+		summarizeBy: none
+		sourceColumn: completed
+
+		annotation SummarizationSetBy = Automatic
+
+	column completed_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0cf30131-19e4-4d3a-a9c4-5102d714e27d
+		summarizeBy: none
+		sourceColumn: completed_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column outcome
+		dataType: string
+		lineageTag: a2666365-651a-4da1-8198-80df08ced553
+		summarizeBy: none
+		sourceColumn: outcome
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 06345f74-cac6-41bd-a36f-f8acd377400a
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b2ddd9b4-7a4e-480d-b15a-39b0265330c6
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Actions' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent action"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

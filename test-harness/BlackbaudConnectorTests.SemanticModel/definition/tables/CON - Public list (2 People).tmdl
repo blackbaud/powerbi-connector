@@ -1,0 +1,586 @@
+table 'CON - Public list (2 People)'
+	lineageTag: 3938043f-916a-44bd-ab06-da53b8fcc7e1
+
+	column constituent_id
+		dataType: string
+		lineageTag: 8b6f8c37-5508-4ba6-8673-083846d18cca
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column constituent_lookup_id
+		dataType: string
+		lineageTag: 63803924-ff22-4bab-8c7c-13a1469630a8
+		summarizeBy: none
+		sourceColumn: constituent_lookup_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 90cd3ef9-6293-43e8-b83e-b26cd30998aa
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 23573b85-bf97-44ca-9295-495af309cce0
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column first
+		dataType: string
+		lineageTag: 60bf0132-fdba-4df9-b946-897b353516ad
+		summarizeBy: none
+		sourceColumn: first
+
+		annotation SummarizationSetBy = Automatic
+
+	column middle
+		dataType: string
+		lineageTag: 79a48b12-6ad1-4ebb-be46-f40dc199f4bc
+		summarizeBy: none
+		sourceColumn: middle
+
+		annotation SummarizationSetBy = Automatic
+
+	column last
+		dataType: string
+		lineageTag: 8a2fb9e7-ec71-4947-8bbc-7e51ddfffb0e
+		summarizeBy: none
+		sourceColumn: last
+
+		annotation SummarizationSetBy = Automatic
+
+	column preferred_name
+		dataType: string
+		lineageTag: 4aadde6c-97dc-4a29-b33e-d1830fb650c8
+		summarizeBy: none
+		sourceColumn: preferred_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: 04f1bceb-170d-4b94-ae4a-6f6f2de270af
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column title_2
+		dataType: string
+		lineageTag: 2847b4b9-5c3c-466a-8b08-a1485ca8c9a9
+		summarizeBy: none
+		sourceColumn: title_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column suffix
+		dataType: string
+		lineageTag: 4c5d3373-45ca-461f-9fbf-db9959955410
+		summarizeBy: none
+		sourceColumn: suffix
+
+		annotation SummarizationSetBy = Automatic
+
+	column suffix_2
+		dataType: string
+		lineageTag: 751ca814-e3bd-46f9-b13f-708b0a1cf6a8
+		summarizeBy: none
+		sourceColumn: suffix_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column former_name
+		dataType: string
+		lineageTag: 5729d1c5-e7aa-4329-81a1-eb526a29cf21
+		summarizeBy: none
+		sourceColumn: former_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: ecdb1e58-58e6-414e-bf7d-f5c8c98ffd9d
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column marital_status
+		dataType: string
+		lineageTag: 5094fbf0-a50d-45be-8708-f17321c24dc8
+		summarizeBy: none
+		sourceColumn: marital_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column fundraiser_status
+		dataType: string
+		lineageTag: bde25516-e840-43c6-bf03-d38312928491
+		summarizeBy: none
+		sourceColumn: fundraiser_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column age
+		dataType: double
+		lineageTag: 07792cfb-4fab-4ce0-b911-ea4f2b062d59
+		summarizeBy: sum
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'birthdate.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 03dd661b-36f2-47c6-a743-081d03a4dffa
+		summarizeBy: sum
+		sourceColumn: birthdate.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'birthdate.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: ea27e546-fc4d-4945-ae57-4f5325e72cc1
+		summarizeBy: sum
+		sourceColumn: birthdate.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'birthdate.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a430c5d-33d6-4796-928c-563d09bbfe10
+		summarizeBy: sum
+		sourceColumn: birthdate.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column deceased
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 882f72bd-02b1-4a5a-86dd-9415ce9f2c39
+		summarizeBy: none
+		sourceColumn: deceased
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'deceased_date.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5785ea72-c7b6-4760-92e0-48f3869f285f
+		summarizeBy: sum
+		sourceColumn: deceased_date.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'deceased_date.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 954419ec-f379-4ac9-b1ec-1e87736684c6
+		summarizeBy: sum
+		sourceColumn: deceased_date.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'deceased_date.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d42dfb8-77aa-4342-9faa-eaf962e607ee
+		summarizeBy: sum
+		sourceColumn: deceased_date.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'spouse.constituent_id'
+		dataType: string
+		lineageTag: 688415a0-cddf-4412-b68e-67922cea8ffd
+		summarizeBy: none
+		sourceColumn: spouse.constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'spouse.first'
+		dataType: string
+		lineageTag: d89c4ad6-bbe2-4d1d-b3d5-d7b5a893040b
+		summarizeBy: none
+		sourceColumn: spouse.first
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'spouse.last'
+		dataType: string
+		lineageTag: 228763ea-ef15-43c1-b6ef-a9fa86f21d6f
+		summarizeBy: none
+		sourceColumn: spouse.last
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.address_id'
+		dataType: string
+		lineageTag: 2ff5c84f-13bc-4311-a05a-db8cd3e03df9
+		summarizeBy: none
+		sourceColumn: address.address_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.type'
+		dataType: string
+		lineageTag: dbc6c910-4889-453f-b3d9-4d1d67c7e68a
+		summarizeBy: none
+		sourceColumn: address.type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.formatted_address'
+		dataType: string
+		lineageTag: 573a1e28-d7f6-40ff-ad13-d00258c48ed0
+		summarizeBy: none
+		sourceColumn: address.formatted_address
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.preferred'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d13f3c3a-0d36-42f2-a698-8e53b1f37b2b
+		summarizeBy: none
+		sourceColumn: address.preferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.do_not_mail'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e7027323-6ce1-4b2f-a908-58a0387da7b6
+		summarizeBy: none
+		sourceColumn: address.do_not_mail
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.inactive'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f88c4a46-9f58-45b5-8094-689644d11384
+		summarizeBy: none
+		sourceColumn: address.inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.start'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 91981804-5a7f-4aa4-8e9b-1c4da1c00e82
+		summarizeBy: none
+		sourceColumn: address.start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'address.end'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d7795117-98b4-4c9b-b59c-962ae5921579
+		summarizeBy: none
+		sourceColumn: address.end
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'address.seasonal_start.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 04817b92-7bf4-47df-9f5b-60b23e945fce
+		summarizeBy: sum
+		sourceColumn: address.seasonal_start.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.seasonal_start.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 10d92126-12ff-45dd-b378-413c685a9dbe
+		summarizeBy: sum
+		sourceColumn: address.seasonal_start.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.seasonal_end.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 26a5dd53-687e-4cc3-af5c-8870209374d2
+		summarizeBy: sum
+		sourceColumn: address.seasonal_end.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.seasonal_end.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 349ae014-1ab9-4a71-b2ba-7914b3acffb2
+		summarizeBy: sum
+		sourceColumn: address.seasonal_end.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.country'
+		dataType: string
+		lineageTag: ca275413-34f9-4dcb-bb15-26f519d81e21
+		summarizeBy: none
+		sourceColumn: address.country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.address_lines'
+		dataType: string
+		lineageTag: 91318247-8935-4be3-9ccc-3496e36d8703
+		summarizeBy: none
+		sourceColumn: address.address_lines
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.city'
+		dataType: string
+		lineageTag: b361a04e-a5df-4e14-9a5d-fe2f55532770
+		summarizeBy: none
+		sourceColumn: address.city
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.state'
+		dataType: string
+		lineageTag: 5f7dde3a-95d0-4bbe-a6f2-0ae420a46b78
+		summarizeBy: none
+		sourceColumn: address.state
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.suburb'
+		dataType: string
+		lineageTag: f2c02639-55fb-471c-a9c8-73e763c0f053
+		summarizeBy: none
+		sourceColumn: address.suburb
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.county'
+		dataType: string
+		lineageTag: 8339eb5d-4818-419c-ac55-de1c92904016
+		summarizeBy: none
+		sourceColumn: address.county
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'address.postal_code'
+		dataType: string
+		lineageTag: f521272e-05d5-4097-9aa1-ed5f9d2a3c22
+		summarizeBy: none
+		sourceColumn: address.postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'email.email_id'
+		dataType: string
+		lineageTag: 35a2a298-705b-48f8-9d67-78292ae5d7c7
+		summarizeBy: none
+		sourceColumn: email.email_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'email.type'
+		dataType: string
+		lineageTag: 36189837-ab39-4970-9e73-1ed2109bdf87
+		summarizeBy: none
+		sourceColumn: email.type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'email.address'
+		dataType: string
+		lineageTag: e54b5e3c-b2d0-4c7d-b078-720c7fe10d66
+		summarizeBy: none
+		sourceColumn: email.address
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'email.primary'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f26fbb7b-9330-4ad4-bd3d-ae6e16f076a4
+		summarizeBy: none
+		sourceColumn: email.primary
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'email.do_not_email'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fa0e4c79-ef6a-4b1d-abad-9102dc4090b8
+		summarizeBy: none
+		sourceColumn: email.do_not_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'email.inactive'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4b133d05-fdf8-405b-85d4-58d5b84fa514
+		summarizeBy: none
+		sourceColumn: email.inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'phone.phone_id'
+		dataType: string
+		lineageTag: 26ccd379-8bb2-496d-8cf9-2124caa6d3ed
+		summarizeBy: none
+		sourceColumn: phone.phone_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'phone.type'
+		dataType: string
+		lineageTag: b2a7e96b-c0dd-442d-b634-eb0ecde33c39
+		summarizeBy: none
+		sourceColumn: phone.type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'phone.number'
+		dataType: string
+		lineageTag: 629142d1-c981-4176-95d1-b95667182eeb
+		summarizeBy: none
+		sourceColumn: phone.number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'phone.primary'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2dfeabf2-9ece-4bd8-9273-1105ac08a7ce
+		summarizeBy: none
+		sourceColumn: phone.primary
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'phone.do_not_call'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7b3df144-f73c-4f92-bfa3-b692a69db66c
+		summarizeBy: none
+		sourceColumn: phone.do_not_call
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'phone.inactive'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3116d1ac-a2fa-4c05-a143-f78abb3d8347
+		summarizeBy: none
+		sourceColumn: phone.inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'online_presence.online_presence_id'
+		dataType: string
+		lineageTag: b088a5d4-5ca7-4b67-b92b-50659391c498
+		summarizeBy: none
+		sourceColumn: online_presence.online_presence_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'online_presence.type'
+		dataType: string
+		lineageTag: 68f7815f-9638-4802-85c3-843818a0dcbc
+		summarizeBy: none
+		sourceColumn: online_presence.type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'online_presence.address'
+		dataType: string
+		lineageTag: 6785f557-08a6-453e-8af7-2042917d9b25
+		summarizeBy: none
+		sourceColumn: online_presence.address
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'online_presence.primary'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 648c5c42-a945-4c1f-b920-4b975b0ceb18
+		summarizeBy: none
+		sourceColumn: online_presence.primary
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'online_presence.inactive'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7d0c2451-b92a-4ad3-b1c3-cc3599db0b39
+		summarizeBy: none
+		sourceColumn: online_presence.inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column gives_anonymously
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 63d14641-06ca-41e2-a504-80d90ff5fa48
+		summarizeBy: none
+		sourceColumn: gives_anonymously
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 48da1e1c-1caf-451b-a8c0-e2d48c1b9296
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 62d95e13-1817-4efe-afae-3f4a46a58944
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7b7aafc7-dc3f-44cf-bade-c294790d596d
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Public list (2 People)' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituents_PublicLists"]}[Data]{[Key="78850ad4-5a0c-4000-8eb7-a3994c6a07b4"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

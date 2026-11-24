@@ -1,0 +1,107 @@
+table 'FND - Appeal'
+	lineageTag: 185a3458-9f29-4060-9d23-c01cc0599ce5
+
+	column appeal_id
+		dataType: string
+		lineageTag: af157b27-97f4-4cd9-b2c9-34dd3d32aae9
+		summarizeBy: none
+		sourceColumn: appeal_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column appeal_lookup_id
+		dataType: string
+		lineageTag: aeefd937-1b5e-4c30-9f79-834d730b10eb
+		summarizeBy: none
+		sourceColumn: appeal_lookup_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 300d92f9-0b8f-4f15-adbd-414c89f06c4b
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0ac4a1a1-c6cc-41a1-972e-48ead3b3b7ff
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column end_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e742adc4-cb93-40d5-a1fd-33d0f46f97c8
+		summarizeBy: none
+		sourceColumn: end_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column category
+		dataType: string
+		lineageTag: 4559af21-7e57-402a-91b5-04e49dff7f81
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column goal
+		dataType: double
+		lineageTag: 7e06feef-f131-4e68-8c27-ae31d0fc2aec
+		summarizeBy: sum
+		sourceColumn: goal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7569eaa7-e525-4c62-a5db-b34b578298bc
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f6e5d4ba-47ef-41f9-b5ce-eaf2c902bc56
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b6ffa35e-945d-473d-8004-97e7ebcc4a95
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FND - Appeal' = m
+		mode: import
+		queryGroup: Fundraising
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Fundraising"]}[Data],
+				    Data = Folder{[Key="Appeal"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,248 @@
+table 'GFT - Public list (Small Set of Gifts)'
+	lineageTag: a351850b-51cf-4708-8f97-2e58d057a825
+
+	column gift_id
+		dataType: string
+		lineageTag: 9f604956-9a0e-43ae-a309-7a4a839cc407
+		summarizeBy: none
+		sourceColumn: gift_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column constituent_id
+		dataType: string
+		lineageTag: 49e1a707-489a-44e7-8985-882d0098e11f
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 74622d09-4b8d-4f1b-b265-175f182d0cc8
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column subtype
+		dataType: string
+		lineageTag: 1c0dbcc9-eb68-478a-ac30-c4490649828e
+		summarizeBy: none
+		sourceColumn: subtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e39b31d4-a18c-4b02-a8f2-0682540e629a
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column amount
+		dataType: double
+		lineageTag: 173b46f7-53ce-40f3-b53f-940149b6acc6
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column reference
+		dataType: string
+		lineageTag: 4c75e10b-175d-4877-ba58-f3a82f48e985
+		summarizeBy: none
+		sourceColumn: reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column gift_lookup_id
+		dataType: string
+		lineageTag: db75bcc4-2c5a-4770-9250-75afb76c528f
+		summarizeBy: none
+		sourceColumn: gift_lookup_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column constituency
+		dataType: string
+		lineageTag: 7695063c-33db-4779-970f-3027dd3bdca6
+		summarizeBy: none
+		sourceColumn: constituency
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_anonymous
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1a0dc6a4-4163-4474-b58c-d4452c84aec5
+		summarizeBy: none
+		sourceColumn: is_anonymous
+
+		annotation SummarizationSetBy = Automatic
+
+	column post_status
+		dataType: string
+		lineageTag: 7d8196c6-d7d2-4998-a611-21fda330cb23
+		summarizeBy: none
+		sourceColumn: post_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column post_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 76644c88-d1d8-4984-b23d-15fce6fa4869
+		summarizeBy: none
+		sourceColumn: post_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column gift_status
+		dataType: string
+		lineageTag: a7d6d5fb-f6c0-46bc-8d08-109056763a75
+		summarizeBy: none
+		sourceColumn: gift_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin
+		dataType: string
+		lineageTag: f806038c-268e-4a94-af39-716ed8492c10
+		summarizeBy: none
+		sourceColumn: origin
+
+		annotation SummarizationSetBy = Automatic
+
+	column balance
+		dataType: double
+		lineageTag: b8f3aafa-2a08-46c5-88ff-f2f7368f92dd
+		summarizeBy: sum
+		sourceColumn: balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column batch_number
+		dataType: string
+		lineageTag: fdaf6011-6862-47b7-899e-4fb0bd0c8ab4
+		summarizeBy: none
+		sourceColumn: batch_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'recurring_gift_schedule.frequency'
+		dataType: string
+		lineageTag: 0c897c1f-f80a-401a-a3ee-03de261ed571
+		summarizeBy: none
+		sourceColumn: recurring_gift_schedule.frequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'recurring_gift_schedule.start_date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ddb48fd6-b068-4615-a7ac-7d86e91ac973
+		summarizeBy: none
+		sourceColumn: recurring_gift_schedule.start_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'recurring_gift_schedule.end_date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: adec70ed-1b09-4bf3-b41a-ffd326d66cf4
+		summarizeBy: none
+		sourceColumn: recurring_gift_schedule.end_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'recurring_gift_status_date.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: d4004fb5-505a-4b4b-a104-a4323a59a798
+		summarizeBy: sum
+		sourceColumn: recurring_gift_status_date.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'recurring_gift_status_date.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1254178f-301f-43d5-9b2d-31d10905d119
+		summarizeBy: sum
+		sourceColumn: recurring_gift_status_date.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'recurring_gift_status_date.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e42017c-d68b-42fd-889c-4efca7bb0c87
+		summarizeBy: sum
+		sourceColumn: recurring_gift_status_date.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column gift_aid_amount
+		dataType: double
+		lineageTag: 30d026f6-64e0-462b-8c33-2438796aeaba
+		summarizeBy: sum
+		sourceColumn: gift_aid_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gift_aid_qualification_status
+		dataType: string
+		lineageTag: 58a98091-42d4-49a2-a777-75eed9deb5d2
+		summarizeBy: none
+		sourceColumn: gift_aid_qualification_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 10734acc-448b-410e-8945-0c00e7f04427
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5f03ddbe-8bab-4214-9f88-6be9c9a8da3e
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GFT - Public list (Small Set of Gifts)' = m
+		mode: import
+		queryGroup: Gifts
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Gifts"]}[Data],
+				    Data = Folder{[Key="Gifts_PublicLists"]}[Data]{[Key="77deed1d-64f2-4ba6-aa0f-daf1b1648338"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

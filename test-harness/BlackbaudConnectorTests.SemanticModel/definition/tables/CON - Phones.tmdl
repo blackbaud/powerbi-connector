@@ -1,0 +1,93 @@
+table 'CON - Phones'
+	lineageTag: 1e93f0f8-90de-4bee-b8fc-c70f829206a1
+
+	column constituent_id
+		dataType: string
+		lineageTag: 18a2b143-b22c-4d86-8a8e-67833f6c4f80
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone_id
+		dataType: string
+		lineageTag: 18628fe5-1d45-4227-94be-efa2d92e8ecf
+		summarizeBy: none
+		sourceColumn: phone_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: e27c4303-8c9d-41ae-a931-8a940ed0b1cb
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column number
+		dataType: string
+		lineageTag: 9db91279-52a2-4c46-b685-81433153be19
+		summarizeBy: none
+		sourceColumn: number
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3438baae-fea1-4910-b01c-2bce94c14eb6
+		summarizeBy: none
+		sourceColumn: primary
+
+		annotation SummarizationSetBy = Automatic
+
+	column do_not_call
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c96291c5-9c44-4a3e-845f-a694638772d1
+		summarizeBy: none
+		sourceColumn: do_not_call
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6e9706a2-0165-47c6-972c-89c3bd9cc889
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 10b50c54-a577-4808-a1c8-249348af2fc7
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 80e2dc69-3e14-4bde-a2ea-4e4632817963
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Phones' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent phones"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

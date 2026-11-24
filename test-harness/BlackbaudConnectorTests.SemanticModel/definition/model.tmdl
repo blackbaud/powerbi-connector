@@ -1,0 +1,107 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Constituents
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Gifts
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup Fundraising
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup Opportunities
+
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup Events
+
+	annotation PBI_QueryGroupOrder = 4
+
+queryGroup Lists
+
+	annotation PBI_QueryGroupOrder = 5
+
+queryGroup 'RE Query'
+
+	annotation PBI_QueryGroupOrder = 6
+
+queryGroup 'General Ledger'
+
+	annotation PBI_QueryGroupOrder = 7
+
+queryGroup 'FE Query'
+
+	annotation PBI_QueryGroupOrder = 8
+
+annotation PBI_QueryOrder = ["CON - Constituent (all)","CON - Constituent (all, no expansions)","CON - Filtered - Fundraiser Active","CON - Filtered - Inactive and deceased","CON - Filtered - Major Donor","CON - By list","CON - Actions","CON - Action fundraisers","CON - Addresses","CON - Codes","CON - Custom fields","CON - Emails","CON - Phones","CON - Notes","CON - Relationships","CON - Consents","CON - Education","CON - Membership","CON - Online presence","CON - Code types","CON - Custom field categories","CON - Public list (2 People)","CON - My Private Lists (folder)","GFT - Gift","GFT - Gift splits","GFT - Gift soft credits","GFT - Gift payments","GFT - Gift custom fields","GFT - Gift batch","GFT - Gift fundraisers","GFT - Gift receipts","GFT - Public list (Small Set of Gifts)","GFT - My Private Lists (folder)","FND - Appeal","FND - Campaign","FND - Fund","FND - Appeal packages","OPP - Opportunity","OPP - Opportunity fundraisers","OPP - Opportunity linked gifts","EVT - Event","EVT - Participants by event ID","LST - Constituent lists","QRY - By ID - defaults","QRY - By ID - en-GB","QRY - By ID - en-CA None","QRY - By ID - SQL Export","QRY - Ad hoc - defaults","QRY - Ad hoc - en-GB","QRY - Browse - All queries 202","GL - Account","GL - Project","GL - Transaction code list","GL - Budget scenario list","FEQ - By ID - General Ledger"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'CON - Action fundraisers'
+ref table 'CON - Actions'
+ref table 'CON - Addresses'
+ref table 'CON - By list'
+ref table 'CON - Codes'
+ref table 'CON - Consents'
+ref table 'CON - Constituent (all)'
+ref table 'CON - Constituent (all, no expansions)'
+ref table 'CON - Custom fields'
+ref table 'CON - Emails'
+ref table 'CON - Filtered - Fundraiser Active'
+ref table 'CON - Filtered - Inactive and deceased'
+ref table 'CON - Filtered - Major Donor'
+ref table 'CON - Notes'
+ref table 'CON - Phones'
+ref table 'CON - Public list (2 People)'
+ref table 'CON - Relationships'
+ref table 'EVT - Event'
+ref table 'EVT - Participants by event ID'
+ref table 'FEQ - By ID - General Ledger'
+ref table 'FND - Appeal packages'
+ref table 'FND - Appeal'
+ref table 'FND - Campaign'
+ref table 'FND - Fund'
+ref table 'GFT - Gift batch'
+ref table 'GFT - Gift custom fields'
+ref table 'GFT - Gift payments'
+ref table 'GFT - Gift soft credits'
+ref table 'GFT - Gift splits'
+ref table 'GFT - Gift'
+ref table 'GL - Account'
+ref table 'GL - Budget scenario list'
+ref table 'GL - Project'
+ref table 'GL - Transaction code list'
+ref table 'LST - Constituent lists'
+ref table 'OPP - Opportunity fundraisers'
+ref table 'OPP - Opportunity'
+ref table 'QRY - Ad hoc - defaults'
+ref table 'QRY - Ad hoc - en-GB'
+ref table 'QRY - Browse - All queries 202'
+ref table 'QRY - By ID - defaults'
+ref table 'QRY - By ID - en-CA None'
+ref table 'QRY - By ID - en-GB'
+ref table 'QRY - By ID - SQL Export'
+ref table 'Smoke Test'
+ref table 'CON - Code types'
+ref table 'CON - Custom field categories'
+ref table 'CON - Education'
+ref table 'CON - Membership'
+ref table 'CON - My Private Lists (folder)'
+ref table 'CON - Online presence'
+ref table 'GFT - Gift fundraisers'
+ref table 'GFT - Gift receipts'
+ref table 'GFT - My Private Lists (folder)'
+ref table 'GFT - Public list (Small Set of Gifts)'
+ref table 'OPP - Opportunity linked gifts'
+

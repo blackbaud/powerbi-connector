@@ -1,0 +1,93 @@
+table 'CON - Custom fields'
+	lineageTag: 2ff4ade3-fb6a-42b7-911b-b6cd0b832fa7
+
+	column constituent_id
+		dataType: string
+		lineageTag: 22fae333-5399-49f5-a9af-470d59b42e66
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column constituent_custom_field_id
+		dataType: string
+		lineageTag: 583735ea-9596-4cc7-862c-437eb830df16
+		summarizeBy: none
+		sourceColumn: constituent_custom_field_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 2eaaac9a-066d-4bbc-8213-773df076573a
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 4cf97674-7696-43ce-b8d6-77f6a03578af
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: 517779eb-0c0d-4e4f-98c0-62955ac900d2
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 88ad9201-ffe2-4ab0-aa8a-07d7d5f378f5
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column comment
+		dataType: string
+		lineageTag: 6f9b26b5-2787-40ff-98bb-0ff6ea629dae
+		summarizeBy: none
+		sourceColumn: comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e149ff83-a7a2-45dd-a721-8e945fc1122e
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 08663a92-3ed9-4ec2-8499-c8e3bab1a86b
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Custom fields' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent custom fields"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

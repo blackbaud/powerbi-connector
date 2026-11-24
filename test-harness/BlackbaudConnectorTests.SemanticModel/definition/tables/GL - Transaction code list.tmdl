@@ -1,0 +1,50 @@
+table 'GL - Transaction code list'
+	lineageTag: 5662eac9-670a-4d01-923c-dfae16c4ddc1
+
+	column transaction_code_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d9bb4b18-1e72-429d-802f-9c29f8251766
+		summarizeBy: sum
+		sourceColumn: transaction_code_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: c9f9cf93-4abe-4a33-9a9e-976994d3badf
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: a4388027-8bfd-4b7c-95eb-516dbbea1a7a
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column used_for_grants
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: fdad88fb-3818-44b8-90d4-b21207eed29b
+		summarizeBy: none
+		sourceColumn: used_for_grants
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GL - Transaction code list' = m
+		mode: import
+		queryGroup: 'General Ledger'
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="General Ledger"]}[Data],
+				    Data = Folder{[Key="Transaction code list"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,93 @@
+table 'GFT - Gift custom fields'
+	lineageTag: 4f158b48-70f3-4a26-8b59-0fa67595340d
+
+	column gift_id
+		dataType: string
+		lineageTag: 110933d6-86b3-43b2-a1e3-a0c2df9b70b7
+		summarizeBy: none
+		sourceColumn: gift_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column gift_custom_field_id
+		dataType: string
+		lineageTag: 3f620417-5bec-4a6f-b134-a5b3a34cda36
+		summarizeBy: none
+		sourceColumn: gift_custom_field_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: f2c991f1-f83c-4eff-8e55-32ec2b1bfbbc
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 42554837-d710-4376-93c5-0dd89be62f23
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column value
+		dataType: string
+		lineageTag: 6aa3453e-d3f9-475a-8022-78f841e36d75
+		summarizeBy: none
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8a4d2055-97a0-4772-b3d5-a2a42bca0a0c
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column comment
+		dataType: string
+		lineageTag: 01bcba8e-90d1-4691-acbc-e1ee1ade8b39
+		summarizeBy: none
+		sourceColumn: comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d6178e5c-7866-46cb-a042-bde948976ca6
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d3c9ce25-b793-4d9e-b9d7-3c26b1545521
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GFT - Gift custom fields' = m
+		mode: import
+		queryGroup: Gifts
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Gifts"]}[Data],
+				    Data = Folder{[Key="Gift custom fields"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

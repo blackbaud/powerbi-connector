@@ -1,0 +1,41 @@
+table 'GL - Budget scenario list'
+	lineageTag: 3570a975-ea1e-494d-b139-2ddc3ab1d299
+
+	column scenario_id
+		dataType: string
+		lineageTag: f7ecb719-2a2e-467a-b8c9-aa4b97e95cdc
+		summarizeBy: none
+		sourceColumn: scenario_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 6fe88a56-951c-4fab-982a-81298f010c2e
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d56849ac-6db6-4228-ad7c-b4c910e9a71a
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GL - Budget scenario list' = m
+		mode: import
+		queryGroup: 'General Ledger'
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="General Ledger"]}[Data],
+				    Data = Folder{[Key="Budget scenario list"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

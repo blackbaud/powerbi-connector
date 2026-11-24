@@ -1,0 +1,115 @@
+table 'CON - Consents'
+	lineageTag: 852e6058-4f12-4fd2-bd17-4f8a4269e025
+
+	column constituent_id
+		dataType: string
+		lineageTag: 4b6eec35-733a-41d1-ac31-6cbbcfbfbf10
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: string
+		lineageTag: f41b1eb4-344a-4b99-be09-e31d8c684359
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: a649af74-42fd-4e20-996d-703b7f1a4956
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f1d2ffa7-b50b-4110-9b71-0a3f8c60fc04
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a84f767d-dec9-436a-9fed-13b16d86a9f3
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+	column response
+		dataType: string
+		lineageTag: f808505e-2cbb-4ad6-b84b-55d8972fe3b9
+		summarizeBy: none
+		sourceColumn: response
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: a88896a2-ac4f-439d-a6f4-524787a4e151
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_id
+		dataType: string
+		lineageTag: 739ee511-bb0f-4b2f-b0d6-5e2b21c4bb48
+		summarizeBy: none
+		sourceColumn: category_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column source
+		dataType: string
+		lineageTag: 63cfe33b-981a-4158-8c37-660487689219
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column privacy_notice
+		dataType: string
+		lineageTag: c75d694a-f77b-4063-9b9d-236e40f370d1
+		summarizeBy: none
+		sourceColumn: privacy_notice
+
+		annotation SummarizationSetBy = Automatic
+
+	column consent_statement
+		dataType: string
+		lineageTag: bf019529-2f69-490d-8080-79db321c031a
+		summarizeBy: none
+		sourceColumn: consent_statement
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9aba99a6-80da-4258-9db2-6dd52090d37f
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Consents' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent consents"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,42 @@
+table 'OPP - Opportunity fundraisers'
+	lineageTag: 33a5afc6-dbae-4649-83bc-b2e1da59d2d1
+
+	column opportunity_id
+		dataType: string
+		lineageTag: 03c0fdf0-6848-46a8-8063-4bb9452db62d
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column fundraiser_constituent_id
+		dataType: string
+		lineageTag: 5b230041-aa69-4ef1-9fe8-a441eb7cc815
+		summarizeBy: none
+		sourceColumn: fundraiser_constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_amount
+		dataType: double
+		lineageTag: ccf8d247-75c8-4bac-85e3-fc5fcca1e3b5
+		summarizeBy: sum
+		sourceColumn: credit_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'OPP - Opportunity fundraisers' = m
+		mode: import
+		queryGroup: Opportunities
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Opportunities"]}[Data],
+				    Data = Folder{[Key="Opportunity fundraisers"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

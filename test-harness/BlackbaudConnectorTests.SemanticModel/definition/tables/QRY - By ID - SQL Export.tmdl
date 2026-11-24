@@ -1,0 +1,40 @@
+table 'QRY - By ID - SQL Export'
+	lineageTag: c466395f-f2dd-417b-a019-43402e9d03f5
+
+	column Name
+		dataType: string
+		lineageTag: b31418a5-bd65-4176-a267-aa2c5550507e
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Birth Date'
+		dataType: string
+		lineageTag: bc1d06ac-7af6-4199-9ae0-faa8dd7ed30b
+		summarizeBy: none
+		sourceColumn: Birth Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Volunteer Job Assignment'
+		dataType: string
+		lineageTag: fc36f02e-a2ba-4e47-8eba-2b49d6c0a53f
+		summarizeBy: none
+		sourceColumn: Volunteer Job Assignment
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'QRY - By ID - SQL Export' = m
+		mode: import
+		queryGroup: 'RE Query'
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="RaisersEdgeNXTQuery"]}[Data],
+				    Data = Folder{[Key="queryById"]}[Data](202, null, null, null, null, null, null, null, "Export")
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

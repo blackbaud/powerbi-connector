@@ -1,0 +1,93 @@
+table 'GFT - Gift batch'
+	lineageTag: dbd8d4e0-3d72-4b40-b9c8-3040d483e34e
+
+	column gift_batch_id
+		dataType: string
+		lineageTag: 930982f6-3f4d-4fb7-a0be-5a6f745b811e
+		summarizeBy: none
+		sourceColumn: gift_batch_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column actual_amount
+		dataType: double
+		lineageTag: 05178fed-f071-4b2c-8c12-7eab41d8f9ce
+		summarizeBy: sum
+		sourceColumn: actual_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column batch_description
+		dataType: string
+		lineageTag: 6e3e5432-4ac3-42a4-ab92-2173d989a91f
+		summarizeBy: none
+		sourceColumn: batch_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column batch_number
+		dataType: string
+		lineageTag: 999df75f-6644-49be-b988-0e7127cf25c4
+		summarizeBy: none
+		sourceColumn: batch_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column added_by
+		dataType: string
+		lineageTag: e1c462ff-4c97-49f2-91fe-0a735f9c38ef
+		summarizeBy: none
+		sourceColumn: added_by
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: string
+		lineageTag: 0a21be97-4abd-443a-b345-c5e484b0af96
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_exceptions
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 94b6feba-1103-412f-b72f-e6a7571aa142
+		summarizeBy: none
+		sourceColumn: has_exceptions
+
+		annotation SummarizationSetBy = Automatic
+
+	column approved
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 400b6002-6725-4b65-ad7c-1c576ef93f29
+		summarizeBy: none
+		sourceColumn: approved
+
+		annotation SummarizationSetBy = Automatic
+
+	column number_of_gifts
+		dataType: int64
+		formatString: 0
+		lineageTag: c46f4e2a-9ee8-4a76-b944-1f7529560e17
+		summarizeBy: sum
+		sourceColumn: number_of_gifts
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GFT - Gift batch' = m
+		mode: import
+		queryGroup: Gifts
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Gifts"]}[Data],
+				    Data = Folder{[Key="Gift batch"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,142 @@
+table 'FND - Appeal packages'
+	lineageTag: 02ddea31-35aa-46a5-a2ab-46c60bc0017f
+
+	column appeal_id
+		dataType: string
+		lineageTag: 584d7e2f-a566-4aca-88d5-d0f6ca4827b5
+		summarizeBy: none
+		sourceColumn: appeal_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column package_id
+		dataType: string
+		lineageTag: 08956978-ced0-4d2d-b06e-cd8b3aee6e3a
+		summarizeBy: none
+		sourceColumn: package_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column package_lookup_id
+		dataType: string
+		lineageTag: e353d5d2-762a-499a-8393-5cc4eafa88ca
+		summarizeBy: none
+		sourceColumn: package_lookup_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 62288721-fa8f-4695-8174-f3590bf2973d
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 10012ac7-0759-499b-aa99-0b67dd776809
+		summarizeBy: none
+		sourceColumn: start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column end
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 57037dcf-1ae5-411d-8e29-b018ec187a39
+		summarizeBy: none
+		sourceColumn: end
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column goal
+		dataType: double
+		lineageTag: 8288a702-21b3-4870-832e-0b071fcb293c
+		summarizeBy: sum
+		sourceColumn: goal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column default_gift_amount
+		dataType: double
+		lineageTag: 197ec7b6-2235-42d6-a68e-aac5520a7783
+		summarizeBy: sum
+		sourceColumn: default_gift_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column category
+		dataType: string
+		lineageTag: 62bdfe53-25d1-4022-88ca-3232e5e30bef
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column notes
+		dataType: string
+		lineageTag: f1df476f-83d6-46e0-8062-5b13eac9c04b
+		summarizeBy: none
+		sourceColumn: notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column recipient_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a897d1a-ca05-435f-ad71-98d1272ecc39
+		summarizeBy: sum
+		sourceColumn: recipient_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9d6eb802-870a-4127-9840-255bc7760898
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8ba7e876-8e28-4c6d-b36c-f45e43a495dd
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e2760e39-3700-4917-9dee-639e9a791f71
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FND - Appeal packages' = m
+		mode: import
+		queryGroup: Fundraising
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Fundraising"]}[Data],
+				    Data = Folder{[Key="Appeal packages"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

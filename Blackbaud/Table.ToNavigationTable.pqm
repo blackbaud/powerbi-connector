@@ -9,12 +9,29 @@
 ) as table =>
     let
         tableType = Value.Type(table),
-        newTableType = Type.AddTableKey(tableType, keyColumns, true) meta 
+        // Preview.DelayColumn is restored here, but its effect is decided PER ROW by what
+        // each row puts in the itemNameColumn cell:
+        //
+        //   text value     -> previewing of that row's Data is DELAYED (lazy - the Data
+        //                     value is not evaluated just to render the Navigator).
+        //   non-text (null) -> previewing is NOT delayed.
+        //
+        // Folder rows keep a text itemName so their nested navigation tables stay lazy -
+        // without this the Navigator eagerly builds subtrees, which for the Query folder
+        // means real (and slow) SKY API calls just to expand the tree.
+        //
+        // Function rows deliberately set itemName = null. A delayed row renders as static
+        // itemName text instead of an interactive control, which for a FUNCTION WITH
+        // REQUIRED PARAMETERS produces the dead-end "No parameter values specified"
+        // placeholder with nowhere to enter arguments. Opting those rows out of the delay
+        // lets the Navigator use its normal function-invocation renderer, which shows the
+        // inline parameter-entry form.
+        newTableType = Type.AddTableKey(tableType, keyColumns, true) meta
         [
-            NavigationTable.NameColumn = nameColumn, 
+            NavigationTable.NameColumn = nameColumn,
             NavigationTable.DataColumn = dataColumn,
-            NavigationTable.ItemKindColumn = itemKindColumn, 
-            Preview.DelayColumn = itemNameColumn, 
+            NavigationTable.ItemKindColumn = itemKindColumn,
+            Preview.DelayColumn = itemNameColumn,
             NavigationTable.IsLeafColumn = isLeafColumn
         ],
         navigationTable = Value.ReplaceType(table, newTableType)

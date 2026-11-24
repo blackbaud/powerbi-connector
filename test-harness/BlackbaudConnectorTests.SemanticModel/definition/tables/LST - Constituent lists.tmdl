@@ -1,0 +1,66 @@
+table 'LST - Constituent lists'
+	lineageTag: 40e0408f-428e-4c86-8b01-2a8fa622de30
+
+	column id
+		dataType: string
+		lineageTag: bb9917b1-4aea-4a6b-aa74-b8ee031a6da5
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 9d7b44f5-361d-4feb-bcdd-afb86a10f5ad
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 60ecf0ca-0615-4772-9a47-2acaa38d2052
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column record_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 9bbcd302-30fd-457d-a53c-bc4e8f17600c
+		summarizeBy: sum
+		sourceColumn: record_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_modified_by_user_name
+		dataType: string
+		lineageTag: b3fb91d2-79cb-4f06-a650-4ae43e92e738
+		summarizeBy: none
+		sourceColumn: last_modified_by_user_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_public
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 905feb05-32e7-4591-89f4-597c278f61ab
+		summarizeBy: none
+		sourceColumn: is_public
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'LST - Constituent lists' = m
+		mode: import
+		queryGroup: Lists
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Lists"]}[Data],
+				    Data = Folder{[Key="Constituent Lists"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,189 @@
+table 'OPP - Opportunity'
+	lineageTag: 659a9f38-aa90-4367-9031-8eb09eef1110
+
+	column opportunity_id
+		dataType: string
+		lineageTag: f295b075-b9b7-4ba9-8231-bdb15c3f6c2c
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column constituent_id
+		dataType: string
+		lineageTag: 338c7f1a-5571-45cd-be94-36f2ef8104f8
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column purpose
+		dataType: string
+		lineageTag: 72556309-5017-4e6a-8113-616cbf9d39bd
+		summarizeBy: none
+		sourceColumn: purpose
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 95e1d085-458f-45fd-a8f0-b74b6705928e
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 905def9b-ccc7-46f1-b006-9428724d5b98
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column deadline
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a5109c59-d6fa-4324-bee3-0cedd86b9b38
+		summarizeBy: none
+		sourceColumn: deadline
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column inactive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b618dfdb-e162-499e-a1d7-5d355d5b1031
+		summarizeBy: none
+		sourceColumn: inactive
+
+		annotation SummarizationSetBy = Automatic
+
+	column ask_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 26256c48-0a57-47fe-947c-e8e69d31b352
+		summarizeBy: none
+		sourceColumn: ask_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ask_amount
+		dataType: double
+		lineageTag: 1312573c-5371-4d8e-a352-f0234fdc7be4
+		summarizeBy: sum
+		sourceColumn: ask_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 421e668a-eb9d-4a9c-b8e5-736dcfe0b106
+		summarizeBy: none
+		sourceColumn: expected_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column expected_amount
+		dataType: double
+		lineageTag: a9e92468-1229-4cd2-b26a-9f0cc9af5c32
+		summarizeBy: sum
+		sourceColumn: expected_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column funded_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 978706bc-571a-4422-946a-f2995ce75c33
+		summarizeBy: none
+		sourceColumn: funded_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column funded_amount
+		dataType: double
+		lineageTag: 7f816fa9-0d7a-4319-be0f-c9f81b492fd9
+		summarizeBy: sum
+		sourceColumn: funded_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column campaign_id
+		dataType: string
+		lineageTag: cc3850bd-7a6a-447c-9a00-87691327dcb3
+		summarizeBy: none
+		sourceColumn: campaign_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column fund_id
+		dataType: string
+		lineageTag: b8f6a9ac-a4ee-42da-b295-3c1049817a23
+		summarizeBy: none
+		sourceColumn: fund_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 53a5c6ae-fac2-49a3-a722-bc504c53acca
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fadc6db4-a403-49ef-b146-b0be4dc08c3a
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_likelihood_name
+		dataType: string
+		lineageTag: d9208f08-b8fe-45b8-a5e4-49e954c4a811
+		summarizeBy: none
+		sourceColumn: opportunity_likelihood_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_likelihood_id
+		dataType: string
+		lineageTag: 8b25c10c-0059-4e6a-8228-387c4d4efe07
+		summarizeBy: none
+		sourceColumn: opportunity_likelihood_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'OPP - Opportunity' = m
+		mode: import
+		queryGroup: Opportunities
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Opportunities"]}[Data],
+				    Data = Folder{[Key="Opportunity"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

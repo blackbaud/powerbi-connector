@@ -1,0 +1,56 @@
+table 'FEQ - By ID - General Ledger'
+	lineageTag: d1c7137f-0964-450d-99e6-2c476e68be07
+
+	column 'Start Fiscal Year'
+		dataType: string
+		lineageTag: 84d96ea7-3a68-421b-936e-0eff192c31e7
+		summarizeBy: none
+		sourceColumn: Start Fiscal Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Period
+		dataType: string
+		lineageTag: 59ac95a3-17cc-4ed1-b966-9ae39557f4c8
+		summarizeBy: none
+		sourceColumn: Period
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Beginning balance_1'
+		dataType: string
+		lineageTag: c35f1df5-821a-4884-8418-77ceb7da9a7f
+		summarizeBy: none
+		sourceColumn: Beginning balance_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ending balance_1'
+		dataType: string
+		lineageTag: 2c2f3a16-e96a-4102-8d58-71773edfcb44
+		summarizeBy: none
+		sourceColumn: Ending balance_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column QRECID
+		dataType: string
+		lineageTag: 2506be8d-743f-4ace-95ca-0471445f685d
+		summarizeBy: none
+		sourceColumn: QRECID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FEQ - By ID - General Ledger' = m
+		mode: import
+		queryGroup: 'FE Query'
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="FinancialEdgeNXTQuery"]}[Data],
+				    Data = Folder{[Key="queryById"]}[Data](812, "General Ledger")
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

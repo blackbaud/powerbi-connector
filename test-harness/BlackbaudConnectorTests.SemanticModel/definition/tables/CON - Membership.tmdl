@@ -1,0 +1,114 @@
+table 'CON - Membership'
+	lineageTag: cd201684-720d-4a79-bd82-84e59a7f4b3b
+
+	column constituent_id
+		dataType: string
+		lineageTag: 5b3159ee-60be-4759-a3fd-5f72e623f7c2
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column membership_id
+		dataType: string
+		lineageTag: 79a3ddc6-5bb4-48fa-8edc-36f86dce3fda
+		summarizeBy: none
+		sourceColumn: membership_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dues
+		dataType: double
+		lineageTag: ab9e6c64-69c4-4885-93d9-18697092849b
+		summarizeBy: sum
+		sourceColumn: dues
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column program
+		dataType: string
+		lineageTag: 8f61ece5-7680-41ad-b3d0-282b429a83b4
+		summarizeBy: none
+		sourceColumn: program
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: a726941a-5749-447c-84ce-d04e512253fe
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column subcategory
+		dataType: string
+		lineageTag: 352c9d84-692a-4af9-8bcc-e3bed3e05b7c
+		summarizeBy: none
+		sourceColumn: subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column joined
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f282e5d9-953a-4410-9eb5-9c4f4d133c39
+		summarizeBy: none
+		sourceColumn: joined
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column expires
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 187f9297-f392-48c6-ba97-0034f4d875b2
+		summarizeBy: none
+		sourceColumn: expires
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column standing
+		dataType: string
+		lineageTag: b1106bdb-64e3-4518-b020-90e3a53b74d7
+		summarizeBy: none
+		sourceColumn: standing
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 171cb7db-533b-44df-b691-5e67d4e58782
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 07ae8e39-c195-4835-8d6a-43beef526293
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Membership' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent membership"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,101 @@
+table 'CON - Notes'
+	lineageTag: c44703c7-611e-4479-8b73-c73617e680ab
+
+	column constituent_id
+		dataType: string
+		lineageTag: 1f7822b2-daf3-43c1-a6ca-3b0919857552
+		summarizeBy: none
+		sourceColumn: constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column note_id
+		dataType: string
+		lineageTag: 258f6403-d42a-4bc7-96ba-17588c1ea2ac
+		summarizeBy: none
+		sourceColumn: note_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 95551197-3d9a-4882-84f2-adccb14ae74e
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date.year'
+		dataType: int64
+		formatString: 0
+		lineageTag: dd34dc7d-d0b6-4f6e-abac-7c4ff8785b55
+		summarizeBy: sum
+		sourceColumn: date.year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date.month'
+		dataType: int64
+		formatString: 0
+		lineageTag: f8bb088d-9192-4a2f-81ba-25309845f5f7
+		summarizeBy: sum
+		sourceColumn: date.month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'date.day'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8dc99336-4539-4647-8dc7-c126dc3f8c06
+		summarizeBy: sum
+		sourceColumn: date.day
+
+		annotation SummarizationSetBy = Automatic
+
+	column summary
+		dataType: string
+		lineageTag: b72374b5-c9a4-417e-83cd-6731eb64b37c
+		summarizeBy: none
+		sourceColumn: summary
+
+		annotation SummarizationSetBy = Automatic
+
+	column text
+		dataType: string
+		lineageTag: 3851f260-f258-48f8-a035-b2470132320d
+		summarizeBy: none
+		sourceColumn: text
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4f953f2b-71f3-4665-8c61-16e79c452138
+		summarizeBy: none
+		sourceColumn: date_added
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5e62a7ed-f018-4633-aba1-b54dc673ef99
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'CON - Notes' = m
+		mode: import
+		queryGroup: Constituents
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Constituents"]}[Data],
+				    Data = Folder{[Key="Constituent notes"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

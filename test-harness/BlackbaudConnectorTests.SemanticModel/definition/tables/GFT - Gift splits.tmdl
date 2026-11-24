@@ -1,0 +1,92 @@
+table 'GFT - Gift splits'
+	lineageTag: 2fd65885-2e5d-430a-8226-45024772b51e
+
+	column gift_id
+		dataType: string
+		lineageTag: 999a18ce-5dad-48ab-b2cf-98e211739484
+		summarizeBy: none
+		sourceColumn: gift_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column gift_split_id
+		dataType: string
+		lineageTag: 6e39ef6d-1479-43c3-87e7-66838d091c13
+		summarizeBy: none
+		sourceColumn: gift_split_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column campaign_id
+		dataType: string
+		lineageTag: ac33a6e8-e157-4d25-b279-f1db167ebae7
+		summarizeBy: none
+		sourceColumn: campaign_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column fund_id
+		dataType: string
+		lineageTag: c17fdbf6-9248-4068-9c6a-f70789f38072
+		summarizeBy: none
+		sourceColumn: fund_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column appeal_id
+		dataType: string
+		lineageTag: b3b4974f-528c-479f-8a30-7237be983e8c
+		summarizeBy: none
+		sourceColumn: appeal_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column package_id
+		dataType: string
+		lineageTag: 43767034-0e75-4447-bc36-d9405c2a397c
+		summarizeBy: none
+		sourceColumn: package_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: double
+		lineageTag: 575304e9-2fc1-4803-a294-07ff222f3e81
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gift_aid_amount
+		dataType: double
+		lineageTag: 17345613-fa92-4170-b654-b55fdad06077
+		summarizeBy: sum
+		sourceColumn: gift_aid_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gift_aid_qualification_status
+		dataType: string
+		lineageTag: f33ea15f-99a0-4ca5-9011-4f8cbd6da8fe
+		summarizeBy: none
+		sourceColumn: gift_aid_qualification_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GFT - Gift splits' = m
+		mode: import
+		queryGroup: Gifts
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Gifts"]}[Data],
+				    Data = Folder{[Key="Gift splits"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

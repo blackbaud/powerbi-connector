@@ -4,9 +4,9 @@ This repo contains the code needed to create a Power Query and Power BI custom c
 
 ## Watch a demo
 
-Learn how to create your own custom Power BI Connector for Raiser’s Edge NXT.
+Learn how to create your own custom Power BI Connector for your Blackbaud data.
 
-**Demo**: [Implementing the Blackbaud Custom Connector in Power BI](https://www.youtube.com/watch?v=BUaP0mlDy9s) by Sentinel Consulting
+**Demo**: [Connect Power BI to Raiser's Edge NXT and Financial Edge NXT](https://youtu.be/w2THeye2N5E) by Blackbaud SKY Developer
 
 ## Getting started
 
@@ -52,8 +52,68 @@ Then, navigate to the Marketplace. If you've already connected your application 
 
 1. To enable use of uncertified custom data connectors, as of the July 2018 release, Power BI additionally alerts users to change their security settings. To do this, go to **File**, **Options and settings**, **Security** and under **Data Extensions**, enable **(Not Recommended) Allow any extension to load without validation or warning**. 
 2. Restart Power BI Desktop
-3. In Power BI Desktop, select **Get Data, Other, Blackbaud**
-4. The first time you use the connector, you need to authorize the app to work with your data.  To authorize, log in with your Blackbaud account.
+
+## Using the custom connector
+
+In Power BI Desktop, select **Get Data**, **Other**, then search for and select **Blackbaud**.
+
+### Authorization
+
+The first time you use the connector, you need to authorize the app to work with your data. To authorize, log in with your Blackbaud account.
+
+### Get Data entries: tables vs. functions
+
+Broadly, the connector's Navigator entries fall into two categories:
+
+- **Fixed tables** — entries like **Constituent (all)**, **Gift**, and **Event** that load directly with no extra input required. These also preview quickly in Power Query's Navigator and query editor, so they're generally the most performant option whenever the data you need is already covered by one.
+- **Function-based entries** — entries like **Constituent (filtered)** and **Event participants (by event ID)** that require you to supply one or more parameters (for example, a constituent code, or an event ID) before they'll return data. The Query folders described below are also function-based: **Query by ID** and **Ad hoc query** each need at least a query ID or query definition to run.
+
+### A note on working with function-based entries
+
+Power Query re-evaluates every step of a query from scratch whenever you add or change a step while building a report — this is standard Power Query behavior for any data source, not something specific to this connector. It's barely noticeable for fixed tables, but for function-based entries — and especially the Query feature below, which starts a job on the Query API and polls until it completes — every edit you make while shaping your report re-runs that whole call again, which can make report-building noticeably slow.
+
+### Using the Query feature
+
+In addition to the object-based tables under Constituents, Gifts, etc., the Navigator includes two Query folders — **Query - Raiser's Edge NXT** and **Query - Financial Edge NXT** — which run queries from Query in Raiser's Edge NXT and Financial Edge NXT (web view) respectively, directly from Power BI.
+
+#### Browsing saved queries
+
+Each Query folder lets you browse your existing saved queries the same way you already organize them in Raiser's Edge NXT / Financial Edge NXT: **All queries**, **My queries**, **Favorites**, **Merged queries**, **Categories**, **Types**, **Format** (Dynamic/Static), and **Result Layout** (Multi-row/Single-row). Selecting a saved query runs it and loads the results as a table.
+
+For Financial Edge NXT, queries are also organized by **Module** (General Ledger, Accounts Payable, Accounts Receivable, Fixed Assets, Cash Receipts) — open the module folder that matches where the query is filed to browse it.
+
+#### Running a query directly
+
+Each Query folder also has two functions for running a query without browsing to it first:
+
+- **Query by ID** — runs a saved query by its numeric ID (entered in the **Query ID** box).
+- **Ad hoc query** — runs a query definition you supply as JSON yourself (in the **Ad hoc Query JSON** box), without it needing to be saved first.
+
+**Paste the definition as a single line.** The **Ad hoc Query JSON** box keeps only the first line of whatever you paste, so formatted JSON — such as the JSON you can copy from a query in the web view — gets cut off after its opening `{`, and the connector reports that the JSON looks incomplete. Minify the JSON first (any "JSON minify" tool will do) so the whole definition is on one line.
+
+**Set Locale to match where the JSON came from.** JSON copied from Query in the web view writes filter dates in your browser's date format — a UK browser gives `01/07/2017` for 1 July 2017. Ad hoc query reads those dates using its **Locale** parameter, which defaults to `en-US`, so a UK definition run with the default would treat that date as 7 January. Set **Locale** to match your browser language (for example `en-GB`) when running JSON copied from the web view.
+
+**A note on quoting:** if you copy an ad hoc definition out of Power Query M code, it will have doubled quotes (`""name""`) — that's M's own string escaping, not part of the JSON. When pasting into the parameter box, those need to be single quotes (`"name"`). The connector will tell you if the JSON can't be parsed.
+
+For Financial Edge NXT, both of these also require a **Module** parameter, since Financial Edge has no single "all modules" option.
+
+#### Other query parameters
+
+- **Timezone Offset (minutes)** — the offset applied to date/time fields in the results. Defaults to your local machine's offset if left blank.
+- **Use static query?** — whether to lock the query to the constituent list it matched when last run in Raiser's/Financial Edge NXT, rather than re-evaluating its filters live.
+- **Display code table long descriptions?** — whether to return the long description for code table values instead of the short code.
+- **Ask fields** — only applicable to queries with "Ask at runtime" filter fields; supply their values as JSON.
+- **Locale** — the date and number format of the results; the data itself is unchanged. Leaving it blank (null) uses `en-US` (`8/15/2014`). Other options: `en-GB` (`15/08/2014`), `en-CA` (`2014-08-15`), `en-AU` (`15/8/2014`), `en-NZ` (`15/08/2014`), `fr-CA` (`2014-08-15`, amounts as `10 000,00 $`) and `de-DE` (`15.08.2014`, amounts as `10.000,00 $`). The currency symbol follows your environment's currency setting, not the locale. On **Ad hoc query**, the locale also controls how filter dates inside the definition are read — see *Set Locale to match where the JSON came from* above.
+- **Formatting mode** — blank (null) uses `UI`. `UI` and `Export` return formatted values: amounts with currency symbols and separators, dates without a time. `None` returns raw amounts (`10000`) and dates with a time part, but **birth dates come back encrypted**.
+- **SQL generation mode** (saved queries only) — blank (null) uses `Query`. `Query` returns the output fields plus a `QRECID` column; `Export` returns the output fields only; `Report` returns only `QRECID`, one row per record.
+
+#### ⚠️ Preview data: for building reports, not for production
+
+This is exactly the scenario the **Preview data** parameter exists for. When set to `true`, the connector returns results as soon as the query *starts* running rather than waiting for it to fully finish — so each step you add while building your report doesn't have to sit through a full run of a potentially long query job.
+
+**This trades away completeness.** With Preview data enabled, you may get back a partial result set — a snapshot of whatever the query had processed at the moment the connector grabbed it — not the full, finished output the query would otherwise produce.
+
+**Before publishing a report or setting up scheduled refresh, set Preview data to `false` (or simply leave it out — `false` is the default).** Leaving it `true` in production risks a report silently showing incomplete data on every refresh, with no error to indicate anything is wrong.
 
 ## Scheduled refresh on Power BI service
 
@@ -76,43 +136,54 @@ Under the Service Settings, the Gateway Service Account is defaulted to running 
 
 ### Step 3 - Connect the custom connector 
 
-For Power BI Service to connect to the custom connector, the `.mez` file should be saved locally to `…\Documents\Power BI Desktop\Custom Connectors`. The Gateway Service Account must be at the head of this Documents path. 
+For Power BI Service to connect to the custom connector, the `.mez` file must be saved locally on the machine hosting the data gateway and must be accessible by the gateway's service account. The file path is typically `…\Documents\Power BI Desktop\Custom Connectors`. It is critical that the gateway's service account has access to the folder path for custom connectors. If you are using the default gateway service account `NT SERVICE\PBIEgwService`, verify that the machine hosting the gateway lists `PBIEgwService` under **Security > Group or user names**. An accessible path for this service account might look like: `C:\Windows\ServiceProfiles\PBIEgwService\Documents\Power BI Desktop\Custom Connectors`.
 
-Map the Data Gateway to the folder. You should see Blackbaud appear as an option for a custom connector. 
+After you map the custom connectors folder path in the data gateway setup, you should see Blackbaud appear in the custom connector list on the **Connectors** screen of the gateway setup.
 
 ### Step 4 – Set up the gateway in Power BI Service 
 
 1. From the Power BI Service home page, navgiate to **Settings**, **Manage Connections and Gateways**. 
 2. Select the **On-premises date gateways** tab. 
 3. Select your new gateway and select the ellipses (…) to the right of the name. Then, select **Settings**. 
-  a. Ensure the options within the Power BI field are selected. This will allow other users in your tenant to access the gateway:
+  a. Ensure these options within the Power BI field are selected. This will allow other users in your tenant to access the gateway:
     - Allow user’s cloud data sources to refresh through this gateway cluster.
     - Allow user’s custom data connectors to refresh through this gateway cluster.
   b. Select **Save**. 
 
 **Optional**: Also from the ellipses, select **Manage users** to add report developers who will need to publish reports and connect their data sets to this gateway. 
 
-### Step 5 – Upload a data set and connect to the gateway 
+### Step 5 – Upload a report and connect to the gateway 
 
-1. Publish a workbook that uses your connector to https://app.powerbi.com/.
-2. Open https://app.powerbi.com and navigate to the Workspace where you published the report. You will find a Report and a Data Set were published. From the ellipses (…) next to the data set, select **Settings**. 
-3. From the Datasets tab, expand the **Gateway connection** field. 
-4. Select the ▼ icon directly under **Actions**.
+1. Publish a Power BI report that uses your connector (from Step #3) to https://app.powerbi.com/.
+2. Open https://app.powerbi.com and navigate to the Workspace where you published the report. You will find a Report and a Semantic model were published. From the ellipses (…) next to the Semantic model, select **Settings**.
+3. From the Semantic models tab, expand the **Gateway and cloud connections** field.
+4. Locate your data gateway and select the ▼ icon next to the Settings gear under **Actions**.
 5. Select **Manually add to gateway**. This will open an interface to add a new data source.  
-6. Provide a data source name to represent the Connector, such as “Blackbaud.” 
-7. Set the authentication type to “OAuth2”.
-8. Set the privacy level to “Organizational”.
-9. Navigate back to the dataset settings and you can now map the connector to the data connector you set up in the previous step. Select **Apply**.
+6. Provide a connection name. This will represent the connector and the environment you authenticate, such as "Blackbaud-SkyDevCort" or "Blackbaud-Prod." When you upload new reports that use the same connector to authenticate to the same environment, you will make sure that the Semantic model Settings refer to the same connection on the gateway.
+7. Set the authentication type to "Connection" and provide your credentials.
+8. Set the privacy level to "Organizational".
+9. Navigate back to the Semantic model Settings and you can now map to the gateway connection you just set up.
+10. Select **Apply**.
 
 ### Step 6 – Schedule refresh 
 
 Configure a scheduled refresh using the gateway. To learn how. see the [Configure scheduled refresh - Power BI documentation](https://learn.microsoft.com/en-us/power-bi/connect-data/refresh-scheduled-refresh) from Microsoft Learn. 
 
-**Note:** You only see an enterprise gateway available if your account is listed in the Users tab of the data source configured for a given gateway. Your administrator may need to add you. 
+**Note:** You only see a gateway available if your account has been added as a user of the gateway. Your administrator may need to add you.
+
+### Updating the connector on the gateway
+
+The gateway only loads custom connectors when its service starts. Whenever you replace the `.mez` file in the gateway's Custom Connectors folder, restart the gateway: in the On-premises data gateway app, go to **Service Settings** and select **Restart now**.
+
+Until the gateway has been restarted, scheduled refresh can fail in a way that doesn't point to the gateway at all. The Semantic model Settings show:
+
+> You can't schedule refresh for this semantic model because the following data sources currently don't support refresh: Data source for Query1
+
+— naming a query that isn't in your report — and the **Gateway and cloud connections** section is missing, so there's nothing to map. Once the gateway is back online, select **Discover Data Sources** on that message (or republish the report); the section reappears and you can map the connection as in Step 5.
 
 ## Help / More information
 
-For any questions and feedback related to this custom connector, use the [Blackbaud Community - Microsoft Power Platorm category](https://community.blackbaud.com/forums/viewcategory/586).
+For any questions and feedback related to this custom connector, check out the [Blackbaud Community - SKY Developer category](https://community.blackbaud.com/categories/sky-developer-425).
 
 ## Known issues
 

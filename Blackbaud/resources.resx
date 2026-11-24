@@ -129,4 +129,199 @@
   <data name="DataSourceLabel" xml:space="preserve">
     <value>Connect to your Blackbaud environment</value>
   </data>
+  <!-- Query feature -->
+  <data name="raisersEdgeNXTQueryFolder" xml:space="preserve">
+    <value>Query - Raiser's Edge NXT</value>
+  </data>
+  <data name="financialEdgeNXTQueryFolder" xml:space="preserve">
+    <value>Query - Financial Edge NXT</value>
+  </data>
+  <data name="GeneralLedger" xml:space="preserve">
+    <value>General Ledger</value>
+  </data>
+  <data name="AccountsPayable" xml:space="preserve">
+    <value>Accounts Payable</value>
+  </data>
+  <data name="AccountsReceivable" xml:space="preserve">
+    <value>Accounts Receivable</value>
+  </data>
+  <data name="FixedAssets" xml:space="preserve">
+    <value>Fixed Assets</value>
+  </data>
+  <data name="CashReceipts" xml:space="preserve">
+    <value>Cash Receipts</value>
+  </data>
+  <data name="allQueries" xml:space="preserve">
+    <value>All queries</value>
+  </data>
+  <data name="myQueries" xml:space="preserve">
+    <value>My queries</value>
+  </data>
+  <data name="favorites" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="mergedQueries" xml:space="preserve">
+    <value>Merged queries</value>
+  </data>
+  <data name="categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="types" xml:space="preserve">
+    <value>Types</value>
+  </data>
+  <data name="format" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="dynamic" xml:space="preserve">
+    <value>Dynamic</value>
+  </data>
+  <data name="static" xml:space="preserve">
+    <value>Static</value>
+  </data>
+  <data name="resultLayout" xml:space="preserve">
+    <value>Result Layout</value>
+  </data>
+  <data name="MultiRow" xml:space="preserve">
+    <value>Multi-row</value>
+  </data>
+  <data name="SingleRow" xml:space="preserve">
+    <value>Single-row</value>
+  </data>
+  <data name="queryById" xml:space="preserve">
+    <value>Query by ID</value>
+  </data>
+  <data name="adHocQuery" xml:space="preserve">
+    <value>Ad hoc query</value>
+  </data>
+  <data name="QueryByIdFunction.Documentation.LongDescription" xml:space="preserve">
+    <value>Returns the results of a saved query identified by its system record ID.</value>
+  </data>
+  <data name="QueryByIdFunction.Example.Description" xml:space="preserve">
+    <value>Provide the system record identifier of the desired query.</value>
+  </data>
+  <data name="QueryByIdFunction.Example.Result" xml:space="preserve">
+    <value>Returns the results of the query with ID = 918.</value>
+  </data>
+  <data name="AdHocQueryFunction.Documentation.LongDescription" xml:space="preserve">
+    <value>Returns the results of an ad hoc query supplied as a JSON definition.</value>
+  </data>
+  <data name="AdHocQueryFunction.Example.Description" xml:space="preserve">
+    <value>Provide the JSON representation of the ad hoc query definition.</value>
+  </data>
+  <data name="AdHocQueryFunction.Example.Result" xml:space="preserve">
+    <value>Returns the results of the supplied ad hoc query.</value>
+  </data>
+  <data name="GetQueryResults.Documentation.LongDescriptionName" xml:space="preserve">
+    <value>Returns the results of the "#{0}" query.</value>
+  </data>
+  <data name="GetQueryListNavTable.Documentation.Description" xml:space="preserve">
+    <value>Runs the "#{0}" query.</value>
+  </data>
+  <data name="GetQueryListNavTable.Documentation.Result" xml:space="preserve">
+    <value>Returns the results of the "#{0}" query.</value>
+  </data>
+  <data name="QueryIdParameterType.FieldCaption" xml:space="preserve">
+    <value>Query ID</value>
+  </data>
+  <data name="QueryIdParameterType.FieldDescription" xml:space="preserve">
+    <value>The system record ID of the query to execute.</value>
+  </data>
+  <data name="FEModuleParameterType.FieldCaption" xml:space="preserve">
+    <value>Module</value>
+  </data>
+  <data name="FEModuleParameterType.FieldDescription" xml:space="preserve">
+    <value>The Financial Edge NXT module the query belongs to.</value>
+  </data>
+  <data name="QueryDefinitionParameterType.FieldCaption" xml:space="preserve">
+    <value>Ad hoc Query JSON</value>
+  </data>
+  <data name="QueryDefinitionParameterType.FieldDescription" xml:space="preserve">
+    <value>The JSON representation of the ad hoc query definition.</value>
+  </data>
+  <data name="QueryDefinitionParameterType.SampleValues" xml:space="preserve">
+    <value>{ The query definition JSON }</value>
+  </data>
+  <data name="TimeZoneOffsetInMinutesParameterType.FieldCaption" xml:space="preserve">
+    <value>Timezone Offset (minutes)</value>
+  </data>
+  <data name="TimeZoneOffsetInMinutesParameterType.FieldDescription" xml:space="preserve">
+    <value>Time difference from UTC in minutes (e.g. -240 for EDT, 0 for UTC).  If not specified, this will be calculated based on the local time (including the offset from UTC).</value>
+  </data>
+  <data name="UseStaticQueryParameterType.FieldCaption" xml:space="preserve">
+    <value>Use static query?</value>
+  </data>
+  <data name="UseStaticQueryParameterType.FieldDescription" xml:space="preserve">
+    <value>Use the static query as the source of records (if not, the query will be executed dynamically)?</value>
+  </data>
+  <data name="DisplayCodeTableLongDescriptionParameterType.FieldCaption" xml:space="preserve">
+    <value>Display code table long descriptions?</value>
+  </data>
+  <data name="DisplayCodeTableLongDescriptionParameterType.FieldDescription" xml:space="preserve">
+    <value>Display code table entries by long description?</value>
+  </data>
+  <data name="AskFieldsParameterType.FieldCaption" xml:space="preserve">
+    <value>Ask fields</value>
+  </data>
+  <data name="AskFieldsParameterType.FieldDescription" xml:space="preserve">
+    <value>The JSON representation of the ask fields for the query.</value>
+  </data>
+  <data name="AskFieldsParameterType.SampleValues" xml:space="preserve">
+    <value>
+[{
+  "query_field_id": 424,
+  "filter_values": ["Robert"],
+  "operator": "Equals",
+  "use_any_value": false
+}]
+    </value>
+  </data>
+  <data name="PreviewDataParameterType.FieldCaption" xml:space="preserve">
+    <value>Preview data</value>
+  </data>
+  <data name="PreviewDataParameterType.FieldDescription" xml:space="preserve">
+    <value>When true, polling requests include_read_url as OnceRunning and return data as soon as a read URI is available. Turn this off for full refreshes.</value>
+  </data>
+  <data name="LanguageParameterType.FieldCaption" xml:space="preserve">
+    <value>Locale</value>
+  </data>
+  <data name="LanguageParameterType.FieldDescription" xml:space="preserve">
+    <value>Blank = en-US. The date and number format of the results; the data itself is unchanged. en-US: 8/15/2014. en-GB: 15/08/2014. en-CA: 2014-08-15. en-AU: 15/8/2014. en-NZ: 15/08/2014. fr-CA: 2014-08-15, amounts as 10 000,00 $. de-DE: 15.08.2014, amounts as 10.000,00 $.</value>
+  </data>
+  <data name="AdHocLanguageParameterType.FieldDescription" xml:space="preserve">
+    <value>Blank = en-US. The date and number format of the results (en-US: 8/15/2014; en-GB: 15/08/2014; en-CA: 2014-08-15). Warning: it also controls how filter dates in the definition are read. If you copied the JSON from Query in the web view, set Locale to match your browser language (e.g. en-GB), or a filter date such as 01/07/2017 may be read with day and month swapped.</value>
+  </data>
+  <data name="FormattingModeParameterType.FieldCaption" xml:space="preserve">
+    <value>Formatting mode</value>
+  </data>
+  <data name="FormattingModeParameterType.FieldDescription" xml:space="preserve">
+    <value>Blank = UI. UI and Export return formatted values: amounts with currency symbols and separators ($10,000.00), dates without a time. None returns raw values (10000) and dates with a time part, but birth dates come back encrypted.</value>
+  </data>
+  <data name="SqlGenerationModeParameterType.FieldCaption" xml:space="preserve">
+    <value>SQL generation mode</value>
+  </data>
+  <data name="SqlGenerationModeParameterType.FieldDescription" xml:space="preserve">
+    <value>Blank = Query. Query returns the output fields plus a QRECID column. Export returns the output fields only. Report returns only QRECID, one row per record.</value>
+  </data>
+  <!-- Query feature errors -->
+  <data name="queryStartFailedNoJobId" xml:space="preserve">
+    <value>Failed to submit query job. No Job ID was returned by the API.</value>
+  </data>
+  <data name="queryStartFailedWithReason" xml:space="preserve">
+    <value>Failed to submit query job: #{0}</value>
+  </data>
+  <data name="adHocQueryJsonTruncated" xml:space="preserve">
+    <value>The Ad hoc Query JSON looks incomplete (#{0} characters received). The input box keeps only the first line of what you paste, so formatted JSON copied from Query is cut off after its opening "{". Paste the definition as a single line: minify the JSON first.</value>
+  </data>
+  <data name="adHocQueryJsonInvalid" xml:space="preserve">
+    <value>The Ad hoc Query JSON could not be parsed as JSON. If you copied it from Power Query M code, note that a doubled quote ("") is M escaping - it needs to be a single quote (") here.</value>
+  </data>
+  <data name="queryJobCanceledWithJobId" xml:space="preserve">
+    <value>The query job was cancelled. Job ID: #{0}</value>
+  </data>
+  <data name="queryJobFailedWithJobId" xml:space="preserve">
+    <value>The query job failed. Job ID: #{0}. Please check the query definition and try again.</value>
+  </data>
+  <data name="maxRetriesExceededWithJobId" xml:space="preserve">
+    <value>Exceeded maximum retries waiting for the query job to complete. Job ID: #{0}</value>
+  </data>
 </root>

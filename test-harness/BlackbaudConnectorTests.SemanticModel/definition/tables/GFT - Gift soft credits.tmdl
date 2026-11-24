@@ -1,0 +1,50 @@
+table 'GFT - Gift soft credits'
+	lineageTag: bbd5e6e3-3288-47fc-8872-0226d497b3ed
+
+	column gift_id
+		dataType: string
+		lineageTag: 0e0ca365-0856-48ad-8b6f-4beeaabc0dd3
+		summarizeBy: none
+		sourceColumn: gift_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column gift_softcredit_id
+		dataType: string
+		lineageTag: 48928c01-0f28-43a9-9326-175754cc49ee
+		summarizeBy: none
+		sourceColumn: gift_softcredit_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column softcredit_constituent_id
+		dataType: string
+		lineageTag: 59944063-644e-4c31-a4f7-ff55deda12f0
+		summarizeBy: none
+		sourceColumn: softcredit_constituent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: double
+		lineageTag: 06d78731-d420-47c8-9138-983b0b08343b
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'GFT - Gift soft credits' = m
+		mode: import
+		queryGroup: Gifts
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Gifts"]}[Data],
+				    Data = Folder{[Key="Gift soft credits"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

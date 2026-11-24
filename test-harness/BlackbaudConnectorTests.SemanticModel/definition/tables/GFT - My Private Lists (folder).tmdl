@@ -1,0 +1,107 @@
+table 'GFT - My Private Lists (folder)'
+	lineageTag: ceaa8dd3-9ea8-45bf-a6d0-8b8697096753
+
+	column Key
+		dataType: string
+		lineageTag: 9dabe466-3a24-4103-9640-024b3e17420b
+		summarizeBy: none
+		sourceColumn: Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 90bafe0b-4b28-4981-8b87-89a7a527d857
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: ee599fc2-82c4-4123-8d7e-0a923cc3da46
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column record_count
+		dataType: int64
+		formatString: 0
+		lineageTag: fb7fb8c1-003b-4402-b5f9-ec24fd7f79fd
+		summarizeBy: sum
+		sourceColumn: record_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_modified
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9147678e-6e19-4e0b-99bf-40c07a855b4d
+		summarizeBy: none
+		sourceColumn: date_modified
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_modified_by_user_name
+		dataType: string
+		lineageTag: bc4185fd-9f12-46cc-8a15-44630b5e6298
+		summarizeBy: none
+		sourceColumn: last_modified_by_user_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_modified_by_user_id
+		dataType: string
+		lineageTag: ee4149af-5489-40fb-ae1c-7e2619163dec
+		summarizeBy: none
+		sourceColumn: last_modified_by_user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_public
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e7c0f7bc-04ce-4c9a-9582-cd767c8777ff
+		summarizeBy: none
+		sourceColumn: is_public
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemKind
+		dataType: string
+		lineageTag: 411f3661-a75f-4ab4-9309-5f7142c40ae3
+		summarizeBy: none
+		sourceColumn: ItemKind
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: b2fb961c-d7d6-4c26-8714-ac59bc37bd48
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsLeaf
+		dataType: string
+		lineageTag: cdcff899-88e2-454a-ab17-218356cfcf4a
+		summarizeBy: none
+		sourceColumn: IsLeaf
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'GFT - My Private Lists (folder)' = m
+		mode: import
+		queryGroup: Gifts
+		source =
+				let
+				    Source = Blackbaud.Contents(),
+				    Folder = Source{[Key="Gifts"]}[Data],
+				    Data = Table.RemoveColumns(Folder{[Key="Gifts_MyPrivateLists"]}[Data], {"Data"})
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

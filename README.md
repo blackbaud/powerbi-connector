@@ -16,7 +16,7 @@ Choose one or both custom connectors to fit your needs.
 
 Learn how to create your own custom connectors to your Blackbaud data.
 
-**Demo**: [Implementing the Blackbaud Custom Connector in Power BI](https://www.youtube.com/watch?v=BUaP0mlDy9s) by Sentinel Consulting
+**Demo**: [Connect Power BI to Raiser's Edge NXT and Financial Edge NXT](https://youtu.be/w2THeye2N5E) by Blackbaud SKY Developer
 
 This walkthrough demonstrates how to set up the Blackbaud connector. Note the .zip file you download will also include a folder for the Blackbaud RENXT Query connector. Each folder contains all of the source code for one connector. You can walk through the demonstrated steps for each folder's content if you want to install both custom connectors.
 

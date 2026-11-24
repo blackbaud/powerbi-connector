@@ -1,0 +1,11 @@
+(r as record) as record =>
+    let
+        result = Record.SelectFields(
+            r, 
+            List.Select(
+                Record.FieldNames(r), 
+                (f) => Record.Field(r, f) <> null
+            )
+        )
+    in
+        result

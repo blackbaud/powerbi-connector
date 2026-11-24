@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <!-- Connection -->
+  <data name="ConnectionLabel" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="ConnectorName" xml:space="preserve">
+    <value>Blackbaud RENXT Query</value>
+  </data>
+  <data name="ConnectorTooltip" xml:space="preserve">
+    <value>Connect to Raiser's Edge NXT</value>
+  </data>
+  <data name="DataSourceLabel" xml:space="preserve">
+    <value>Connect to your Raiser's Edge NXT environment</value>
+  </data>
+  <!-- Navigation -->
+  <data name="allQueries" xml:space="preserve">
+    <value>All queries</value>
+  </data>
+  <data name="myQueries" xml:space="preserve">
+    <value>My queries</value>
+  </data>
+  <data name="favorites" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="mergedQueries" xml:space="preserve">
+    <value>Merged queries</value>
+  </data>  
+  <data name="categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="types" xml:space="preserve">
+    <value>Types</value>
+  </data>
+  <data name="format" xml:space="preserve">
+    <value>Formats</value>
+  </data>
+  <data name="dynamic" xml:space="preserve">
+    <value>Dynamic</value>
+  </data>
+  <data name="static" xml:space="preserve">
+    <value>Static</value>
+  </data>
+  <data name="queryList" xml:space="preserve">
+    <value>Queries list</value>
+  </data>
+  <data name="queryById" xml:space="preserve">
+    <value>Query by ID</value>
+  </data>
+  <data name="adHocQuery" xml:space="preserve">
+    <value>Ad hoc query</value>
+  </data>
+  <!-- Documentation -->
+  <data name="GetQueryResults.Documentation.LongDescriptionName" xml:space="preserve">
+    <value>Returns the results of the "#{0}" query from the Raiser's Edge NXT.</value>
+  </data>
+  <data name="BlackbaudRENXTQueryUIMetadata.Documentation.LongDescription" xml:space="preserve">
+    <value>Returns the results of the specified Raiser's Edge NXT query.</value>
+  </data>
+  <data name="BlackbaudRENXTQueryUIMetadata.Example.Description" xml:space="preserve">
+    <value>Provide the system record identifier of the desired query.</value>
+  </data>
+  <data name="BlackbaudRENXTQueryUIMetadata.Example.Result" xml:space="preserve">
+    <value>Returns the results of the Raiser's Edge NXT query with ID = 918.</value>
+  </data>
+  <data name="BlackbaudRENXTAdHocQueryUIMetadata.Documentation.LongDescription" xml:space="preserve">
+    <value>Returns the results of the specified Raiser's Edge NXT ad hoc query.</value>
+  </data>
+  <data name="BlackbaudRENXTAdHocQueryUIMetadata.Example.Description" xml:space="preserve">
+    <value>Provide the JSON representation of the ad hoc query.</value>
+  </data>
+  <data name="BlackbaudRENXTAdHocQueryUIMetadata.Example.Result" xml:space="preserve">
+    <value>Returns the results of the Raiser's Edge NXT ad hoc query.</value>
+  </data>
+  <data name="QueryIdParameterType.FieldCaption" xml:space="preserve">
+    <value>Query ID</value>
+  </data>
+  <data name="QueryIdParameterType.FieldDescription" xml:space="preserve">
+    <value>The system record ID of the Raiser's Edge NXT query to execute.</value>
+  </data>
+  <data name="QueryDefinitionParameterType.FieldCaption" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="QueryDefinitionParameterType.FieldDescription" xml:space="preserve">
+    <value>The JSON representation of the query definition.</value>
+  </data>
+  <data name="QueryDefinitionParameterType.SampleValues" xml:space="preserve">
+    <value>{ The query definition JSON }</value>
+  </data>
+  <data name="FormattingModeParameterType.FieldCaption" xml:space="preserve">
+    <value>Formatting mode</value>
+  </data>
+  <data name="FormattingModeParameterType.FieldDescription" xml:space="preserve">
+    <value>Indicates whether and how formatting should be applied to the query results (default is "None").</value>
+  </data>
+  <data name="SqlGenerationModeParameterType.FieldCaption" xml:space="preserve">
+    <value>SQL Generation Mode</value>
+  </data>
+  <data name="SqlGenerationModeParameterType.FieldDescription" xml:space="preserve">
+    <value>Indicates how query select fields should be handled.  When "Query" is selected, the output will include the select fields defined for the query plus QRECID.  When "Export" is selected, the output will include the select fields defined for the query ONLY.  When "Report" is selected, the output will ONLY include QRECID.  The default is "Query".</value>
+  </data>
+  <data name="TimeZoneOffsetInMinutesParameterType.FieldCaption" xml:space="preserve">
+    <value>Timezone Offset (minutes)</value>
+  </data>
+  <data name="TimeZoneOffsetInMinutesParameterType.FieldDescription" xml:space="preserve">
+    <value>Time difference from UTC in minutes (e.g. -240 for EDT, 0 for UTC).  If not specified, this will be calculated based on the local time (including the offset from UTC).</value>
+  </data>
+  <data name="UseStaticQueryParameterType.FieldCaption" xml:space="preserve">
+    <value>Use static query?</value>
+  </data>
+  <data name="UseStaticQueryParameterType.FieldDescription" xml:space="preserve">
+    <value>Use the static query as the source of records (if not, the query will be executed dynamically)?</value>
+  </data>
+  <data name="DisplayCodeTableLongDescriptionParameterType.FieldCaption" xml:space="preserve">
+    <value>Display code table long descriptions?</value>
+  </data>
+  <data name="DisplayCodeTableLongDescriptionParameterType.FieldDescription" xml:space="preserve">
+    <value>Display code table entries by long description?</value>
+  </data>
+  <data name="AskFieldsParameterType.FieldCaption" xml:space="preserve">
+    <value>Ask fields</value>
+  </data>
+  <data name="AskFieldsParameterType.FieldDescription" xml:space="preserve">
+    <value>The JSON representation of the ask fields for the query.</value>
+  </data>
+  <data name="AskFieldsParameterType.SampleValues" xml:space="preserve">
+    <value>
+[{
+  "query_field_id": 424,
+  "filter_values": ["Robert"],
+  "operator": "Equals",
+  "use_any_value": false
+}]    
+    </value>
+  </data>
+  <data name="GetQueryListNavTable.Documentation.Description" xml:space="preserve">
+    <value>Run the "#{0}" query.</value>
+  </data>
+  <data name="GetQueryListNavTable.Documentation.Result" xml:space="preserve">
+    <value>The results of the "#{0}" query from Raiser's Edge NXT.</value>
+  </data>  
+  <!-- Errors -->
+  <data name="resourceNotFound" xml:space="preserve">
+    <value>Resource "#{0}" was not found.  Does the file exist in the project, and is the Build Action set to 'Compile'?</value>
+  </data>
+  <data name="queryJobCanceled" xml:space="preserve">
+    <value>The RENXT query job was canceled.</value>
+  </data>
+  <data name="queryJobFailed" xml:space="preserve">
+    <value>The RENXT query job failed.  Please check the query definition and try again.</value>
+  </data>
+  <data name="maxRetriesExceeded" xml:space="preserve">
+    <value>Exceeded maximum retries waiting for RENXT query job to complete.</value>
+  </data>
+</root>

@@ -233,7 +233,7 @@
     <value>The Financial Edge NXT module the query belongs to.</value>
   </data>
   <data name="QueryDefinitionParameterType.FieldCaption" xml:space="preserve">
-    <value>Adhoc Query JSON</value>
+    <value>Ad hoc Query JSON</value>
   </data>
   <data name="QueryDefinitionParameterType.FieldDescription" xml:space="preserve">
     <value>The JSON representation of the ad hoc query definition.</value>
@@ -310,10 +310,10 @@
     <value>Failed to submit query job: #{0}</value>
   </data>
   <data name="adHocQueryJsonTruncated" xml:space="preserve">
-    <value>The Adhoc Query JSON looks incomplete (#{0} characters received). The input box keeps only the first line of what you paste, so formatted JSON copied from Query is cut off after its opening "{". Paste the definition as a single line: minify the JSON first.</value>
+    <value>The Ad hoc Query JSON looks incomplete (#{0} characters received). The input box keeps only the first line of what you paste, so formatted JSON copied from Query is cut off after its opening "{". Paste the definition as a single line: minify the JSON first.</value>
   </data>
   <data name="adHocQueryJsonInvalid" xml:space="preserve">
-    <value>The Adhoc Query JSON could not be parsed as JSON. If you copied it from Power Query M code, note that a doubled quote ("") is M escaping - it needs to be a single quote (") here.</value>
+    <value>The Ad hoc Query JSON could not be parsed as JSON. If you copied it from Power Query M code, note that a doubled quote ("") is M escaping - it needs to be a single quote (") here.</value>
   </data>
   <data name="queryJobCanceledWithJobId" xml:space="preserve">
     <value>The query job was cancelled. Job ID: #{0}</value>

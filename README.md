@@ -87,9 +87,9 @@ For Financial Edge NXT, queries are also organized by **Module** (General Ledger
 Each Query folder also has two functions for running a query without browsing to it first:
 
 - **Query by ID** — runs a saved query by its numeric ID (entered in the **Query ID** box).
-- **Ad hoc query** — runs a query definition you supply as JSON yourself (in the **Adhoc Query JSON** box), without it needing to be saved first.
+- **Ad hoc query** — runs a query definition you supply as JSON yourself (in the **Ad hoc Query JSON** box), without it needing to be saved first.
 
-**Paste the definition as a single line.** The **Adhoc Query JSON** box keeps only the first line of whatever you paste, so formatted JSON — such as the JSON you can copy from a query in the web view — gets cut off after its opening `{`, and the connector reports that the JSON looks incomplete. Minify the JSON first (any "JSON minify" tool will do) so the whole definition is on one line.
+**Paste the definition as a single line.** The **Ad hoc Query JSON** box keeps only the first line of whatever you paste, so formatted JSON — such as the JSON you can copy from a query in the web view — gets cut off after its opening `{`, and the connector reports that the JSON looks incomplete. Minify the JSON first (any "JSON minify" tool will do) so the whole definition is on one line.
 
 **Set Locale to match where the JSON came from.** JSON copied from Query in the web view writes filter dates in your browser's date format — a UK browser gives `01/07/2017` for 1 July 2017. Ad hoc query reads those dates using its **Locale** parameter, which defaults to `en-US`, so a UK definition run with the default would treat that date as 7 January. Set **Locale** to match your browser language (for example `en-GB`) when running JSON copied from the web view.
 
